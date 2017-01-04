@@ -7,14 +7,11 @@
 
 
 #import "LoginViewController.h"
-#import "GVColor.h"
-#import "MyHelper.h"
-#import "UIView+Addition.h"
 #import "findPassWordViewController.h"
 #import "NetworkRequest.h"
 #import "NSString+MD5.h"
-#import <AFNetworking/AFNetworking.h>
 #import "countDown.h"  //倒计时
+
 
 
 @interface LoginViewController ()<UITextFieldDelegate,UIScrollViewAccessibilityDelegate,UIScrollViewDelegate>

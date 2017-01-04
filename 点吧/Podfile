@@ -1,10 +1,12 @@
 platform :ios, '9.0'
-
 target '点吧' do
- pod "AFNetworking"
- pod’SDCycleScrollView’
  pod 'Masonry'
- pod "SDAutoLayout"
- pod'SVProgressHUD'
- pod’MJRefresh’
+ pod 'SDAutoLayout'
+ pod 'SVProgressHUD'
+ pod 'MJRefresh'
+ pod 'SDWebImage'
+ pod 'YYModel'
+ pod 'FMDB'
+ pod 'AFNetworking'
+ pod 'SDCycleScrollView'
 end

@@ -35,7 +35,6 @@
 		154FBA0F1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA0E1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m */; };
 		154FBA121E1C9CBA00F2F6E5 /* TopScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA111E1C9CBA00F2F6E5 /* TopScroll.m */; };
 		154FBA191E1C9CC900F2F6E5 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA141E1C9CC900F2F6E5 /* OrderViewController.m */; };
-		154FBA1A1E1C9CC900F2F6E5 /* OrderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA161E1C9CC900F2F6E5 /* OrderViewModel.m */; };
 		154FBA1B1E1C9CC900F2F6E5 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA181E1C9CC900F2F6E5 /* Order.m */; };
 		154FBA201E1C9CE800F2F6E5 /* TotalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA1D1E1C9CE800F2F6E5 /* TotalViewController.m */; };
 		154FBA211E1C9CE800F2F6E5 /* TotalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA1F1E1C9CE800F2F6E5 /* TotalTableViewCell.m */; };
@@ -155,8 +154,6 @@
 		154FBA111E1C9CBA00F2F6E5 /* TopScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopScroll.m; sourceTree = "<group>"; };
 		154FBA131E1C9CC900F2F6E5 /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
 		154FBA141E1C9CC900F2F6E5 /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
-		154FBA151E1C9CC900F2F6E5 /* OrderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewModel.h; sourceTree = "<group>"; };
-		154FBA161E1C9CC900F2F6E5 /* OrderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewModel.m; sourceTree = "<group>"; };
 		154FBA171E1C9CC900F2F6E5 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		154FBA181E1C9CC900F2F6E5 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		154FBA1C1E1C9CE800F2F6E5 /* TotalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalViewController.h; sourceTree = "<group>"; };
@@ -514,6 +511,139 @@
 			name = "颜色处理";
 			sourceTree = "<group>";
 		};
+		154FBA4E1E1C9F5D00F2F6E5 /* TopScroll */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA101E1C9CBA00F2F6E5 /* TopScroll.h */,
+				154FBA111E1C9CBA00F2F6E5 /* TopScroll.m */,
+			);
+			name = TopScroll;
+			sourceTree = "<group>";
+		};
+		154FBA4F1E1C9F7B00F2F6E5 /* ToTalVC */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA521E1C9FAC00F2F6E5 /* C */,
+				154FBA511E1C9FA600F2F6E5 /* V */,
+				154FBA501E1C9F9E00F2F6E5 /* M */,
+			);
+			name = ToTalVC;
+			sourceTree = "<group>";
+		};
+		154FBA501E1C9F9E00F2F6E5 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA171E1C9CC900F2F6E5 /* Order.h */,
+				154FBA181E1C9CC900F2F6E5 /* Order.m */,
+			);
+			name = M;
+			sourceTree = "<group>";
+		};
+		154FBA511E1C9FA600F2F6E5 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA1E1E1C9CE800F2F6E5 /* TotalTableViewCell.h */,
+				154FBA1F1E1C9CE800F2F6E5 /* TotalTableViewCell.m */,
+			);
+			name = V;
+			sourceTree = "<group>";
+		};
+		154FBA521E1C9FAC00F2F6E5 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA1C1E1C9CE800F2F6E5 /* TotalViewController.h */,
+				154FBA1D1E1C9CE800F2F6E5 /* TotalViewController.m */,
+				154FBA531E1C9FFF00F2F6E5 /* DetailsVC */,
+			);
+			name = C;
+			sourceTree = "<group>";
+		};
+		154FBA531E1C9FFF00F2F6E5 /* DetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA561E1CA06C00F2F6E5 /* C */,
+				154FBA551E1CA06700F2F6E5 /* V */,
+				154FBA541E1CA06000F2F6E5 /* M */,
+			);
+			name = DetailsVC;
+			sourceTree = "<group>";
+		};
+		154FBA541E1CA06000F2F6E5 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = M;
+			sourceTree = "<group>";
+		};
+		154FBA551E1CA06700F2F6E5 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA251E1C9D0B00F2F6E5 /* DetailsHead.h */,
+				154FBA261E1C9D0B00F2F6E5 /* DetailsHead.m */,
+				154FBA271E1C9D0B00F2F6E5 /* DetailsMessage.h */,
+				154FBA281E1C9D0B00F2F6E5 /* DetailsMessage.m */,
+				154FBA291E1C9D0B00F2F6E5 /* MoneyView.h */,
+				154FBA2A1E1C9D0B00F2F6E5 /* MoneyView.m */,
+				154FBA2B1E1C9D0B00F2F6E5 /* VegeTableViewCell.h */,
+				154FBA2C1E1C9D0B00F2F6E5 /* VegeTableViewCell.m */,
+				154FBA2D1E1C9D0B00F2F6E5 /* CostTableViewCell.h */,
+				154FBA2E1E1C9D0B00F2F6E5 /* CostTableViewCell.m */,
+				154FBA2F1E1C9D0B00F2F6E5 /* DetailsView.h */,
+				154FBA301E1C9D0B00F2F6E5 /* DetailsView.m */,
+				154FBA311E1C9D0B00F2F6E5 /* OrderTableViewCell.h */,
+				154FBA321E1C9D0B00F2F6E5 /* OrderTableViewCell.m */,
+			);
+			name = V;
+			sourceTree = "<group>";
+		};
+		154FBA561E1CA06C00F2F6E5 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA221E1C9CF300F2F6E5 /* DetailsViewController.h */,
+				154FBA231E1C9CF300F2F6E5 /* DetailsViewController.m */,
+				154FBA571E1CA0A700F2F6E5 /* JudgeVC */,
+			);
+			name = C;
+			sourceTree = "<group>";
+		};
+		154FBA571E1CA0A700F2F6E5 /* JudgeVC */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA5A1E1CA0CE00F2F6E5 /* C */,
+				154FBA591E1CA0CA00F2F6E5 /* V */,
+				154FBA581E1CA0C400F2F6E5 /* M */,
+			);
+			name = JudgeVC;
+			sourceTree = "<group>";
+		};
+		154FBA581E1CA0C400F2F6E5 /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = M;
+			sourceTree = "<group>";
+		};
+		154FBA591E1CA0CA00F2F6E5 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA3C1E1C9D1E00F2F6E5 /* JudgeVegeTableViewCell.h */,
+				154FBA3D1E1C9D1E00F2F6E5 /* JudgeVegeTableViewCell.m */,
+				154FBA3E1E1C9D1E00F2F6E5 /* MessagView.h */,
+				154FBA3F1E1C9D1E00F2F6E5 /* MessagView.m */,
+			);
+			name = V;
+			sourceTree = "<group>";
+		};
+		154FBA5A1E1CA0CE00F2F6E5 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA401E1C9D1E00F2F6E5 /* JudgeViewController.xib */,
+				154FBA3A1E1C9D1E00F2F6E5 /* JudgeViewController.h */,
+				154FBA3B1E1C9D1E00F2F6E5 /* JudgeViewController.m */,
+			);
+			name = C;
+			sourceTree = "<group>";
+		};
 		1565FD591E12333C00C68872 /* Tools(工具) */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,41 +756,10 @@
 		158D9E411E113AE900B0FFB5 /* Order(订单) */ = {
 			isa = PBXGroup;
 			children = (
-				154FBA101E1C9CBA00F2F6E5 /* TopScroll.h */,
-				154FBA111E1C9CBA00F2F6E5 /* TopScroll.m */,
+				154FBA4E1E1C9F5D00F2F6E5 /* TopScroll */,
 				154FBA131E1C9CC900F2F6E5 /* OrderViewController.h */,
 				154FBA141E1C9CC900F2F6E5 /* OrderViewController.m */,
-				154FBA151E1C9CC900F2F6E5 /* OrderViewModel.h */,
-				154FBA161E1C9CC900F2F6E5 /* OrderViewModel.m */,
-				154FBA171E1C9CC900F2F6E5 /* Order.h */,
-				154FBA181E1C9CC900F2F6E5 /* Order.m */,
-				154FBA1C1E1C9CE800F2F6E5 /* TotalViewController.h */,
-				154FBA1D1E1C9CE800F2F6E5 /* TotalViewController.m */,
-				154FBA1E1E1C9CE800F2F6E5 /* TotalTableViewCell.h */,
-				154FBA1F1E1C9CE800F2F6E5 /* TotalTableViewCell.m */,
-				154FBA221E1C9CF300F2F6E5 /* DetailsViewController.h */,
-				154FBA231E1C9CF300F2F6E5 /* DetailsViewController.m */,
-				154FBA251E1C9D0B00F2F6E5 /* DetailsHead.h */,
-				154FBA261E1C9D0B00F2F6E5 /* DetailsHead.m */,
-				154FBA271E1C9D0B00F2F6E5 /* DetailsMessage.h */,
-				154FBA281E1C9D0B00F2F6E5 /* DetailsMessage.m */,
-				154FBA291E1C9D0B00F2F6E5 /* MoneyView.h */,
-				154FBA2A1E1C9D0B00F2F6E5 /* MoneyView.m */,
-				154FBA2B1E1C9D0B00F2F6E5 /* VegeTableViewCell.h */,
-				154FBA2C1E1C9D0B00F2F6E5 /* VegeTableViewCell.m */,
-				154FBA2D1E1C9D0B00F2F6E5 /* CostTableViewCell.h */,
-				154FBA2E1E1C9D0B00F2F6E5 /* CostTableViewCell.m */,
-				154FBA2F1E1C9D0B00F2F6E5 /* DetailsView.h */,
-				154FBA301E1C9D0B00F2F6E5 /* DetailsView.m */,
-				154FBA311E1C9D0B00F2F6E5 /* OrderTableViewCell.h */,
-				154FBA321E1C9D0B00F2F6E5 /* OrderTableViewCell.m */,
-				154FBA3A1E1C9D1E00F2F6E5 /* JudgeViewController.h */,
-				154FBA3B1E1C9D1E00F2F6E5 /* JudgeViewController.m */,
-				154FBA3C1E1C9D1E00F2F6E5 /* JudgeVegeTableViewCell.h */,
-				154FBA3D1E1C9D1E00F2F6E5 /* JudgeVegeTableViewCell.m */,
-				154FBA3E1E1C9D1E00F2F6E5 /* MessagView.h */,
-				154FBA3F1E1C9D1E00F2F6E5 /* MessagView.m */,
-				154FBA401E1C9D1E00F2F6E5 /* JudgeViewController.xib */,
+				154FBA4F1E1C9F7B00F2F6E5 /* ToTalVC */,
 				154FBA411E1C9D1E00F2F6E5 /* HallViewController.h */,
 				154FBA421E1C9D1E00F2F6E5 /* HallViewController.m */,
 				154FBA431E1C9D1E00F2F6E5 /* TakeViewController.h */,
@@ -959,7 +1058,6 @@
 				BA6567E81E14A2130075E865 /* LoginViewController.m in Sources */,
 				154FBA4D1E1C9D5A00F2F6E5 /* TextRect.m in Sources */,
 				154FBA391E1C9D0B00F2F6E5 /* OrderTableViewCell.m in Sources */,
-				154FBA1A1E1C9CC900F2F6E5 /* OrderViewModel.m in Sources */,
 				0DC495BF1E148EBA00537686 /* hotelViewController.m in Sources */,
 				0D619E801E1B8EA400B5873F /* hoteRequest.m in Sources */,
 				158D9E3C1E113A9800B0FFB5 /* MySelfViewController.m in Sources */,

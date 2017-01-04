@@ -17,6 +17,8 @@
 #import <UIView+SDAutoLayout.h>
 #import "DetailsView.h"
 #import "JudgeViewController.h"
+#import "AFNManager.h"
+
 #define WIDTH self.view.bounds.size.width
 #define HEIGHT self.view.bounds.size.height
 @interface DetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -28,12 +30,25 @@
 -(void)viewWillAppear:(BOOL)animated
 
 {
+    NSString *str = @"http://www.kdiana.com/index.php/Before/Orders/fix_type_sel";
+    NSDictionary *dic = @{@"order_id":@"689"
+                          };
+    [[AFNManager sharedManager]requestType:POST URL:str withparameters:dic success:^(id data) {
+        NSLog(@"%@",data);
+//        NSString *str  =[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@",str);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = YES;
     self.tabBarController.tabBar.translucent = YES;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     [self.view addSubview:self.tableView];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);

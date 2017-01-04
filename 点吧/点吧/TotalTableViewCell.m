@@ -114,7 +114,7 @@
         _moneyLab = [[UILabel alloc]init];
         _moneyLab.textColor = [GVColor hexStringToColor:@"#333333"];
         _moneyLab.font = [UIFont systemFontOfSize:15];
-        _moneyLab.text = @"总金额\t¥230";
+        _moneyLab.text = @"总金额\t¥23000";
     }
     return _moneyLab;
 }
@@ -215,7 +215,7 @@
     if (!_numberLab) {
         
         _numberLab = [[UILabel alloc]init];
-        _numberLab.text = @"订单号：2016102916286997";
+        _numberLab.text = @"订单号：2016102916286997000000000";
         _numberLab.font = [UIFont systemFontOfSize:13];
         _numberLab.textColor = [GVColor hexStringToColor:@"#aaaaaa"];
         

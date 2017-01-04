@@ -413,17 +413,9 @@
 
 -(void)loginaa{
     //    //先判断输入框是否有内容
-    //    if (_userNameC.text.length ==  0 ) {
-    //        [SVProgressHUD showErrorWithStatus:@"请输入账号"];
-    //        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
-    //        return;
-    //    }
+    
     //
-    //    if (_passwordC.text.length == 0) {
-    //        [SVProgressHUD showErrorWithStatus:@"请输入密码"];
-    //        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
-    //        return;
-    //    }
+    //
     //#define JudegPhone @"http://www.kdiana.com/index.php/Home/Seller/login"
     //    NSLog(@"md5%@",[NSString md5:_password.text]);
     //    NSDictionary *param = @{@"username":_userNameC.text,
@@ -459,9 +451,51 @@
     //
     
 }
+
 #define JUDGECODE @"http://www.kdiana.com/index.php/home/seller/checkTelCaptcha"
 #pragma mark- 登录按钮(验证码)
 -(void)loginclick:(UIButton *)sender{
+//    if (_userName.text.length ==  0 ) {
+//        [SVProgressHUD showErrorWithStatus:@"请输入账号"];
+//        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+//        return;
+//    }
+//    if (_password.text.length == 0) {
+//                [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
+//                [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+//                return;
+//            }
+//    else
+//    {
+//        [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeCustom];
+//        
+//        NSDictionary *parameters = @{@"contact_tel":self.userName.text,@"sendCode":self.password.text};
+//        [NetworkRequest requestForPhoneCodeUrl:JUDGECODE parameters:parameters Success:^(id success) {
+//            NSLog(@"=============%@",success);
+//            
+//            NSString *str = [success objectForKey:@"message"];
+//            NSLog(@"%@",str);
+//            if ([str  isEqual: @"输入正确" ] ) {
+//                
+//                NSLog(@"我可以改换个人信息了在这个方法里");
+//                if (self.returnTextBlock != nil) {
+//                    
+//                    self.returnTextBlock(@"我改变啦");
+//                    
+//                }
+//                [self.navigationController popViewControllerAnimated:YES];
+//                
+//            }
+//            
+//            
+//        } Failure:^(id failure) {
+//            NSLog(@"%@",failure);
+//        }];
+//        
+//    }
+//    
+//
+//        [self performSelector:@selector(dismissAA) withObject:nil afterDelay:3];
     NSDictionary *parameters = @{@"contact_tel":self.userName.text,@"sendCode":self.password.text};
     [NetworkRequest requestForPhoneCodeUrl:JUDGECODE parameters:parameters Success:^(id success) {
         NSLog(@"=============%@",success);
@@ -473,7 +507,8 @@
             NSLog(@"我可以改换个人信息了在这个方法里");
             if (self.returnTextBlock != nil) {
                 
-                self.returnTextBlock(@"我改变啦");
+                self.returnTextBlock(@"pomelo");
+                self.returnTextBlock(@"1");
             }
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -484,7 +519,6 @@
         NSLog(@"%@",failure);
     }];
 }
-
 
 //参数
 - (NSDictionary *)parameters{

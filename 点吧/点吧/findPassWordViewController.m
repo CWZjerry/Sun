@@ -8,6 +8,13 @@
 
 #import "findPassWordViewController.h"
 #import "GVColor.h"
+#import "UILabel+Extension.h"
+#import "PhoneNumber.h"
+#import "countDown.h"
+#import "phoneRequest.h"
+#import "SendVerificationCode.h"
+#import "JudgmentCode.h"
+
 @interface findPassWordViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, strong)UIImageView *imagePhone;
@@ -95,6 +102,7 @@
     [_textBtn.layer setBorderColor:colorref];//边框颜色
     _textBtn.layer.borderColor=[GVColor hexStringToColor:@"#ffba14"].CGColor;
     _textBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_textBtn addTarget:self action:@selector(textBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_textBtn];
     
     
@@ -112,36 +120,116 @@
     
     
 }
+//验证验证码按钮
+-(void)textBtn:(UIButton *)sender{
+    if (self.userName.text.length == 11) {
+        
+        // 判断手机号是否可用
+        [PhoneNumber phoneNumberIsExistsWithPgoneNumber:self.userName.text success:^(phoneRequest *result) {
+            
+            if ([result.code intValue] == 007) { // 手机号还没有注册
+                
+                [UILabel labelWithFont:[UIFont systemFontOfSize:15] textColor:[UIColor whiteColor] numberOfLines:1 textAlignment:NSTextAlignmentCenter];
+                [UILabel showStats:@"您的手机号暂时还没有注册" atView:self.view];
+                
+            }else{ // 手机号已经注册
+                
 
--(void)longinclick{
-    
-    if (_userName.text.length<=0 &&_password.text.length<=0)
-    {
-        [SVProgressHUD showErrorWithStatus:@"请输入手机号和验证码"];
-        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+                [countDown countDownWithButton:self.textBtn];
+                
+                [SendVerificationCode SendVerificationCodeWithPhoneNumber:self.userName.text success:^(SendResult *result) {
+                    
+                    NSLog(@"发送成功");
+                
+                } failure:^(NSError *error) {
+                    NSLog(@"error==%@",error);
+                }];
+                
+            }
+            
+            
+        } failure:^(NSError *error) {
+            NSLog(@"error==%@",error);
+        }];
         
     }
     
-    else if (_userName.text.length<=0 &&_password.text.length>0)
-    {
-        [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
-        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+    else if (self.userName.text.length > 0  && self.userName.text.length < 11 ){
+        
+        [UILabel labelWithFont:[UIFont systemFontOfSize:15] textColor:[UIColor whiteColor] numberOfLines:1 textAlignment:NSTextAlignmentCenter];
+        [UILabel showStats:@"请输入正确的手机号" atView:self.view];
+        
     }
-    else if (_userName.text.length>0 &&_password.text.length<=0)
-    {
-        [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
-        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+    
+    else if (self.userName.text.length > 11){
+        
+        [UILabel labelWithFont:[UIFont systemFontOfSize:15] textColor:[UIColor whiteColor] numberOfLines:1 textAlignment:NSTextAlignmentCenter];
+        [UILabel showStats:@"请输入正确的手机号" atView:self.view];
+        
     }
-    else
-    {
-        [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeCustom];
-        [self performSelector:@selector(dismissAA) withObject:nil afterDelay:3];
+    
+    else{
+        
+        [UILabel labelWithFont:[UIFont systemFontOfSize:15] textColor:[UIColor whiteColor] numberOfLines:1 textAlignment:NSTextAlignmentCenter];
+        [UILabel showStats:@"手机号不能为空" atView:self.view];
+        
+    }
+    
+}
+-(void)longinclick{
+    
+//    if (_userName.text.length<=0 &&_password.text.length<=0)
+//    {
+//        [SVProgressHUD showErrorWithStatus:@"请输入手机号和验证码"];
+//        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+//        
+//    }
+//    
+//    else if (_userName.text.length<=0 &&_password.text.length>0)
+//    {
+//        [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
+//        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+//    }
+//    else if (_userName.text.length>0 &&_password.text.length<=0)
+//    {
+//        [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
+//        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+//    }
+//    else
+//    {
+//        [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeCustom];
+//        [self performSelector:@selector(dismissAA) withObject:nil afterDelay:3];
+//    }
+    
+    if (self.password.text.length <= 0) {
+        
+        [UILabel labelWithFont:[UIFont systemFontOfSize:15] textColor:[UIColor whiteColor] numberOfLines:1 textAlignment:NSTextAlignmentCenter];
+        [UILabel showStats:@"请输入验证码" atView:self.view];
+        
+    }else{
+        
+        [JudgmentCode judgmentVerificationCodeWithPhoneNumber:self.userName.text andCode:self.password.text success:^(JudgmentResult *result) {
+            
+            self.sendValueBlock(YES);
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            //跳转页面
+//            ReplaceViewController *replaceC = [[ReplaceViewController alloc] init];
+//            [self.navigationController pushViewController:replaceC animated:YES];
+            
+        } failure:^(NSError *error) {
+            
+            [UILabel labelWithFont:[UIFont systemFontOfSize:15] textColor:[UIColor whiteColor] numberOfLines:1 textAlignment:NSTextAlignmentCenter];
+            [UILabel showStats:@"您输入的验证码有误" atView:self.view];
+            
+        }];
+        
     }
 }
 -(void)dismissAA{
-    
-    [SVProgressHUD dismiss];
-    [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+//    
+//    [SVProgressHUD dismiss];
+//    [SVProgressHUD showSuccessWithStatus:@"登录成功"];
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -176,10 +264,12 @@
 -(void)loginClick{
     
 }
-//导航按钮点击方法
+
+//导航返回按钮点击方法
 -(void)backClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

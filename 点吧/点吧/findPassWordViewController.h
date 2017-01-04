@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^sendValue)(BOOL isJump);
+
 @interface findPassWordViewController : UIViewController
+
+@property (nonatomic, copy)sendValue sendValueBlock;
 
 @end

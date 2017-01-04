@@ -10,30 +10,10 @@
 #import <UIView+SDAutoLayout.h>
 
 
+
 #import "GVColor.h"
 #define GRAY #aaaaaa
 @implementation TotalTableViewCell
-/*
- @property(nonatomic,strong)UILabel *numberLab;
- @property(nonatomic,strong)UIImageView *headImageView;
- @property(nonatomic,strong)UILabel *shopNameLab;
- @property(nonatomic,strong)UILabel *typeLab;
- @property(nonatomic,strong)UILabel *wayLab;
- @property(nonatomic,strong)UILabel *orderTimeLab;
- @property(nonatomic,strong)UILabel *moneyLab;
- @property(nonatomic,strong)UILabel *payLab;
- @property(nonatomic,strong)UIButton *paceBtn;
- @property(nonatomic,strong)UILabel *topLineLab;
- @property(nonatomic,strong)UILabel *bottomLineLab;
- */
-//- (instancetype)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        [self.contentView addSubview:self.payLab];
-//    }
-//    return self;
-//}
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     
@@ -134,7 +114,7 @@
         _moneyLab = [[UILabel alloc]init];
         _moneyLab.textColor = [GVColor hexStringToColor:@"#333333"];
         _moneyLab.font = [UIFont systemFontOfSize:15];
-        _moneyLab.text = @"总金额\t¥230";
+        _moneyLab.text = @"总金额\t¥23000";
     }
     return _moneyLab;
 }
@@ -163,7 +143,7 @@
 {
     if (!_orderTimeLab) {
         _orderTimeLab = [[UILabel alloc]init];
-        _orderTimeLab.text = @"下单时间：2016-10-19\t17:00";
+        _orderTimeLab.text = @"下单时间：2016-10-19\t17:00:0000";
         _orderTimeLab.font = [UIFont systemFontOfSize:13];
         
         _orderTimeLab.textColor = [GVColor hexStringToColor:@"#aaaaaa"];
@@ -222,7 +202,7 @@
 {
     if (!_payLab) {
         _payLab = [[UILabel alloc]init];
-        _payLab.text = @"代付款";
+        _payLab.text = @"代付款中";
         _payLab.font = [UIFont systemFontOfSize:12];
         _payLab.textColor = [GVColor hexStringToColor:@"#ffba14"];
         
@@ -235,7 +215,7 @@
     if (!_numberLab) {
         
         _numberLab = [[UILabel alloc]init];
-        _numberLab.text = @"订单号：2016102916286997";
+        _numberLab.text = @"订单号：2016102916286997000000000";
         _numberLab.font = [UIFont systemFontOfSize:13];
         _numberLab.textColor = [GVColor hexStringToColor:@"#aaaaaa"];
         
@@ -246,7 +226,6 @@
 -(CGRect)labelTextRect:(UILabel *)label
 {
     
-    NSLog(@"%@",label);
     
     NSMutableParagraphStyle *paragraphstyle=[[NSMutableParagraphStyle alloc]init];
     paragraphstyle.lineBreakMode=NSLineBreakByCharWrapping;

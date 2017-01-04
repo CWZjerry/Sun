@@ -16,6 +16,7 @@
     [self.rightBtn addTarget:self action:@selector(rightAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.leftBtn addTarget:self action:@selector(leftAction:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 -(void)leftAction:(UIButton *)button
 {
@@ -37,5 +38,7 @@
     self.foot_type.text = hoteInfo.foot_type;
     [self.photo sd_setImageWithURL:[NSURL URLWithString:hoteInfo.photo] placeholderImage:[UIImage imageNamed:@"img1"]];
     self.menu_price.text = hoteInfo.menu_price;
+    
+    //self.textFieldNum.text = [NSString stringWithFormat: @"%ld", hoteInfo.count_num];
 }
 @end

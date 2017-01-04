@@ -14,11 +14,13 @@
 #import "ThrowLineTool.h"
 #import "sideTableViewCell.h"
 #import "hoteRequest.h"
+#import "hoteModel.h"
 @interface hotelViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,ThrowLineToolDelegate,hotelDelegate>
 {
-    NSArray *sideTitleArr;
     NSArray * _infoArr;
     NSArray * _typeArr;
+    NSArray * _tmpAll;
+    //float priceNumber;//价格数量
 }
 @property(nonatomic,strong) UITableView * hotelTableView;//右侧tableView
 @property(nonatomic,strong) UISwipeGestureRecognizer*swipeLeft;
@@ -30,8 +32,9 @@
 @property(nonatomic,strong) UIImageView *shopImg; //购物车图片
 @property(nonatomic,strong) UITableView *sideTableView;//左侧tableView
 @property(nonatomic,strong) UISearchBar * headerSearchBar;//头视图搜索条
-@property(nonatomic,assign) BOOL isSide;
-
+@property(nonatomic,assign) BOOL isSide;//缩放Bool值
+@property(nonatomic,assign) NSInteger num;//菜品数量
+@property(nonatomic,assign) CGFloat priceNumber;
 @end
 
 @implementation hotelViewController
@@ -39,7 +42,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    sideTitleArr = @[@"全部",@"烧烤",@"甜品",@"主食",@"酒水"];
+    self.priceNumber = 0.0;
+    self.num = 0;
     [self.view addSubview:_animationView];//动画红点view
 
     [ThrowLineTool sharedTool].delegate=self;//签单例代理
@@ -54,25 +58,28 @@
     
     
 }
+
 -(void)MJRefreshTableView
 {
     //上拉刷新
     self.hotelTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         NSDictionary *dic= [NSDictionary dictionaryWithObjectsAndKeys:self.idDic,@"store_id", nil] ;
         
-        [hoteRequest GetWithRequest:^(id Value, id typeValue) {
-            
-            _infoArr = Value;
-            _typeArr = typeValue;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [self.hotelTableView.mj_header endRefreshing];
-                [self.hotelTableView reloadData];
-            });
-            
-        } dicSTR:dic failure:^(id failure) {
-            
-        }];
+     [hoteRequest GetWithRequest:^(id Value, id typeValue, id arrAll) {
+         
+         _infoArr = Value;
+         _typeArr = typeValue;
+         _tmpAll = arrAll;
+         dispatch_async(dispatch_get_main_queue(), ^{
+             
+             [self.hotelTableView.mj_header endRefreshing];
+             [self.hotelTableView reloadData];
+             [self.sideTableView reloadData];
+         });
+         
+     } dicSTR:dic failure:nil];
+        
+        
     }];
     //马上进入刷新状态
     [self.hotelTableView.mj_header beginRefreshing];
@@ -190,7 +197,7 @@
 #pragma mark -- 头视图控件
 -(UIView *)headNavigation
 {
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, WidthBounds, 141)];
+    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, WidthBounds, 151)];
     headView.userInteractionEnabled = YES;//开启用户交互
     //添加侧滑手势
     _swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSide)];
@@ -274,6 +281,7 @@
 //侧滑手势事件
 -(void)leftSide
 {
+    self.sideTableView.hidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark -- tableViewDatasoure
@@ -288,38 +296,51 @@
         return 45;
     }
 }
-//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    
-//    if (tableView == self.sideTableView)
-//    {
-//       return 1;
-//    }
-//    else
-//    {
-//       return _typeArr.count;
-//    }
-//    
-//}
+//有多少分区
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (tableView == self.sideTableView)
+    {
+       return 1;
+    }
+    else
+    {
+       return _tmpAll.count;
+    }
+}
+//每个分区有多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.sideTableView)
     {
-       return sideTitleArr.count;
+        return _typeArr.count;
     }
     else
     {
-       return _infoArr.count;
+        NSArray *arr = _tmpAll[section];
+       return arr.count;
     }
+}
+//分区标题
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if([tableView isEqual:self.hotelTableView])
+    {
+        hoteModel_type * hote = _typeArr[section];
+        NSString * strTitle = hote.foot_type;
+        return strTitle;
+    }
+    return nil;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if([tableView isEqual:self.hotelTableView])
+    {
+       return 20;
+    }
+    return 0;
     
 }
-//headerTitle
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    if(tableView == self.hotelTableView)
-//        return sideTitleArr[section];
-//    return nil;
-//}
 //选择某行cell
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -329,14 +350,13 @@
         //计算出右侧tableView将要滚动的位置
         NSIndexPath * sidePath = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
         //将右侧tableView移动到指定位置
-        [self.hotelTableView selectRowAtIndexPath:sidePath animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [self.hotelTableView selectRowAtIndexPath:sidePath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         //取消选中效果
         [self.hotelTableView deselectRowAtIndexPath:sidePath animated:YES];
         
         //改变选中时的title颜色
         sideTableViewCell *cell =  [tableView cellForRowAtIndexPath:indexPath];
         cell.sideTitle.textColor = [GVColor hexStringToColor:@"ffba14"];
-        
         
     }
     else
@@ -356,7 +376,7 @@
     {
         self.navigationView.alpha = offset/200;
     }
-    //如果是左侧tableView直接return;
+//    //如果是左侧tableView直接return;
 //    if(scrollView == self.sideTableView) return;
 //    
 //    //取出显示在视图最靠上的cell的indePath
@@ -365,6 +385,7 @@
 //    NSIndexPath * sidePath = [NSIndexPath indexPathForRow:topViewIndexPath.section inSection:0];
 //    //移动左测tableView到指定的indexPath居上显示
 //    [self.sideTableView selectRowAtIndexPath:sidePath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -376,9 +397,11 @@
             
             cell = [[[NSBundle mainBundle] loadNibNamed:@"hoteTableViewCell" owner:self options:nil]lastObject];
         }
-        [cell setHoteInfo:_infoArr[indexPath.row]];
-        NSLog(@"%@",_infoArr);
+        //赋值 取每个分区中的section
+        NSArray * sectionArr = _tmpAll[indexPath.section];
+        [cell setHoteInfo:sectionArr[indexPath.row]];
         
+        //cell按钮事件
         cell.delegate=self;
         cell.textFieldNum.userInteractionEnabled = NO;//关闭用户交互
         //隐藏选择状态
@@ -390,8 +413,6 @@
         {
             [cell.textFieldNum setHidden:YES];
         }
-        
-       
         return cell;
     }
     else
@@ -399,10 +420,10 @@
         static NSString * sideStr =@"sideTableViewCell";
         sideTableViewCell *sideCell =[tableView dequeueReusableCellWithIdentifier:sideStr];
         if (sideCell == nil) {
-            
             sideCell = [[[NSBundle mainBundle] loadNibNamed:@"sideTableViewCell" owner:self options:nil]lastObject];
         }
-        sideCell.sideTitle.text =sideTitleArr[indexPath.row];
+        [sideCell setHoteType:_typeArr[indexPath.row]];
+
         sideCell.selectionStyle = 0;
         sideCell.backgroundColor = [UIColor clearColor];
         return sideCell;
@@ -412,12 +433,34 @@
 -(void)rightNewHotelTableViewCell:(hoteTableViewCell *)rightHoteCell
 {
     //隐藏按钮
+//    rightHoteCell.leftBtn.hidden =NO;
+//    rightHoteCell.textFieldNum.text = [NSString stringWithFormat:@"%ld",(rightHoteCell.textFieldNum.text.integerValue +1)];
+//    self.countLabel.text = rightHoteCell.textFieldNum.text;
+//    self.countLabel.hidden = self.countLabel.text.integerValue == 0;//text值为空的时候隐藏
+//    [self.view addSubview:self.animationView];
+//    [[ThrowLineTool sharedTool]throwObject:self.animationView from:self.animationView.center to:self.shopImg.center height:-300 duration:0.4];
+   
+    //隐藏按钮
     rightHoteCell.leftBtn.hidden =NO;
-    rightHoteCell.textFieldNum.text = [NSString stringWithFormat:@"%ld",(rightHoteCell.textFieldNum.text.integerValue +1)];
-    self.countLabel.text = rightHoteCell.textFieldNum.text;
-    self.countLabel.hidden = self.countLabel.text.integerValue == 0;//text值为空的时候隐藏
+    NSIndexPath * indexPath = [_hotelTableView indexPathForCell:rightHoteCell];
+    //赋值 取每个分区中的section
+    NSArray * sectionArr = _tmpAll[indexPath.section];
+    hoteModel_menu_info * hoteInfo = sectionArr[indexPath.row];
+    if(hoteInfo.count_num < 99)
+    {
+        hoteInfo.count_num ++;
+    }
+    rightHoteCell.textFieldNum.text =[NSString stringWithFormat:@"%ld",hoteInfo.count_num];
+    
+    self.num ++;
+    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.num];
     [self.view addSubview:self.animationView];
+    self.countLabel.hidden = self.countLabel.text.integerValue == 0;//text值为空的时候隐藏
     [[ThrowLineTool sharedTool]throwObject:self.animationView from:self.animationView.center to:self.shopImg.center height:-300 duration:0.4];
+    
+    //结算
+    self.priceNumber += [hoteInfo.menu_price floatValue];
+    self.moneyLabel.text = [NSString stringWithFormat:@"￥%0.2f",self.priceNumber];
 }
 //➖
 -(void)leftNewHotelTableViewCell:(hoteTableViewCell *)leftHoteCell
@@ -466,7 +509,7 @@
 {
     if(_hotelTableView == nil)
     {
-        _hotelTableView = [[UITableView alloc]initWithFrame:CGRectMake(ZeroFrame, -20, WidthBounds, HeightBounds) style:UITableViewStylePlain];
+        _hotelTableView = [[UITableView alloc]initWithFrame:CGRectMake(ZeroFrame, -20, WidthBounds, HeightBounds) style:UITableViewStyleGrouped];
         _hotelTableView.delegate = self;
         _hotelTableView.dataSource =self;
         _hotelTableView.tableHeaderView = [self headNavigation];//头视图
@@ -492,6 +535,7 @@
 //箭头返回事件
 -(void)Back
 {
+    self.sideTableView.hidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark -- 购物车红点动画View

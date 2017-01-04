@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "hoteModel.h"
 @interface sideTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *sideTitle;
+
+@property(nonatomic,strong) hoteModel_type * hoteType;
 @end

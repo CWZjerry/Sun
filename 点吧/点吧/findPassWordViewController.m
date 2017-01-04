@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-     [self setNav];
+    [self setNav];
     [self setUpUI];
 }
 -(void)setUpUI{
@@ -53,7 +53,7 @@
     _userName.keyboardType = UITextBorderStyleLine;
     
     _userName.placeholder = @"请输入号码";
-    _userName.textColor = [GVColor hexStringToColor:@"#bbbbbb"]; 
+    _userName.textColor = [GVColor hexStringToColor:@"#bbbbbb"];
     //    [_userName setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     _userName.keyboardType = UIKeyboardTypeDefault;
@@ -106,7 +106,7 @@
     _loginBtn.layer.cornerRadius = 16.5;
     _loginBtn.layer.masksToBounds = YES;
     _loginBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-     [_loginBtn addTarget:self action:@selector(longinclick) forControlEvents:UIControlEventTouchUpInside];
+    [_loginBtn addTarget:self action:@selector(longinclick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_loginBtn];
     
     
@@ -174,7 +174,7 @@
     
 }
 -(void)loginClick{
-
+    
 }
 //导航按钮点击方法
 -(void)backClick{
@@ -185,14 +185,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

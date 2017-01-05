@@ -53,6 +53,13 @@
 		154FBA491E1C9D1E00F2F6E5 /* HallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA421E1C9D1E00F2F6E5 /* HallViewController.m */; };
 		154FBA4A1E1C9D1E00F2F6E5 /* TakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA441E1C9D1E00F2F6E5 /* TakeViewController.m */; };
 		154FBA4D1E1C9D5A00F2F6E5 /* TextRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA4C1E1C9D5A00F2F6E5 /* TextRect.m */; };
+		154FBA5E1E1CC8BC00F2F6E5 /* OrderSubMitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA5D1E1CC8BC00F2F6E5 /* OrderSubMitViewController.m */; };
+		154FBA611E1CCD0300F2F6E5 /* HeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA601E1CCD0300F2F6E5 /* HeadTableViewCell.m */; };
+		154FBA641E1D22DA00F2F6E5 /* RemarsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA631E1D22DA00F2F6E5 /* RemarsTableViewCell.m */; };
+		154FBA671E1D273C00F2F6E5 /* PayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA661E1D273C00F2F6E5 /* PayTableViewCell.m */; };
+		154FBA6A1E1DCDE400F2F6E5 /* BottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA691E1DCDE400F2F6E5 /* BottomView.m */; };
+		154FBA6D1E1E239D00F2F6E5 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA6C1E1E239D00F2F6E5 /* PayViewController.m */; };
+		154FBA701E1E2D5300F2F6E5 /* PayTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA6F1E1E2D5300F2F6E5 /* PayTimeTableViewCell.m */; };
 		1565FD5F1E1236D800C68872 /* AFNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1565FD5E1E1236D800C68872 /* AFNManager.m */; };
 		158D9DFA1E11391700B0FFB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D9DF91E11391700B0FFB5 /* main.m */; };
 		158D9DFD1E11391700B0FFB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D9DFC1E11391700B0FFB5 /* AppDelegate.m */; };
@@ -189,6 +196,20 @@
 		154FBA441E1C9D1E00F2F6E5 /* TakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeViewController.m; sourceTree = "<group>"; };
 		154FBA4B1E1C9D5A00F2F6E5 /* TextRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextRect.h; sourceTree = "<group>"; };
 		154FBA4C1E1C9D5A00F2F6E5 /* TextRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextRect.m; sourceTree = "<group>"; };
+		154FBA5C1E1CC8BC00F2F6E5 /* OrderSubMitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSubMitViewController.h; sourceTree = "<group>"; };
+		154FBA5D1E1CC8BC00F2F6E5 /* OrderSubMitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSubMitViewController.m; sourceTree = "<group>"; };
+		154FBA5F1E1CCD0300F2F6E5 /* HeadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadTableViewCell.h; sourceTree = "<group>"; };
+		154FBA601E1CCD0300F2F6E5 /* HeadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadTableViewCell.m; sourceTree = "<group>"; };
+		154FBA621E1D22DA00F2F6E5 /* RemarsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemarsTableViewCell.h; sourceTree = "<group>"; };
+		154FBA631E1D22DA00F2F6E5 /* RemarsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemarsTableViewCell.m; sourceTree = "<group>"; };
+		154FBA651E1D273C00F2F6E5 /* PayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTableViewCell.h; sourceTree = "<group>"; };
+		154FBA661E1D273C00F2F6E5 /* PayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayTableViewCell.m; sourceTree = "<group>"; };
+		154FBA681E1DCDE400F2F6E5 /* BottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomView.h; sourceTree = "<group>"; };
+		154FBA691E1DCDE400F2F6E5 /* BottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomView.m; sourceTree = "<group>"; };
+		154FBA6B1E1E239D00F2F6E5 /* PayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
+		154FBA6C1E1E239D00F2F6E5 /* PayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
+		154FBA6E1E1E2D5300F2F6E5 /* PayTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTimeTableViewCell.h; sourceTree = "<group>"; };
+		154FBA6F1E1E2D5300F2F6E5 /* PayTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayTimeTableViewCell.m; sourceTree = "<group>"; };
 		1565FD5D1E1236D800C68872 /* AFNManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNManager.h; sourceTree = "<group>"; };
 		1565FD5E1E1236D800C68872 /* AFNManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNManager.m; sourceTree = "<group>"; };
 		158D9DF51E11391700B0FFB5 /* 点吧.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "点吧.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -644,6 +665,27 @@
 			name = C;
 			sourceTree = "<group>";
 		};
+		154FBA5B1E1CC88100F2F6E5 /* OrderSubMit */ = {
+			isa = PBXGroup;
+			children = (
+				154FBA5C1E1CC8BC00F2F6E5 /* OrderSubMitViewController.h */,
+				154FBA5D1E1CC8BC00F2F6E5 /* OrderSubMitViewController.m */,
+				154FBA6B1E1E239D00F2F6E5 /* PayViewController.h */,
+				154FBA6C1E1E239D00F2F6E5 /* PayViewController.m */,
+				154FBA6E1E1E2D5300F2F6E5 /* PayTimeTableViewCell.h */,
+				154FBA6F1E1E2D5300F2F6E5 /* PayTimeTableViewCell.m */,
+				154FBA681E1DCDE400F2F6E5 /* BottomView.h */,
+				154FBA691E1DCDE400F2F6E5 /* BottomView.m */,
+				154FBA651E1D273C00F2F6E5 /* PayTableViewCell.h */,
+				154FBA661E1D273C00F2F6E5 /* PayTableViewCell.m */,
+				154FBA621E1D22DA00F2F6E5 /* RemarsTableViewCell.h */,
+				154FBA631E1D22DA00F2F6E5 /* RemarsTableViewCell.m */,
+				154FBA5F1E1CCD0300F2F6E5 /* HeadTableViewCell.h */,
+				154FBA601E1CCD0300F2F6E5 /* HeadTableViewCell.m */,
+			);
+			name = OrderSubMit;
+			sourceTree = "<group>";
+		};
 		1565FD591E12333C00C68872 /* Tools(工具) */ = {
 			isa = PBXGroup;
 			children = (
@@ -689,6 +731,7 @@
 			children = (
 				158D9DFB1E11391700B0FFB5 /* AppDelegate.h */,
 				158D9DFC1E11391700B0FFB5 /* AppDelegate.m */,
+				154FBA5B1E1CC88100F2F6E5 /* OrderSubMit */,
 				0D85A41A1E1A82D400F0F727 /* Root控制器 */,
 				158D9E3F1E113AB900B0FFB5 /* Home(首页) */,
 				158D9E401E113AC800B0FFB5 /* TakeAway(外卖) */,
@@ -1055,13 +1098,17 @@
 				154FBA121E1C9CBA00F2F6E5 /* TopScroll.m in Sources */,
 				154FBA341E1C9D0B00F2F6E5 /* DetailsMessage.m in Sources */,
 				154FBA191E1C9CC900F2F6E5 /* OrderViewController.m in Sources */,
+				154FBA701E1E2D5300F2F6E5 /* PayTimeTableViewCell.m in Sources */,
+				154FBA6A1E1DCDE400F2F6E5 /* BottomView.m in Sources */,
 				BA6567E81E14A2130075E865 /* LoginViewController.m in Sources */,
 				154FBA4D1E1C9D5A00F2F6E5 /* TextRect.m in Sources */,
 				154FBA391E1C9D0B00F2F6E5 /* OrderTableViewCell.m in Sources */,
 				0DC495BF1E148EBA00537686 /* hotelViewController.m in Sources */,
 				0D619E801E1B8EA400B5873F /* hoteRequest.m in Sources */,
 				158D9E3C1E113A9800B0FFB5 /* MySelfViewController.m in Sources */,
+				154FBA611E1CCD0300F2F6E5 /* HeadTableViewCell.m in Sources */,
 				0D619E841E1BC02200B5873F /* hoteModel.m in Sources */,
+				154FBA6D1E1E239D00F2F6E5 /* PayViewController.m in Sources */,
 				154FBA1B1E1C9CC900F2F6E5 /* Order.m in Sources */,
 				154FBA4A1E1C9D1E00F2F6E5 /* TakeViewController.m in Sources */,
 				154FBA371E1C9D0B00F2F6E5 /* CostTableViewCell.m in Sources */,
@@ -1075,14 +1122,17 @@
 				0D0271FA1E13432E00D3D350 /* headerCollectionViewCell.m in Sources */,
 				BA36E91B1E1C871D00DEC0E6 /* MyInfoView.m in Sources */,
 				154FBA381E1C9D0B00F2F6E5 /* DetailsView.m in Sources */,
+				154FBA5E1E1CC8BC00F2F6E5 /* OrderSubMitViewController.m in Sources */,
 				BA36E9181E1C86EB00DEC0E6 /* countDown.m in Sources */,
 				BA36E9131E1C867A00DEC0E6 /* MyInfoViewController.m in Sources */,
+				154FBA641E1D22DA00F2F6E5 /* RemarsTableViewCell.m in Sources */,
 				0DF158981E121E87008142D6 /* GVColor.m in Sources */,
 				1565FD5F1E1236D800C68872 /* AFNManager.m in Sources */,
 				158D9DFD1E11391700B0FFB5 /* AppDelegate.m in Sources */,
 				0DC495BC1E13CDC700537686 /* GPSViewController.m in Sources */,
 				154FBA351E1C9D0B00F2F6E5 /* MoneyView.m in Sources */,
 				158D9E2D1E11395500B0FFB5 /* MainViewController.m in Sources */,
+				154FBA671E1D273C00F2F6E5 /* PayTableViewCell.m in Sources */,
 				BA36E9391E1C87C900DEC0E6 /* UIColor+Additions.m in Sources */,
 				154FBA0F1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m in Sources */,
 				BA36E9351E1C87C900DEC0E6 /* NSString+Additions.m in Sources */,

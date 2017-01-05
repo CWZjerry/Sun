@@ -11,7 +11,7 @@
 @implementation UILabel (OGLabel)
 
 
-- (instancetype)initWithText:(NSString *)text font:(UIFont *)font textColor:(UIColor *)color{
+- (instancetype)initWithText:(NSString *)text font:(UIFont *)font textColor:(GVColor *)color{
     
     if (self = [super init]) {
         self.text = text;

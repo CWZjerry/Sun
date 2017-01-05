@@ -35,12 +35,13 @@
     money.text=@"¥ 200";
     money.textColor = [GVColor hexStringToColor:@"#888888"];
     money.font =[UIFont systemFontOfSize:13];
+    money.textAlignment = NSTextAlignmentRight;
     _money = money;
     [self.contentView addSubview:self.money];
     _money.sd_layout
     .rightSpaceToView(self.contentView,12)
     .centerYEqualToView(self.contentView)
-    .widthIs(40)
+    .widthIs(130)
     .heightIs(13);
     
     

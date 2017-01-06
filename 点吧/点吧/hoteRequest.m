@@ -17,7 +17,7 @@
         
         hoteModel * hoteM = [[hoteModel alloc]init];
         [hoteM setValuesForKeysWithDictionary:success];
-        NSLog(@"%@",success);
+        //NSLog(@"%@",success);
         
         NSMutableArray * infoArr = [NSMutableArray array];
         NSMutableArray * typeArr = [NSMutableArray array];
@@ -41,7 +41,8 @@
             
             NSMutableArray *arr = [NSMutableArray array];
             hoteModel_type * typeModel = typeArr[i];
-            for (NSDictionary *dic  in  hoteM.menu_info) {
+            
+            for (NSDictionary * dic  in  hoteM.menu_info) {
                 hoteModel_menu_info * hInfo = [[hoteModel_menu_info alloc]init];
                 [hInfo setValuesForKeysWithDictionary:dic];
                 

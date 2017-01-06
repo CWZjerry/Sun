@@ -7,34 +7,55 @@
 //
 
 #import "hotelViewController.h"
-#import "GVColor.h"
-#import "UILabel+LabelFrame.h"
-#import "hoteTableViewCell.h"
-#import "HomeViewController.h"
-#import "ThrowLineTool.h"
-#import "sideTableViewCell.h"
 #import "hoteRequest.h"
 #import "hoteModel.h"
+#import "UILabel+LabelFrame.h"
+
+#import "hoteTableViewCell.h"
+#import "sideTableViewCell.h"
+#import "baseCell.h"
+
+#import "HomeViewController.h"
+#import "ThrowLineTool.h"
+#import "GVColor.h"
+
 @interface hotelViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,ThrowLineToolDelegate,hotelDelegate>
 {
-    NSArray * _infoArr;
-    NSArray * _typeArr;
-    NSArray * _tmpAll;
-    //float priceNumber;//价格数量
+    NSArray * _infoArr;//右侧Arr
+    NSArray * _typeArr;//左侧Arr
+    NSArray * _tmpAll;//关联Arr
+    
+    NSMutableArray * _clearingArr;//结算数组
 }
-@property(nonatomic,strong) UITableView * hotelTableView;//右侧tableView
-@property(nonatomic,strong) UISwipeGestureRecognizer*swipeLeft;
-@property(nonatomic,strong) UIView *navigationView;//代替导航View
-@property(nonatomic,strong) UIView * animationView;//小红点动画View
-@property(nonatomic,strong) UIImageView *moneyImg;
-@property(nonatomic,strong) UILabel *moneyLabel;//结算总数
-@property(nonatomic,strong) UILabel *countLabel; //购物数量
-@property(nonatomic,strong) UIImageView *shopImg; //购物车图片
-@property(nonatomic,strong) UITableView *sideTableView;//左侧tableView
 @property(nonatomic,strong) UISearchBar * headerSearchBar;//头视图搜索条
-@property(nonatomic,assign) BOOL isSide;//缩放Bool值
+
+@property(nonatomic,strong) UITableView * hotelTableView;//右侧tableView
+@property(nonatomic,strong) UITableView * sideTableView;//左侧tableView
+@property(nonatomic,strong) UITableView * baseTableView;//底部tableView
+
+@property(nonatomic,strong) UIView * baseView;//底部弹出View
+@property(nonatomic,strong) UIView * navigationView;//代替导航View
+@property(nonatomic,strong) UIView * animationView;//小红点动画View
+@property(nonatomic,strong) UIView * backgroundView;//背景view
+
+@property(nonatomic,strong) UIImageView * moneyImg;
+@property(nonatomic,strong) UIImageView * shopImg; //购物车图片
+
+@property(nonatomic,strong) UILabel * moneyLabel;//结算总数
+@property(nonatomic,strong) UILabel * countLabel; //购物数量
+@property(nonatomic,strong) UILabel * baseCountLabel;//结算tableView购物数量
+@property(nonatomic,strong) UILabel * totalNumLabel;//底部结算num
+
+@property(nonatomic,strong) UISwipeGestureRecognizer * swipeLeft;//侧滑手势
+@property(nonatomic,strong) UITapGestureRecognizer * tapRecognizer;//点按手势
+@property(nonatomic,strong) UITapGestureRecognizer * tapRemo;//点按消失手势
+
 @property(nonatomic,assign) NSInteger num;//菜品数量
-@property(nonatomic,assign) CGFloat priceNumber;
+@property(nonatomic,assign) NSInteger numTwo;//菜品数量
+@property(nonatomic,assign) CGFloat priceNumber;//价格
+
+@property(nonatomic,assign) BOOL isSide;//缩放Bool值
+
 @end
 
 @implementation hotelViewController
@@ -42,48 +63,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    _clearingArr = [NSMutableArray array];
     self.priceNumber = 0.0;
     self.num = 0;
+    
     [self.view addSubview:_animationView];//动画红点view
 
     [ThrowLineTool sharedTool].delegate=self;//签单例代理
     
     [self.view addSubview:self.hotelTableView];
     [self.view addSubview:self.sideTableView];
+    
     [self sideBtn];
     [self shopBtn];
     [self.view addSubview:self.navigationView];
-    
-    [self MJRefreshTableView];
-    
+    [self.view addSubview:self.backgroundView];
+    [self.view addSubview:self.baseView];
     
 }
-
--(void)MJRefreshTableView
+-(void)viewWillAppear:(BOOL)animated
 {
-    //上拉刷新
-    self.hotelTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        NSDictionary *dic= [NSDictionary dictionaryWithObjectsAndKeys:self.idDic,@"store_id", nil] ;
+    NSDictionary *dic= [NSDictionary dictionaryWithObjectsAndKeys:self.idDic,@"store_id", nil] ;
+    
+    [hoteRequest GetWithRequest:^(id Value, id typeValue, id arrAll) {
         
-     [hoteRequest GetWithRequest:^(id Value, id typeValue, id arrAll) {
-         
-         _infoArr = Value;
-         _typeArr = typeValue;
-         _tmpAll = arrAll;
-         dispatch_async(dispatch_get_main_queue(), ^{
-             
-             [self.hotelTableView.mj_header endRefreshing];
-             [self.hotelTableView reloadData];
-             [self.sideTableView reloadData];
-         });
-         
-     } dicSTR:dic failure:nil];
+        _infoArr = Value;
+        _typeArr = typeValue;
+        _tmpAll = arrAll;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.hotelTableView.mj_header endRefreshing];
+            [self.hotelTableView reloadData];
+            [self.sideTableView reloadData];
+        });
         
-        
-    }];
-    //马上进入刷新状态
-    [self.hotelTableView.mj_header beginRefreshing];
-
+    } dicSTR:dic failure:nil];
 }
 #pragma mark --侧滑按钮
 -(void)sideBtn
@@ -94,8 +108,7 @@
     [sideBtn addTarget:self action:@selector(sideClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sideBtn];
 }
-
-//侧滑缩放
+//侧滑按钮缩放事件
 -(void)sideClick:(UIButton *)sender
 {
     if(self.isSide == NO)
@@ -104,7 +117,6 @@
             //设置平移量
             self.hotelTableView.transform = CGAffineTransformMakeTranslation(235, 0);
             self.sideTableView.transform = CGAffineTransformMakeTranslation(235, 0);
-            
         }];
         self.isSide = YES;
     }
@@ -118,17 +130,8 @@
         }];
         self.isSide = NO;
     }
-   
 }
 
-#pragma mark -- 左侧sideHeaderView视图
--(UIView *)sideHeaderView
-{
-    UIView * sideHeaderView = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, 235, 45)];
-    [sideHeaderView addSubview:self.headerSearchBar];
-    
-    return sideHeaderView;
-}
 -(UISearchBar *)headerSearchBar
 {
     if(_headerSearchBar == nil)
@@ -166,9 +169,8 @@
     _moneyImg.image = [UIImage imageNamed:@"money"];
     [self.view addSubview:_moneyImg];
     
-    
     //结算总数
-    NSString *str = @"1200.00";
+    NSString *str = @"  0.00     ";
     _moneyLabel = [[UILabel alloc]init];
     _moneyLabel.textColor = [GVColor hexStringToColor:@"#333333"];
     _moneyLabel.text = [NSString stringWithFormat:@"￥%@",str];
@@ -180,6 +182,11 @@
     //购物车图片
     _shopImg = [[UIImageView alloc]initWithFrame:CGRectMake(WidthBounds-70, HeightBounds-71, 61, 61)];
     _shopImg.image = [UIImage imageNamed:@"shopping_cart"];
+    _shopImg.userInteractionEnabled = YES;
+    //添加点按手势
+    _tapRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapSender:)];
+    //把点按手势添加到图片上
+    [_shopImg addGestureRecognizer:self.tapRecognizer];
     [self.view addSubview:_shopImg];
     
     //购物数量
@@ -255,7 +262,7 @@
     
     //优惠券
     UILabel *favorLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 122.5, 0, 0)];
-    favorLabel.text =@"满100减10元,满两百减30元.";
+    favorLabel.text =@"满100减10元,满200减30元.";
     favorLabel.font = [UIFont systemFontOfSize:14];
     favorLabel.textColor = [GVColor hexStringToColor:@"#ffffff"];
     CGFloat favorLabelTwo =[UILabel getWidthWithTitle:favorLabel.text font:favorLabel.font];
@@ -278,12 +285,49 @@
     
     return headView;
 }
-//侧滑手势事件
+
+#pragma mark -- 背景点按手势
+-(void)tapRemoYes
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        CGRect rect  = _backgroundView.frame ;
+        rect.origin.y = -328 ;
+        _backgroundView.frame = rect ;
+        
+        //底部结算
+        CGRect baseY = _baseView.frame;
+        baseY.origin.y = HeightBounds;
+        _baseView.frame = baseY;
+        
+    } completion:nil];
+}
+#pragma mark -- 结算点击手势事件
+-(void)tapSender:(UIButton *)sender
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        //背景图
+        CGRect rect  = _backgroundView.frame ;
+        rect.origin.y = 0 ;
+        _backgroundView.frame = rect ;
+        
+        //底部结算
+        CGRect baseY = _baseView.frame;
+        baseY.origin.y = HeightBounds-403;
+        _baseView.frame = baseY;
+        
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+#pragma mark -- 侧滑手势事件
 -(void)leftSide
 {
     self.sideTableView.hidden = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark -- tableViewDatasoure
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -291,9 +335,13 @@
     {
        return 92;
     }
-    else
+    else if([tableView isEqual:self.sideTableView])
     {
         return 45;
+    }
+    else
+    {
+        return 50;
     }
 }
 //有多少分区
@@ -303,9 +351,13 @@
     {
        return 1;
     }
-    else
+    else if (tableView == self.hotelTableView)
     {
        return _tmpAll.count;
+    }
+    else
+    {
+        return 1;
     }
 }
 //每个分区有多少行
@@ -315,10 +367,14 @@
     {
         return _typeArr.count;
     }
-    else
+    else if (tableView == self.hotelTableView)
     {
         NSArray *arr = _tmpAll[section];
-       return arr.count;
+        return arr.count;
+    }
+    else
+    {
+        return _clearingArr.count;
     }
 }
 //分区标题
@@ -376,6 +432,7 @@
     {
         self.navigationView.alpha = offset/200;
     }
+
 //    //如果是左侧tableView直接return;
 //    if(scrollView == self.sideTableView) return;
 //    
@@ -385,7 +442,6 @@
 //    NSIndexPath * sidePath = [NSIndexPath indexPathForRow:topViewIndexPath.section inSection:0];
 //    //移动左测tableView到指定的indexPath居上显示
 //    [self.sideTableView selectRowAtIndexPath:sidePath animated:YES scrollPosition:UITableViewScrollPositionBottom];
-    
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -400,7 +456,6 @@
         //赋值 取每个分区中的section
         NSArray * sectionArr = _tmpAll[indexPath.section];
         [cell setHoteInfo:sectionArr[indexPath.row]];
-        
         //cell按钮事件
         cell.delegate=self;
         cell.textFieldNum.userInteractionEnabled = NO;//关闭用户交互
@@ -413,9 +468,11 @@
         {
             [cell.textFieldNum setHidden:YES];
         }
+        cell.rightBtn.tag = indexPath.row;
+//        [cell.rightBtn addTarget:self action:@selector(rightNewHotelTableViewCell:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
-    else
+    else if([tableView isEqual:self.sideTableView])
     {
         static NSString * sideStr =@"sideTableViewCell";
         sideTableViewCell *sideCell =[tableView dequeueReusableCellWithIdentifier:sideStr];
@@ -428,49 +485,106 @@
         sideCell.backgroundColor = [UIColor clearColor];
         return sideCell;
     }
+    else
+    {
+        static NSString * baseStr =@"baseCell";
+        baseCell *cell =[tableView dequeueReusableCellWithIdentifier:baseStr];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"baseCell" owner:self options:nil]lastObject];
+        }
+       
+        NSArray * sectionArr = _tmpAll[indexPath.section];
+        [cell setHoteInfo:sectionArr[indexPath.row]];
+        cell.selectionStyle = 0;
+        return cell;
+    }
 }
+
 //加➕
 -(void)rightNewHotelTableViewCell:(hoteTableViewCell *)rightHoteCell
 {
-    //隐藏按钮
-//    rightHoteCell.leftBtn.hidden =NO;
-//    rightHoteCell.textFieldNum.text = [NSString stringWithFormat:@"%ld",(rightHoteCell.textFieldNum.text.integerValue +1)];
-//    self.countLabel.text = rightHoteCell.textFieldNum.text;
-//    self.countLabel.hidden = self.countLabel.text.integerValue == 0;//text值为空的时候隐藏
-//    [self.view addSubview:self.animationView];
-//    [[ThrowLineTool sharedTool]throwObject:self.animationView from:self.animationView.center to:self.shopImg.center height:-300 duration:0.4];
    
-    //隐藏按钮
-    rightHoteCell.leftBtn.hidden =NO;
     NSIndexPath * indexPath = [_hotelTableView indexPathForCell:rightHoteCell];
     //赋值 取每个分区中的section
     NSArray * sectionArr = _tmpAll[indexPath.section];
+    
     hoteModel_menu_info * hoteInfo = sectionArr[indexPath.row];
+    [_clearingArr addObject:hoteInfo];
+    [self.baseTableView reloadData];
+    
     if(hoteInfo.count_num < 99)
-    {
-        hoteInfo.count_num ++;
-    }
-    rightHoteCell.textFieldNum.text =[NSString stringWithFormat:@"%ld",hoteInfo.count_num];
+        {
+            //隐藏按钮
+            rightHoteCell.leftBtn.hidden =NO;
+            hoteInfo.count_num ++;
+            //使用全局
+            self.num ++;
+            
+            //显示cell上的label
+            rightHoteCell.textFieldNum.text =[NSString stringWithFormat:@"%ld",hoteInfo.count_num];
+            
+            //显示购物车上的label
+            self.countLabel.text = [NSString stringWithFormat:@"%ld",self.num];
+            
+            [self.view addSubview:self.animationView];//小红点view
+            //text值为空的时候隐藏
+            self.countLabel.hidden = self.countLabel.text.integerValue == 0;
+            //抛物线动画
+            [[ThrowLineTool sharedTool]throwObject:self.animationView from:self.animationView.center to:self.shopImg.center height:-300 duration:0.4];
+            
+            //结算
+            self.priceNumber += [hoteInfo.menu_price floatValue];
+            self.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",self.priceNumber];
+            
+#pragma mark -- 底部结算的数据展示
+            //底部结算
+            self.totalNumLabel.text =[NSString stringWithFormat:@"%@",self.moneyLabel.text];
+            //底部结算购物车上的红色小点数量
+            self.baseCountLabel.text =[NSString stringWithFormat:@"%ld",self.num];
+            self.baseCountLabel.hidden = self.countLabel.text.integerValue == 0;
+        }
     
-    self.num ++;
-    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.num];
-    [self.view addSubview:self.animationView];
-    self.countLabel.hidden = self.countLabel.text.integerValue == 0;//text值为空的时候隐藏
-    [[ThrowLineTool sharedTool]throwObject:self.animationView from:self.animationView.center to:self.shopImg.center height:-300 duration:0.4];
-    
-    //结算
-    self.priceNumber += [hoteInfo.menu_price floatValue];
-    self.moneyLabel.text = [NSString stringWithFormat:@"￥%0.2f",self.priceNumber];
 }
 //➖
 -(void)leftNewHotelTableViewCell:(hoteTableViewCell *)leftHoteCell
 {
-    leftHoteCell.textFieldNum.text = [NSString stringWithFormat:@"%ld",(leftHoteCell.textFieldNum.text.integerValue -1) > 0 ? (leftHoteCell.textFieldNum.text.integerValue -1) :0];
-    self.countLabel.text = leftHoteCell.textFieldNum.text;
-    self.countLabel.hidden = self.countLabel.text.integerValue == 0;//text值为空的时候隐藏
-    //为空的时候隐藏按钮
-    leftHoteCell.leftBtn.hidden =self.countLabel.text.integerValue == 0;
-    leftHoteCell.textFieldNum.hidden = self.countLabel.text.integerValue == 0;
+    if(self.num >0 )
+    {
+        NSIndexPath * indexPath = [_hotelTableView indexPathForCell:leftHoteCell];
+        //赋值 取每个分区中的section
+        NSArray * sectionArr = _tmpAll[indexPath.section];
+        hoteModel_menu_info * hoteInfo = sectionArr[indexPath.row];
+        if(hoteInfo.count_num > 0)
+        {
+            hoteInfo.count_num --;
+            self.num --;
+            
+            //显示cell上的label
+            leftHoteCell.textFieldNum.text =[NSString stringWithFormat:@"%ld",hoteInfo.count_num];
+            //使用全局
+            //        self.num --;
+            //显示购物车上的label
+            self.countLabel.text = [NSString stringWithFormat:@"%ld",self.num];
+            //text值为空的时候隐藏
+            if(self.num < 1)
+            {
+                [self.countLabel setHidden:YES];
+                [leftHoteCell.leftBtn setHidden:YES];
+                [leftHoteCell.textFieldNum setHidden:YES];
+            }
+            
+            //结算
+            self.priceNumber -= [hoteInfo.menu_price floatValue];
+            self.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",self.priceNumber];
+            //底部结算
+            self.totalNumLabel.text =[NSString stringWithFormat:@"%@",self.moneyLabel.text];
+            //底部结算购物车上的红色小点数量
+            self.baseCountLabel.text =[NSString stringWithFormat:@"%ld",self.num];
+            self.baseCountLabel.hidden = self.countLabel.text.integerValue == 0;
+            
+        }
+    }
+    
 }
 //抛物线结束的回调
 -(void)animationDidFinish
@@ -487,13 +601,12 @@
         }];
     }];
 }
-#pragma mark -- 初始化tableView
-//左侧tableView
+#pragma mark -- 初始化左侧tableView
 -(UITableView *)sideTableView
 {
     if(_sideTableView == nil)
     {
-        _sideTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, -235, HeightBounds) style:UITableViewStylePlain];
+        _sideTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, -235, HeightBounds+20) style:UITableViewStylePlain];
         _sideTableView.delegate =self;
         _sideTableView.dataSource =self;
         _sideTableView.tableHeaderView = [self sideHeaderView];
@@ -509,7 +622,7 @@
 {
     if(_hotelTableView == nil)
     {
-        _hotelTableView = [[UITableView alloc]initWithFrame:CGRectMake(ZeroFrame, -20, WidthBounds, HeightBounds) style:UITableViewStyleGrouped];
+        _hotelTableView = [[UITableView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, WidthBounds, HeightBounds) style:UITableViewStyleGrouped];
         _hotelTableView.delegate = self;
         _hotelTableView.dataSource =self;
         _hotelTableView.tableHeaderView = [self headNavigation];//头视图
@@ -552,4 +665,152 @@
     return _animationView;
 }
 
+#pragma mark -- 左侧sideHeaderView视图
+-(UIView *)sideHeaderView
+{
+    UIView * sideHeaderView = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, 235, 45)];
+    [sideHeaderView addSubview:self.headerSearchBar];
+    
+    return sideHeaderView;
+}
+
+#pragma mark -- 结算tableView头视图
+-(UIView *)headerBaseTableView
+{
+    UIView * headerBase = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, WidthBounds, 61)];
+    
+    UIImageView * shopImg = [[UIImageView alloc]initWithFrame:CGRectMake(12, 17, 19, 19)];
+    shopImg.image = [UIImage imageNamed:@"shopping"];
+    [headerBase addSubview:shopImg];
+    
+    //购物数量
+    _baseCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(23, 8.5, 13, 13)];
+    _baseCountLabel.backgroundColor = [UIColor redColor];
+    _baseCountLabel.layer.cornerRadius = 7;
+    _baseCountLabel.layer.borderWidth = 0;
+    _baseCountLabel.layer.masksToBounds = YES;
+    _baseCountLabel.textAlignment = NSTextAlignmentCenter;
+    _baseCountLabel.hidden = YES;//是否将其隐藏
+    _baseCountLabel.textColor = [GVColor hexStringToColor:@"#ffffff"];
+    _baseCountLabel.font = [UIFont systemFontOfSize:11];
+    [headerBase addSubview:self.baseCountLabel];
+    
+    UIView * backView = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, 41, WidthBounds, 20)];
+    backView.backgroundColor = [GVColor hexStringToColor:@"#eeeeee"];
+    [headerBase addSubview:backView];
+    
+    //优惠图标
+    UIImageView *favorImage =[[UIImageView alloc]initWithFrame:CGRectMake(10, 1.5, 16, 16)];
+    favorImage.image = [UIImage imageNamed:@"benefit_"];
+    [backView addSubview:favorImage];
+    
+    //优惠券
+    UILabel *favorLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    favorLabel.text =@"满100减10元,满200减30元.";
+    favorLabel.font = [UIFont systemFontOfSize:12];
+    favorLabel.textColor = [GVColor hexStringToColor:@"#888888"];
+    CGFloat favorLabelTwo =[UILabel getWidthWithTitle:favorLabel.text font:favorLabel.font];
+    favorLabel.frame =CGRectMake(36, 4, favorLabelTwo, 12);
+    [backView addSubview:favorLabel];
+    
+    UILabel *romeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    romeLabel.text =@"清空购物车";
+    romeLabel.font = [UIFont systemFontOfSize:12];
+    romeLabel.textColor = [GVColor hexStringToColor:@"#888888"];
+    CGFloat romeLabelTwo =[UILabel getWidthWithTitle:romeLabel.text font:romeLabel.font];
+    romeLabel.frame =CGRectMake(WidthBounds-78, 20, romeLabelTwo, 12);
+    [headerBase addSubview:romeLabel];
+    
+    //删除按钮
+    UIButton * remoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    remoBtn.frame=CGRectMake(WidthBounds-95, 20, 12, 13);
+    [remoBtn setImage:[UIImage imageNamed:@"eliminate"] forState:UIControlStateNormal];
+    [remoBtn addTarget:self action:@selector(remoAllRow) forControlEvents:UIControlEventTouchUpInside];
+    [headerBase addSubview:remoBtn];
+
+    return headerBase;
+}
+//清空购物车点击事件
+-(void)remoAllRow
+{
+    [_clearingArr removeAllObjects];
+    [self.baseTableView reloadData];
+}
+#pragma mark -- 初始化底部tableView
+-(UITableView *)baseTableView
+{
+    if(_baseTableView == nil)
+    {
+        _baseTableView = [[UITableView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, WidthBounds, 354) style:UITableViewStylePlain];
+        _baseTableView.delegate=self;
+        _baseTableView.dataSource=self;
+        _baseTableView.tableHeaderView = [self headerBaseTableView];
+    }
+    return _baseTableView;
+}
+#pragma mark -- 底部提交订单View
+-(void)ClearingView
+{
+    UIView * bottomView =[[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, 354, WidthBounds, 49)];
+    bottomView.backgroundColor = [GVColor hexStringToColor:@"eeeeee"];
+    [_baseView addSubview:bottomView];
+    
+    UILabel * totalLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 16, 40, 15)];
+    totalLabel.text = @"总计:";
+    totalLabel.textColor = [GVColor hexStringToColor:@"333333"];
+    totalLabel.font = [UIFont systemFontOfSize:15];
+    [bottomView addSubview:totalLabel];
+   
+    //结算价格
+    _totalNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(55, 15, 0, 0)];
+     NSString *strNum = @"  0.00     ";
+    _totalNumLabel.text = [NSString stringWithFormat:@"￥%@",strNum];
+    _totalNumLabel.font = [UIFont systemFontOfSize:19];
+    _totalNumLabel.textColor = [GVColor hexStringToColor:@"#e4562f"];
+    //自适应宽度
+    CGFloat numWidth = [UILabel getWidthWithTitle:_totalNumLabel.text font:_totalNumLabel.font];
+    _totalNumLabel.frame = CGRectMake(55, 15, numWidth, 19);
+    [bottomView addSubview:_totalNumLabel];
+    
+    //提交按钮
+    UIButton *submitBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    submitBtn.frame=CGRectMake(WidthBounds-120, ZeroFrame, 120, 49);
+    [submitBtn setTitle:@"提交订单" forState: UIControlStateNormal];
+    submitBtn.backgroundColor=[GVColor hexStringToColor:@"ffba14"];
+    [submitBtn setTitleColor:[GVColor hexStringToColor:@"333333"] forState:UIControlStateNormal];
+    [submitBtn.titleLabel setFont:[UIFont systemFontOfSize:17]];
+    //[submitBtn addTarget:self action:@selector(remoAllRow) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:submitBtn];
+}
+
+#pragma mark -- 初始化结算弹出视图
+-(UIView *)baseView
+{
+    if(_baseView == nil)
+    {
+        _baseView= [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame,HeightBounds, WidthBounds, 403)];
+        
+         [self ClearingView];
+         [_baseView addSubview:self.baseTableView];
+    }
+    return _baseView;
+}
+
+#pragma mark -- 底部背景视图
+-(UIView *)backgroundView
+{
+    if(_backgroundView == nil)
+    {
+        _backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, -328, WidthBounds, 328)];
+        _backgroundView.backgroundColor = [UIColor blackColor];
+        _backgroundView.alpha = 0.6;
+        _backgroundView.userInteractionEnabled = YES;
+        
+        //添加点按手势
+        _tapRemo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapRemoYes)];
+        //把点按手势添加到图片上
+        [_backgroundView addGestureRecognizer:self.tapRemo];
+    }
+    return _backgroundView;
+}
 @end

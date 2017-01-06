@@ -473,7 +473,7 @@
 {
     if(_homeTableView == nil)
     {
-        _homeTableView = [[UITableView alloc]initWithFrame:CGRectMake(ZeroFrame, 44, WidthBounds, HeightBounds) style:UITableViewStylePlain];
+        _homeTableView = [[UITableView alloc]initWithFrame:CGRectMake(ZeroFrame, 44, WidthBounds, HeightBounds+20) style:UITableViewStylePlain];
         _homeTableView.delegate =self;
         _homeTableView.dataSource= self;
         _homeTableView.showsVerticalScrollIndicator = NO;

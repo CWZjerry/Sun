@@ -15,6 +15,8 @@
 		0D85A4201E1A8F6700F0F727 /* homeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A41F1E1A8F6700F0F727 /* homeModel.m */; };
 		0D85A4291E1B7D5D00F0F727 /* takeAwayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A4271E1B7D5D00F0F727 /* takeAwayCell.m */; };
 		0D85A42A1E1B7D5D00F0F727 /* takeAwayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D85A4281E1B7D5D00F0F727 /* takeAwayCell.xib */; };
+		0DA09B791E1D367C00524F91 /* baseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA09B771E1D367C00524F91 /* baseCell.m */; };
+		0DA09B7A1E1D367C00524F91 /* baseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DA09B781E1D367C00524F91 /* baseCell.xib */; };
 		0DA3F5F71E1389C600E2E030 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA3F5F51E1389C600E2E030 /* HomeTableViewCell.m */; };
 		0DA3F5F81E1389C600E2E030 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DA3F5F61E1389C600E2E030 /* HomeTableViewCell.xib */; };
 		0DA3F60A1E13A04A00E2E030 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA3F6051E13A04A00E2E030 /* PopoverAction.m */; };
@@ -131,6 +133,9 @@
 		0D85A4261E1B7D5D00F0F727 /* takeAwayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = takeAwayCell.h; sourceTree = "<group>"; };
 		0D85A4271E1B7D5D00F0F727 /* takeAwayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = takeAwayCell.m; sourceTree = "<group>"; };
 		0D85A4281E1B7D5D00F0F727 /* takeAwayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = takeAwayCell.xib; sourceTree = "<group>"; };
+		0DA09B761E1D367C00524F91 /* baseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseCell.h; sourceTree = "<group>"; };
+		0DA09B771E1D367C00524F91 /* baseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = baseCell.m; sourceTree = "<group>"; };
+		0DA09B781E1D367C00524F91 /* baseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = baseCell.xib; sourceTree = "<group>"; };
 		0DA3F5F41E1389C600E2E030 /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
 		0DA3F5F51E1389C600E2E030 /* HomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
 		0DA3F5F61E1389C600E2E030 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
@@ -452,6 +457,16 @@
 			name = "首页控制器";
 			sourceTree = "<group>";
 		};
+		0DA09B7B1E1E2D3D00524F91 /* 重写结算tableView */ = {
+			isa = PBXGroup;
+			children = (
+				0DA09B761E1D367C00524F91 /* baseCell.h */,
+				0DA09B771E1D367C00524F91 /* baseCell.m */,
+				0DA09B781E1D367C00524F91 /* baseCell.xib */,
+			);
+			name = "重写结算tableView";
+			sourceTree = "<group>";
+		};
 		0DA3F6031E13A04A00E2E030 /* PopoverView */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +487,7 @@
 				0DC495BE1E148EBA00537686 /* hotelViewController.m */,
 				0D85A4191E1A6BAA00F0F727 /* 重写饭店tableView */,
 				0D85A4181E1A6B9400F0F727 /* 重写侧滑tableView */,
+				0DA09B7B1E1E2D3D00524F91 /* 重写结算tableView */,
 			);
 			name = "饭店";
 			sourceTree = "<group>";
@@ -722,7 +738,6 @@
 				158D9E401E113AC800B0FFB5 /* TakeAway(外卖) */,
 				158D9E411E113AE900B0FFB5 /* Order(订单) */,
 				158D9E421E113B0700B0FFB5 /* MySelf(我的) */,
-				0D85A4231E1B760D00F0F727 /* 解析 */,
 				0DF158AB1E124828008142D6 /* 业务处理 */,
 				158D9E041E11391700B0FFB5 /* Assets.xcassets */,
 				158D9E061E11391700B0FFB5 /* LaunchScreen.storyboard */,
@@ -765,6 +780,7 @@
 				0DC495C01E148EC100537686 /* 饭店 */,
 				0D85A4241E1B762500F0F727 /* M */,
 				0DF158AC1E124836008142D6 /* V */,
+				0D85A4231E1B760D00F0F727 /* 解析 */,
 			);
 			name = "Home(首页)";
 			sourceTree = "<group>";
@@ -1027,6 +1043,7 @@
 				0DA3F5F81E1389C600E2E030 /* HomeTableViewCell.xib in Resources */,
 				158D9E081E11391700B0FFB5 /* LaunchScreen.storyboard in Resources */,
 				0DE95E171E1336B3008C762F /* img1.png in Resources */,
+				0DA09B7A1E1D367C00524F91 /* baseCell.xib in Resources */,
 				BA6DB9D81E174AA2002622C8 /* sideTableViewCell.xib in Resources */,
 				0DE95E181E1336B3008C762F /* img2.png in Resources */,
 				0D85A42A1E1B7D5D00F0F727 /* takeAwayCell.xib in Resources */,
@@ -1066,7 +1083,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D3888DC0ADA96947FB7F1629 /* [CP] Copy Pods Resources */ = {
@@ -1122,6 +1139,7 @@
 				0D619E841E1BC02200B5873F /* hoteModel.m in Sources */,
 				154FBA1B1E1C9CC900F2F6E5 /* Order.m in Sources */,
 				154FBA4A1E1C9D1E00F2F6E5 /* TakeViewController.m in Sources */,
+				0DA09B791E1D367C00524F91 /* baseCell.m in Sources */,
 				154FBA371E1C9D0B00F2F6E5 /* CostTableViewCell.m in Sources */,
 				0DA3F60B1E13A04A00E2E030 /* PopoverView.m in Sources */,
 				BA36E97A1E1CD66900DEC0E6 /* JudgmentCode.m in Sources */,

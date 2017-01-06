@@ -5,9 +5,7 @@
 //  Created by Pro on 2016/12/26.
 //  Copyright © 2016年 OneGroup. All rights reserved.
 //
-#define ScreenWidth [[UIScreen mainScreen] bounds].size.width
 
-#define ScreenHeight [[UIScreen mainScreen] bounds].size.height
 
 #import "MySelfViewController.h"
 #import "LoginViewController.h"
@@ -17,6 +15,11 @@
 #import "cooperationController.h"
 #import "proposalController.h"
 #import "MyInfoViewController.h"
+
+
+#import "purseViewController.h"
+#import "discountViewController.h"
+
 @interface MySelfViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UILabel *headLabel;
@@ -26,7 +29,6 @@
 @property (nonatomic, strong) UITableView *TableView;
 
 @property (nonatomic, strong) UIView *headView;
-
 
 @property (nonatomic, strong) NSArray *listArr;
 
@@ -47,9 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
-    
-    
-    
+
     _listArr = [NSArray arrayWithObjects:@"我的积分",@"我的收货地址", nil];
     _slistArr = [NSArray arrayWithObjects:@"加盟合作",@"关于我们",@"意见反馈", nil];
     [self setTableView];
@@ -99,12 +99,12 @@
     if (indexPath.section == 0) {
         cell.textLabel.text = _listArr[indexPath.row];
         cell.textLabel.font = [UIFont systemFontOfSize:15 weight:0];
-        cell.textLabel.textColor = [UIColor colorWithRed:199/255.0 green:199/255.0 blue:199/255.0 alpha:1.0];
+        cell.textLabel.textColor =  [GVColor hexStringToColor:@"333333"];
         
     }else{
         cell.textLabel.text = _slistArr[indexPath.row];
         cell.textLabel.font = [UIFont systemFontOfSize:15 weight:0];
-        cell.textLabel.textColor = [UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:1.0];
+        cell.textLabel.textColor =  [GVColor hexStringToColor:@"333333"];
     }
     return cell;
 }
@@ -135,23 +135,23 @@
     [headBtn setBackgroundColor:[UIColor lightGrayColor]];
     headBtn.layer.cornerRadius = 41.5;
     headBtn.layer.masksToBounds = YES;
-    [headBtn setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
+//    [headBtn setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
     [headBtn addTarget:self action:@selector(LoginInBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.headView addSubview:headBtn];
     
     headLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 153, ScreenWidth - 20, 20)];
     headLabel.text = @"登录/注册";
     headLabel.textAlignment = NSTextAlignmentCenter;
-    headLabel.textColor = [UIColor colorWithHue:0.00 saturation:0.00 brightness:0.00 alpha:1.00];
+    headLabel.textColor =  [GVColor hexStringToColor:@"333333"];
     headLabel.font = [UIFont systemFontOfSize:17 weight:1.5];
     [self.headView addSubview:headLabel];
     
     _middleLine = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2,  200, 0.5, 70)];
-    [_middleLine setBackgroundColor:[UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:1.0]];
+    [_middleLine setBackgroundColor: [GVColor hexStringToColor:@"dddddd"]];
     [self.headView addSubview:_middleLine];
     
     _topLine=[[UIButton alloc]initWithFrame:CGRectMake(0, 193, ScreenWidth, 0.5)];
-    [_topLine setBackgroundColor:[UIColor colorWithRed:191/255.0 green:191/255.0 blue:191/255.0 alpha:0.5]];
+    [_topLine setBackgroundColor: [GVColor hexStringToColor:@"dddddd"]];
     [self.headView addSubview:_topLine];
     //我的钱包 btn
     UIButton *purseBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, _topLine.bottom, ScreenWidth/2, 84)];
@@ -180,48 +180,50 @@
     [self.headView addSubview:discountBtn];
     return self.headView;
 }
-//按钮响应事件
+//我的钱包
 -(void)purseClick{
+    purseViewController *purse = [[purseViewController alloc] init];
+    [self.navigationController pushViewController:purse animated:YES];
+    
     
 }
+//优惠券
 -(void)discountClick{
+    
+    discountViewController *discount = [[discountViewController alloc] init];
+    [self.navigationController pushViewController:discount animated:YES];
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 5;
 }
+//登录判断选择
 -(void)LoginInBtnClick{
     LoginViewController *login = [[LoginViewController alloc]init];
-    //    self.user.phoneNum = login.userName.text;
-    //    registerThree.user = self.user;
+    
     if ([headLabel.text isEqual:@"登录/注册"]) {
         
         
         [login returnText:^(NSString *showText) {
             headLabel.text = showText;
-            headBtn.imageView.image = [UIImage imageNamed:@"1"];
+
         }];
-        
-        
+
         [self.navigationController pushViewController:login animated:YES];
-        
     }
     
     else
     {
-        
         MyInfoViewController *info = [[MyInfoViewController alloc] init];
-        
         
         [info returnText:^(NSString *showTextss) {
             headLabel.text = showTextss;
         }];
         
         [self.navigationController pushViewController:info animated:YES];
-        NSLog(@"不在登录了");
-        
-        
+
+    
     }
 }
 

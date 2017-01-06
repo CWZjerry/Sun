@@ -17,6 +17,10 @@
 #import "BottomView.h"
 #import <UIView+SDAutoLayout.h>
 #import "PayViewController.h"
+//生成订单
+#define CREAT_ORDER_URL @"http://www.kdiana.com/index.php/Before/Orders/order_info"
+//生成订单返回页面
+#define CREAT_ORDER_RETURN @"http://www.kdiana.com/index.php/Before/Orders/order_return"
 @interface OrderSubMitViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)BottomView *bottomView;

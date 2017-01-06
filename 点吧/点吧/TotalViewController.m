@@ -40,7 +40,7 @@
 }
 -(void)loadData
 {
-    NSDictionary *dic = @{@"user_id":@"10077",
+    NSDictionary *dic = @{@"user_id":@"10001",
                           @"type":@"",
                           @"page":@"1"
                           };

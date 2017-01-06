@@ -13,6 +13,9 @@
 #import "DetailsView.h"
 #import "AppDelegate.h"
 #import "Timer.h"
+#import <AlipaySDK/AlipaySDK.h>
+#define CREAT_ORDER_RETURN @"http://www.kdiana.com/index.php/Before/Orders/order_return"
+#define ALIPAY @"http://www.kdiana.com/index.php/Before/Pay/app_pay"
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIButton *bottomBtn;
@@ -31,6 +34,19 @@
 static NSTimer *ttimer;
 static int  titt = 900;
 - (void)viewDidLoad {
+    
+    
+    NSString *str = CREAT_ORDER_RETURN;
+    NSDictionary *dic = @{@"order_id":@"1"};
+    
+    [[AFNManager sharedManager]requestType:POST URL:str withparameters:dic success:^(id data) {
+        NSLog(@"data == %@",data);
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = YES;
     // Do any additional setup after loading the view.
@@ -50,6 +66,7 @@ static int  titt = 900;
     .bottomEqualToView(self.view)
     .widthIs([UIScreen mainScreen].bounds.size.width)
     .heightIs(49);
+    [self.bottomBtn addTarget:self action:@selector(payBtn) forControlEvents:UIControlEventTouchUpInside];
 //    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timer:) userInfo:nil repeats:YES];
     
 //    static dispatch_once_t onceToken;
@@ -72,6 +89,22 @@ static int  titt = 900;
     [[Timer sharedTimer] time];
     self.timer = [Timer sharedTimer].timer;
     [self.tableView reloadData];
+}
+-(void)payBtn
+{
+    NSDictionary *dic = @{@"order_no":@"20170106185215100001798641"};
+    [[AFNManager sharedManager]requestType:POST URL:ALIPAY withparameters:dic success:^(id data) {
+        
+        
+        NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        [[AlipaySDK defaultService]payOrder:str fromScheme:@"WeiDongDian" callback:^(NSDictionary *resultDic) {
+            NSLog(@"%@",dic);
+        }];
+        
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 -(void)timersd
 {
@@ -198,7 +231,7 @@ static int  titt = 900;
 //        NSLog(@"%@",self.timer);
         cell.time.text = self.timer;
         
-        NSLog(@"cell.time.text === %@",cell.time.text);
+//        NSLog(@"cell.time.text === %@",cell.time.text);
         
         return cell;
     }

@@ -11,18 +11,36 @@
 #import "CostTableViewCell.h"
 #import "PayTableViewCell.h"
 #import "DetailsView.h"
+#import "AppDelegate.h"
+#import "Timer.h"
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIButton *bottomBtn;
-@property(nonatomic,copy)NSString * timer;
+@property(nonatomic,copy)  NSString * timer;
+@property(nonatomic,strong)UILabel *lable;
+@property(nonatomic,strong)UILabel *tmplable;
 @end
 
 @implementation PayViewController
-static titt = 900;
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+static NSTimer *ttimer;
+static int  titt = 900;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.translucent = YES;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    
+    self.tmplable = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 100)];
+    self.tmplable.backgroundColor = [UIColor grayColor];
+    self.tmplable.textColor = [UIColor redColor];
+    [self.view addSubview:self.tmplable];
+    
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomBtn];
     
@@ -31,16 +49,33 @@ static titt = 900;
     .bottomEqualToView(self.view)
     .widthIs([UIScreen mainScreen].bounds.size.width)
     .heightIs(49);
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timer:) userInfo:nil repeats:YES];
-    });
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timer:) userInfo:nil repeats:YES];
     
+//    static dispatch_once_t onceToken;
+   // dispatch_once(&onceToken, ^{
+     
+ //   });
+//    AppDelegate *delagete = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    
+//      delagete.ttimer= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timersd) userInfo:nil repeats:YES];
+//    NSString *str_minute = [NSString stringWithFormat:@"%02d",(titt%3600)/60];
+//    
+//    NSString *str_second = [NSString stringWithFormat:@"%02d",titt%60];
+//    
+//    NSString *format_time = [NSString stringWithFormat:@"%@:%@",str_minute,str_second];
+//    self.tmplable.text = format_time;
+//    _lable = [[UILabel alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+//    _lable.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:self.lable];
+//    [self.view insertSubview:view aboveSubview:self.tableView];
+    [[Timer sharedTimer] time];
+    self.timer = [Timer sharedTimer].timer;
+    [self.tableView reloadData];
 }
--(void)timer:(NSTimer *)timer
+-(void)timersd
 {
     titt--;
-    
+
 //        NSLog(@"%@",timer);
     //倒计时-1
     
@@ -54,15 +89,17 @@ static titt = 900;
     NSString *format_time = [NSString stringWithFormat:@"%@:%@",str_minute,str_second];
     //修改倒计时标签及显示内容
     self.timer = format_time;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSIndexSet *index = [[NSIndexSet alloc]initWithIndex:0];
-        [self.tableView reloadSections:index withRowAnimation:UITableViewRowAnimationAutomatic];
-    });
-   
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        NSIndexSet *index = [[NSIndexSet alloc]initWithIndex:0];
+//        [self.tableView reloadSections:index withRowAnimation:UITableViewRowAnimationAutomatic];
+//    });
+
+    self.tmplable.text = [NSString stringWithFormat:@"%@",format_time];
+    [self.tableView reloadData];
     //当倒计时到0时做需要的操作，销毁
     if(titt==0){
         
-        [timer invalidate];
+//        [timer invalidate];
     }
     
     
@@ -154,10 +191,13 @@ static titt = 900;
     CostTableViewCell *cell = [[CostTableViewCell alloc]init];
     if (indexPath.section == 0) {
         PayTimeTableViewCell *cell =[[PayTimeTableViewCell alloc]init];
-        NSString *sss = self.timer;
-        NSLog(@"%@",self.timer);
-        cell.time.text = sss;
+//        NSString *sss = [Timer sharedTimer].timer;
+//        [self.tableView reloadData];
+//        NSLog(@"%@",sss);
+//        NSLog(@"%@",self.timer);
+        cell.time.text = self.timer;
         
+        NSLog(@"cell.time.text === %@",cell.time.text);
         
         return cell;
     }
@@ -238,7 +278,7 @@ static titt = 900;
 -(UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 164, ScreenWidth, ScreenHeight-164) style:UITableViewStyleGrouped];
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
         _tableView.delegate = self;
         _tableView.dataSource= self;

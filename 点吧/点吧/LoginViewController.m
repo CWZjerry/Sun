@@ -7,7 +7,6 @@
 
 
 #import "LoginViewController.h"
-#import "findPassWordViewController.h"
 #import "NetworkRequest.h"
 #import "NSString+MD5.h"
 #import "countDown.h"  //倒计时
@@ -550,9 +549,9 @@
 }
 
 -(void)findPasswordClick{
-    
-    findPassWordViewController *find = [[findPassWordViewController alloc] init];
-    [self.navigationController pushViewController:find animated:YES];
+//    
+//    findPassWordViewController *find = [[findPassWordViewController alloc] init];
+//    [self.navigationController pushViewController:find animated:YES];
     
 }
 //导航设置

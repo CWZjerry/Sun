@@ -734,6 +734,8 @@
 -(void)remoAllRow
 {
     [_clearingArr removeAllObjects];
+    self.totalNumLabel.text = [NSString stringWithFormat:@"¥: 00.00"];
+    self.baseCountLabel.hidden = YES;
     [self.baseTableView reloadData];
 }
 #pragma mark -- 初始化底部tableView

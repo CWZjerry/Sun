@@ -15,6 +15,7 @@
 #import "sideTableViewCell.h"
 #import "baseCell.h"
 
+#import "OrderSubMitViewController.h"
 #import "HomeViewController.h"
 #import "ThrowLineTool.h"
 #import "GVColor.h"
@@ -781,10 +782,14 @@
     submitBtn.backgroundColor=[GVColor hexStringToColor:@"ffba14"];
     [submitBtn setTitleColor:[GVColor hexStringToColor:@"333333"] forState:UIControlStateNormal];
     [submitBtn.titleLabel setFont:[UIFont systemFontOfSize:17]];
-    //[submitBtn addTarget:self action:@selector(remoAllRow) forControlEvents:UIControlEventTouchUpInside];
+    [submitBtn addTarget:self action:@selector(submitCome) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:submitBtn];
 }
-
+-(void)submitCome
+{
+    OrderSubMitViewController * order = [[OrderSubMitViewController alloc]init];
+    [self.navigationController pushViewController:order animated:YES];
+}
 #pragma mark -- 初始化结算弹出视图
 -(UIView *)baseView
 {

@@ -17,6 +17,23 @@ static AFNManager * manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[AFNManager alloc]init];
+        
+        
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+        //增加这几行代码；
+        AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
+        [securityPolicy setAllowInvalidCertificates:YES];
+        
+//        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//        
+//        [html] view plain copy
+//        print?
+        
+        //这里进行设置；
+        [manager setSecurityPolicy:securityPolicy];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
+
     });
     return manager;
 }

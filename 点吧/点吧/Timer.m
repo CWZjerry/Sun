@@ -52,7 +52,7 @@ static int  titt = 900;
     
         NSString *format_time = [NSString stringWithFormat:@"%@:%@",str_minute,str_second];
     self.timer = format_time;
-    NSLog(@"%@",self.timer);
+//    NSLog(@"%@",self.timer);
     //    //修改倒计时标签及显示内容
     //
     //    //    dispatch_async(dispatch_get_main_queue(), ^{

@@ -15,6 +15,7 @@
 #import <UIView+SDAutoLayout.h>
 #import "UILabel+OGLabel.h"
 #import "TextRect.h"
+#import "AFNManager.h"
 //换算尺寸
 #define SIZE(size,type) (size*72.0/type)
 //颜色

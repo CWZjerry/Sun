@@ -96,6 +96,9 @@
 		BA6DB9D01E1679C4002622C8 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6DB9CF1E1679C4002622C8 /* NSString+MD5.m */; };
 		BA6DB9D31E1749C9002622C8 /* ThrowLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6DB9D21E1749C9002622C8 /* ThrowLineTool.m */; };
 		BA6DB9D81E174AA2002622C8 /* sideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6DB9D61E174AA2002622C8 /* sideTableViewCell.xib */; };
+		BA8531CB1E1DC5300024B9C3 /* discountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8531CA1E1DC5300024B9C3 /* discountViewController.m */; };
+		BA8531CE1E1DC5640024B9C3 /* purseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8531CD1E1DC5640024B9C3 /* purseViewController.m */; };
+		BA8531D11E1E3A820024B9C3 /* ZHDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8531D01E1E3A820024B9C3 /* ZHDatePickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,6 +286,13 @@
 		BA6DB9D41E174AA2002622C8 /* sideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sideTableViewCell.h; sourceTree = "<group>"; };
 		BA6DB9D51E174AA2002622C8 /* sideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sideTableViewCell.m; sourceTree = "<group>"; };
 		BA6DB9D61E174AA2002622C8 /* sideTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sideTableViewCell.xib; sourceTree = "<group>"; };
+		BA8531C91E1DC5300024B9C3 /* discountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = discountViewController.h; sourceTree = "<group>"; };
+		BA8531CA1E1DC5300024B9C3 /* discountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = discountViewController.m; sourceTree = "<group>"; };
+		BA8531CC1E1DC5640024B9C3 /* purseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = purseViewController.h; sourceTree = "<group>"; };
+		BA8531CD1E1DC5640024B9C3 /* purseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = purseViewController.m; sourceTree = "<group>"; };
+		BA8531CF1E1E3A820024B9C3 /* ZHDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHDatePickerView.h; sourceTree = "<group>"; };
+		BA8531D01E1E3A820024B9C3 /* ZHDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHDatePickerView.m; sourceTree = "<group>"; };
+		BA8531D81E1E81A60024B9C3 /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		BBB07BC84E1D52422BD18C99 /* libPods-点吧.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-点吧.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -676,6 +686,8 @@
 		1565FD591E12333C00C68872 /* Tools(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				BA36E93A1E1CA8BA00DEC0E6 /* UILabel+Extension.h */,
+				BA36E93B1E1CA8BA00DEC0E6 /* UILabel+Extension.m */,
 				154FBA0D1E1C9BDD00F2F6E5 /* UILabel+OGLabel.h */,
 				154FBA0E1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m */,
 				BA6DB9CE1E1679C4002622C8 /* NSString+MD5.h */,
@@ -807,14 +819,21 @@
 				BA36E9121E1C867A00DEC0E6 /* MyInfoViewController.m */,
 				BA6DB9C51E15FD08002622C8 /* findPassWordViewController.h */,
 				BA6DB9C61E15FD08002622C8 /* findPassWordViewController.m */,
-				BA36E93A1E1CA8BA00DEC0E6 /* UILabel+Extension.h */,
-				BA36E93B1E1CA8BA00DEC0E6 /* UILabel+Extension.m */,
-				BA36E9401E1CC3F000DEC0E6 /* tool */,
+				BA13DC511E1F87D000ECA78F /* showUserInfoRequest */,
+				BA8531D91E1F167A0024B9C3 /* DatePicker */,
+				BA36E9401E1CC3F000DEC0E6 /* 验证请求 */,
 				BA36E9141E1C86BC00DEC0E6 /* View */,
 				BA36E9151E1C86C400DEC0E6 /* Model */,
 				BA36E91F1E1C877200DEC0E6 /* 二级界面 */,
 			);
 			name = "MySelf(我的)";
+			sourceTree = "<group>";
+		};
+		BA13DC511E1F87D000ECA78F /* showUserInfoRequest */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = showUserInfoRequest;
 			sourceTree = "<group>";
 		};
 		BA36E9141E1C86BC00DEC0E6 /* View */ = {
@@ -831,6 +850,7 @@
 		BA36E9151E1C86C400DEC0E6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BA8531D81E1E81A60024B9C3 /* Singleton.h */,
 				BA36E91C1E1C873C00DEC0E6 /* User.h */,
 				BA36E91D1E1C873C00DEC0E6 /* User.m */,
 			);
@@ -840,6 +860,10 @@
 		BA36E91F1E1C877200DEC0E6 /* 二级界面 */ = {
 			isa = PBXGroup;
 			children = (
+				BA8531CC1E1DC5640024B9C3 /* purseViewController.h */,
+				BA8531CD1E1DC5640024B9C3 /* purseViewController.m */,
+				BA8531C91E1DC5300024B9C3 /* discountViewController.h */,
+				BA8531CA1E1DC5300024B9C3 /* discountViewController.m */,
 				BA36E9201E1C87A100DEC0E6 /* cooperationController.h */,
 				BA36E9211E1C87A100DEC0E6 /* cooperationController.m */,
 				BA36E9221E1C87A100DEC0E6 /* HClTextView.h */,
@@ -868,7 +892,7 @@
 			name = TextView;
 			sourceTree = "<group>";
 		};
-		BA36E9401E1CC3F000DEC0E6 /* tool */ = {
+		BA36E9401E1CC3F000DEC0E6 /* 验证请求 */ = {
 			isa = PBXGroup;
 			children = (
 				BA36E9721E1CD0D300DEC0E6 /* SendResult.h */,
@@ -890,7 +914,7 @@
 				BA36E97B1E1CD68500DEC0E6 /* JudgmentResult.h */,
 				BA36E97C1E1CD68500DEC0E6 /* JudgmentResult.m */,
 			);
-			name = tool;
+			name = "验证请求";
 			sourceTree = "<group>";
 		};
 		BA6DB9C81E16708C002622C8 /* NetWork */ = {
@@ -900,6 +924,15 @@
 				BA6DB9CA1E1670AC002622C8 /* NetworkRequest.m */,
 			);
 			name = NetWork;
+			sourceTree = "<group>";
+		};
+		BA8531D91E1F167A0024B9C3 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				BA8531CF1E1E3A820024B9C3 /* ZHDatePickerView.h */,
+				BA8531D01E1E3A820024B9C3 /* ZHDatePickerView.m */,
+			);
+			name = DatePicker;
 			sourceTree = "<group>";
 		};
 		C4132B805BB71942B2DEAF4C /* Frameworks */ = {
@@ -1126,6 +1159,7 @@
 				0DA3F60B1E13A04A00E2E030 /* PopoverView.m in Sources */,
 				BA36E97A1E1CD66900DEC0E6 /* JudgmentCode.m in Sources */,
 				0DC495CA1E15202F00537686 /* hoteTableViewCell.m in Sources */,
+				BA8531D11E1E3A820024B9C3 /* ZHDatePickerView.m in Sources */,
 				BA36E9371E1C87C900DEC0E6 /* PlaceholderTextView.m in Sources */,
 				BA36E9711E1CD0C800DEC0E6 /* SendVerificationCode.m in Sources */,
 				BA36E9491E1CCB1800DEC0E6 /* PhoneNumber.m in Sources */,
@@ -1157,6 +1191,7 @@
 				154FBA201E1C9CE800F2F6E5 /* TotalViewController.m in Sources */,
 				BA6DB9D01E1679C4002622C8 /* NSString+MD5.m in Sources */,
 				154FBA361E1C9D0B00F2F6E5 /* VegeTableViewCell.m in Sources */,
+				BA8531CB1E1DC5300024B9C3 /* discountViewController.m in Sources */,
 				158D9E361E113A5900B0FFB5 /* TakeAwayViewController.m in Sources */,
 				BA36E93C1E1CA8BA00DEC0E6 /* UILabel+Extension.m in Sources */,
 				BA36E9361E1C87C900DEC0E6 /* NSString+Valid.m in Sources */,
@@ -1166,6 +1201,7 @@
 				154FBA211E1C9CE800F2F6E5 /* TotalTableViewCell.m in Sources */,
 				154FBA241E1C9CF300F2F6E5 /* DetailsViewController.m in Sources */,
 				0D85A4291E1B7D5D00F0F727 /* takeAwayCell.m in Sources */,
+				BA8531CE1E1DC5640024B9C3 /* purseViewController.m in Sources */,
 				0DA3F60C1E13A04A00E2E030 /* PopoverViewCell.m in Sources */,
 				0D85A41D1E1A8D8100F0F727 /* homeRequest.m in Sources */,
 				0D4421511E12861A00B31284 /* UILabel+LabelFrame.m in Sources */,

@@ -11,13 +11,10 @@
 #import "NetworkRequest.h"
 #import "NSString+MD5.h"
 #import "countDown.h"  //倒计时
-
-
-
+#import "User.h"
 @interface LoginViewController ()<UITextFieldDelegate,UIScrollViewAccessibilityDelegate,UIScrollViewDelegate>
 
 @property(nonatomic,strong)UIScrollView * theScrollView;
-
 
 @property (nonatomic, strong) UIView *shadowView; //view底色
 
@@ -61,28 +58,34 @@
 @property (nonatomic ,strong) UIButton *findPassword;//找回密码
 
 @property (nonatomic, strong) UIButton *rememberPassword;//记住密码
-
-@property (nonatomic ,strong) UIButton *circularBtn;
-
+@property (nonatomic, strong) UIButton *circularBtn;//空心 实心选中
+@property (nonatomic, strong) UIButton *sincereBtn;
 
 @property (nonatomic, assign) BOOL isUserEmpty;
-@property (nonatomic, assign) BOOL isPasswordEmpty;
 
+@property (nonatomic, assign) BOOL isPasswordEmpty;
 
 @property (strong, nonatomic) NSDictionary *phoneCode;
 
 @property (strong, nonatomic) NSDictionary *parameters;
+
+@property (strong, nonatomic) User *user1;
 @end
 
 @implementation LoginViewController
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];
-}
 
+
+//-(instancetype)init
+//{
+//    self.user1 = [[User alloc]init];
+//    [self.user1 loadUserInofFromSanbox];
+//    return self;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [GVColor hexStringToColor:@"#f2f2f2"];
+//    NSLog(@"+++++++++%@",self.user1.birthday);
     
     [self setNav];
     [self theWay];
@@ -98,27 +101,18 @@
     self.theScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, width, height)];
     _theScrollView.backgroundColor =[UIColor whiteColor] ;
     
-    //    [GVColor hexStringToColor:@"#f2f2f2"]
     //设置滚动视图大小
     self.theScrollView.contentSize = CGSizeMake(width*2, height);
     self.theScrollView.pagingEnabled = YES;
-    //    self.theScrollView.showsHorizontalScrollIndicator = NO;
+    
     self.theScrollView.showsVerticalScrollIndicator = NO;
     self.theScrollView.delegate = self;
     
     [self.view addSubview:self.theScrollView];
-    
-    
 }
 -(void)setUpUI{
-    //设置底色
-    //    _shadowView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 370)];
-    //    _shadowView.backgroundColor = [UIColor whiteColor];
-    //    [self.view addSubview:_shadowView];
-    
     _titleBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 79, ScreenWidth/2-60 , 30)];
     [_titleBtn setTitle:@"手机号快捷登录" forState:UIControlStateNormal];
-    
     
     //设置颜色需要状态  后边
     [_titleBtn setTitleColor:[GVColor hexStringToColor:@"#ffba14"] forState:UIControlStateNormal
@@ -129,8 +123,7 @@
     
     _titlePassBtn = [[UIButton alloc]initWithFrame:CGRectMake(_titleBtn.top + 130 , 79, ScreenWidth/2 - 60, 30)];
     [_titlePassBtn setTitle:@"账号密码登录" forState:UIControlStateNormal];
-    
-    
+
     //设置颜色需要状态  后边
     [_titlePassBtn setTitleColor:[GVColor hexStringToColor:@"#888888"] forState:UIControlStateNormal];
     [_titlePassBtn addTarget:self action:@selector(titlePassClick) forControlEvents:UIControlEventTouchUpInside];
@@ -162,9 +155,10 @@
     _userName.delegate = self;
     _userName.keyboardType = UITextBorderStyleLine;
     
-    _userName.placeholder = @"请输入您的手机号";
+//    _userName.placeholder = @"请输入您的手机号";
+    
+    _userName.text = @"18310441713";
     _userName.textColor = [GVColor hexStringToColor:@"#bbbbbb"];
-    //    [_userName setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     _userName.keyboardType = UIKeyboardTypeDefault;
     _userName.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -233,11 +227,89 @@
     [_loginBtn addTarget:self action:@selector(loginclick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_loginBtn];
     
+    //找回密码按钮
+    _findPassword = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth -85 -12, _line.top + 30, 85 , 24)];
+//    _findPassword.backgroundColor = [UIColor greenColor];
+    [_findPassword setTitle:@"找回密码" forState:UIControlStateNormal];
+    [_findPassword setTitleColor:[GVColor hexStringToColor:@"#ffba14"] forState:UIControlStateNormal];
+    [_findPassword addTarget:self action:@selector(findPasswordClick) forControlEvents:UIControlEventTouchUpInside];
+    _findPassword.titleLabel.font = [UIFont systemFontOfSize:12];
+    [self.view addSubview:_findPassword];
+    
+    //记住密码
+    _rememberPassword = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth -85 -12, _lineTwo.top + 10, 85 , 24)];
+    [_rememberPassword setTitle:@"记住密码" forState:UIControlStateNormal];
+    [_rememberPassword setTitleColor:[GVColor hexStringToColor:@"#999999"] forState:UIControlStateNormal];
+    _rememberPassword.titleLabel.font = [UIFont systemFontOfSize:12];
+    [self.view addSubview:_rememberPassword];
+    
+    _findPassword.hidden = YES;
+    _rememberPassword.hidden = YES;
+    
+    //选中按钮
+    _circularBtn = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth -85 -12, _lineTwo.bottom +16, 10 , 10)];
+    [_circularBtn setImage:[UIImage imageNamed:@"up"] forState:UIControlStateNormal];
+    [_circularBtn setImage:[UIImage imageNamed:@"down"] forState:UIControlStateSelected];
+    [_circularBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_circularBtn];
+    _circularBtn.hidden = YES;
+    
+    //输入框前面的图标
+    _imageAccount = [[UIImageView alloc] initWithFrame:CGRectMake(18, _titleBtn.bottom + 50,22,22)];
+    _imageAccount.image = [UIImage imageNamed:@"account"];
+    [self.view addSubview:_imageAccount];
+    _imageAccount.hidden = YES;
+    _imagePassword = [[UIImageView alloc] initWithFrame:CGRectMake(18, _titleBtn.bottom + 40+90,22,22)];
+    _imagePassword.image = [UIImage imageNamed:@"password"];
+    [self.view addSubview:_imagePassword];
+    _imagePassword.hidden = YES;
+    
+    
+    _userNameC = [[UITextField alloc]initWithFrame:CGRectMake(50, _titleBtn.bottom + 40, ScreenWidth - 80, 40)];
+    _userNameC.delegate = self;
+    _userNameC.keyboardType = UITextBorderStyleLine;
+    _userNameC.autocorrectionType = NO;
+    _userNameC.autocapitalizationType = NO;
+    _userNameC.placeholder = @"请输入您的账号";
+    _userNameC.textColor = [GVColor hexStringToColor:@"#bbbbbb"];
+    
+    
+    _userNameC.keyboardType = UIKeyboardTypeDefault;
+    _userNameC.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _userNameC.returnKeyType =UIReturnKeyNext;
+    _userNameC.keyboardAppearance=UIKeyboardAppearanceDefault;
+    [self.view addSubview:_userNameC];
+    _userNameC.hidden = YES;
+    
+    _passwordC = [[UITextField alloc]initWithFrame:CGRectMake(50, _userName.bottom + 40, ScreenWidth - 80, 40)];
+    _passwordC.delegate = self;
+    _passwordC.keyboardType = UITextBorderStyleLine;
+    //    _password.backgroundColor = [UIColor clearColor];
+    _passwordC.placeholder = @"请输入您的密码";
+    _passwordC.textColor = [GVColor hexStringToColor:@"#bbbbbb"];
+    _passwordC.secureTextEntry = YES;
+    _passwordC.keyboardType = UIKeyboardTypeDefault;
+    _passwordC.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _passwordC.returnKeyType = UIReturnKeyDone;
+    _passwordC.keyboardAppearance = UIKeyboardAppearanceDefault;
+    [self.view addSubview:_passwordC];
+    _passwordC.hidden = YES;
+    //登录按钮
+    _longinBtnTwo = [[UIButton alloc] initWithFrame:CGRectMake((ScreenWidth-225)/2, _lineTwo.bottom + 50, 225 , 33)];
+    [_longinBtnTwo setTitle:@"登录" forState:UIControlStateNormal];
+    [_longinBtnTwo setTitleColor:[GVColor hexStringToColor:@"#333333"] forState:UIControlStateNormal];
+    [_longinBtnTwo setBackgroundColor:[GVColor hexStringToColor:@"#ffba14"]];
+    _longinBtnTwo.layer.cornerRadius = 16.5;
+    _longinBtnTwo.layer.masksToBounds = YES;
+    _longinBtnTwo.titleLabel.font = [UIFont systemFontOfSize:17];
+    [_longinBtnTwo addTarget:self action:@selector(loginPassword:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:_longinBtnTwo];
+    _longinBtnTwo.hidden = YES;
 }
 
 -(void)titleBtnClick{
-    //    [_titleBtn setTitleColor:[GVColor hexStringToColor:@"#ffba14"] forState:UIControlStateNormal
-    //     ];
+
     [_titlePassBtn setTitleColor:[GVColor hexStringToColor:@"#88888"] forState:UIControlStateNormal];
     [_titleBtn setTitleColor:[GVColor hexStringToColor:@"#ffba14"] forState:UIControlStateNormal
      ];
@@ -264,6 +336,16 @@
     _imagePassword.hidden = YES;
     _userNameC.hidden = YES;
     _passwordC.hidden = YES;
+    
+    _findPassword.hidden = YES;
+    _rememberPassword.hidden = YES;
+    _circularBtn.hidden = YES;
+    
+    _imageAccount.hidden = YES;
+    _userNameC.hidden = YES;
+    _passwordC.hidden = YES;
+    _longinBtnTwo.hidden = YES;
+     _imagePassword.hidden = YES;
 }
 
 -(void)titlePassClick{
@@ -286,109 +368,35 @@
     _promptBtn.hidden = YES;
     _loginBtn.hidden = YES;
     _textBtn.hidden = YES;
+    _findPassword.hidden = NO;
+    _rememberPassword.hidden = NO;
+    _circularBtn.hidden = NO;
     
     
-    
-    //输入框前面的图标
-    _imageAccount = [[UIImageView alloc] initWithFrame:CGRectMake(18, _titleBtn.bottom + 50,22,22)];
-    _imageAccount.image = [UIImage imageNamed:@"account"];
-    [self.view addSubview:_imageAccount];
-    
-    _imagePassword = [[UIImageView alloc] initWithFrame:CGRectMake(18, _titleBtn.bottom + 40+90,22,22)];
-    _imagePassword.image = [UIImage imageNamed:@"password"];
-    [self.view addSubview:_imagePassword];
-    
-    
-    
-    _userNameC = [[UITextField alloc]initWithFrame:CGRectMake(50, _titleBtn.bottom + 40, ScreenWidth - 80, 40)];
-    _userNameC.delegate = self;
-    _userNameC.keyboardType = UITextBorderStyleLine;
-    _userNameC.autocorrectionType = NO;
-    _userNameC.autocapitalizationType = NO;
-    _userNameC.placeholder = @"请输入您的账号";
-    _userNameC.textColor = [GVColor hexStringToColor:@"#bbbbbb"];
-    
-    
-    _userNameC.keyboardType = UIKeyboardTypeDefault;
-    _userNameC.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    _userNameC.returnKeyType =UIReturnKeyNext;
-    _userNameC.keyboardAppearance=UIKeyboardAppearanceDefault;
-    [self.view addSubview:_userNameC];
+    _imageAccount.hidden = NO;
+    _userNameC.hidden = NO;
+    _passwordC.hidden = NO;
+    _longinBtnTwo.hidden = NO;
+     _imagePassword.hidden = NO;
     
     _line = [[UIView alloc]initWithFrame:CGRectMake(18, _userName.bottom + 20, ScreenWidth - 26, 0.8)];
     _line.backgroundColor = [GVColor hexStringToColor:@"#eeeeee"];
     [self.view addSubview:_line];
-    
-    _passwordC = [[UITextField alloc]initWithFrame:CGRectMake(50, _userName.bottom + 40, ScreenWidth - 80, 40)];
-    _passwordC.delegate = self;
-    _passwordC.keyboardType = UITextBorderStyleLine;
-    //    _password.backgroundColor = [UIColor clearColor];
-    _passwordC.placeholder = @"请输入您的密码";
-    _passwordC.textColor = [GVColor hexStringToColor:@"#bbbbbb"];
-    _passwordC.secureTextEntry = YES;
-    _passwordC.keyboardType = UIKeyboardTypeDefault;
-    _passwordC.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    _passwordC.returnKeyType = UIReturnKeyDone;
-    _passwordC.keyboardAppearance = UIKeyboardAppearanceDefault;
-    [self.view addSubview:_passwordC];
-    
     _lineTwo = [[UIView alloc]initWithFrame:CGRectMake(18, _password.bottom + 20, ScreenWidth - 26, 0.8)];
     _lineTwo.backgroundColor = [GVColor hexStringToColor:@"#eeeeee"];
     [self.view addSubview:_lineTwo];
-    
-    //找回密码按钮
-    
-    _findPassword = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth -85 -12, _line.top + 30, 85 , 24)];
-    
-    [_findPassword setTitle:@"找回密码" forState:UIControlStateNormal];
-    [_findPassword setTitleColor:[GVColor hexStringToColor:@"#ffba14"] forState:UIControlStateNormal];
-    [_findPassword addTarget:self action:@selector(findPasswordClick) forControlEvents:UIControlEventTouchUpInside];
-    _findPassword.titleLabel.font = [UIFont systemFontOfSize:12];
-    [self.view addSubview:_findPassword];
-    
-    //记住密码
-    _findPassword = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth -85 -12, _lineTwo.top + 10, 85 , 24)];
-    [_findPassword setTitle:@"记住密码" forState:UIControlStateNormal];
-    [_findPassword setTitleColor:[GVColor hexStringToColor:@"#999999"] forState:UIControlStateNormal];
-    _findPassword.titleLabel.font = [UIFont systemFontOfSize:12];
-    [self.view addSubview:_findPassword];
-    
-    //实空心圆
-    //    _circularBtn = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth -85 -12, _lineTwo.top + 17, 10 , 10)];
-    //
-    //    [_circularBtn setImage:[UIImage imageNamed:@"up"] forState:UIControlStateNormal];
-    //    [_circularBtn addTarget:self action:@selector(circularClickBtn) forControlEvents:UIControlEventTouchUpOutside];
-    //    [_theScrollView addSubview:_circularBtn];
+
     
     
     
-    //登录按钮
-    _longinBtnTwo = [[UIButton alloc] initWithFrame:CGRectMake((ScreenWidth-225)/2, _lineTwo.bottom + 50, 225 , 33)];
-    [_longinBtnTwo setTitle:@"登录" forState:UIControlStateNormal];
-    [_longinBtnTwo setTitleColor:[GVColor hexStringToColor:@"#333333"] forState:UIControlStateNormal];
-    [_longinBtnTwo setBackgroundColor:[GVColor hexStringToColor:@"#ffba14"]];
-    _longinBtnTwo.layer.cornerRadius = 16.5;
-    _longinBtnTwo.layer.masksToBounds = YES;
-    _longinBtnTwo.titleLabel.font = [UIFont systemFontOfSize:17];
-    [_longinBtnTwo addTarget:self action:@selector(loginPassword:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:_longinBtnTwo];
     
     
     
 }
-//////////////////////
-
-
 - (void)returnText:(ReturnTextBlock)block {
     self.returnTextBlock = block;
 }
-
-
-
-/////////////////////
-
-
 //参数
 - (NSDictionary *)phoneCode{
     if (!_phoneCode) {
@@ -406,7 +414,6 @@
         NSLog(@"$%@",failure);
     }];
 }
-
 
 -(void)loginaa{
     //    //先判断输入框是否有内容
@@ -450,6 +457,9 @@
 }
 
 #define JUDGECODE @"http://www.kdiana.com/index.php/home/seller/checkTelCaptcha"
+
+#define SHOWUSERINFO @"http://www.kdiana.com/index.php/Home/Seller/showUserInfo"
+
 #pragma mark- 登录按钮(验证码)
 -(void)loginclick:(UIButton *)sender{
 //    if (_userName.text.length ==  0 ) {
@@ -501,11 +511,15 @@
         NSLog(@"%@",str);
         if ([str  isEqual: @"输入正确" ] ) {
             
-            NSLog(@"我可以改换个人信息了在这个方法里");
+      NSLog(@"我可以改换个人信息了在这个方法里");
+//     NSDictionary *par = @{@"userId":self.userName.text,@"sendCode":self.password.text,@"":};
+            
+            
+            
+            
             if (self.returnTextBlock != nil) {
                 
                 self.returnTextBlock(@"pomelo");
-                self.returnTextBlock(@"1");
             }
             [self.navigationController popViewControllerAnimated:YES];
             
@@ -527,6 +541,7 @@
 }
 
 #define URL @"http://www.kdiana.com/index.php/Before/UserCenter/user_login"
+
 #pragma mark- 登录按钮（密码）
 -(void)loginPassword:(UIButton *)sender{
     [NetworkRequest LogininforRequestWithUrl:URL parameters:_parameters Success:^(id success) {
@@ -550,7 +565,7 @@
 }
 
 -(void)findPasswordClick{
-    
+
     findPassWordViewController *find = [[findPassWordViewController alloc] init];
     [self.navigationController pushViewController:find animated:YES];
     
@@ -568,7 +583,7 @@
     
     //导航添加的按钮颜色
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    // 导航栏背景颜色
+    // 导航栏背景颜色 
     [self.navigationController.navigationBar setBarTintColor:[GVColor hexStringToColor:@"ffba14"]];
     
     
@@ -577,6 +592,10 @@
     self.navigationItem.leftBarButtonItem=backBtn;
 }
 
+//选中按钮的方法（实心空心记住密码）
+-(void)buttonClick:(UIButton *)button{
+    button.selected = !button.selected;
+}
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     

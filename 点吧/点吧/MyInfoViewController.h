@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+
 typedef void (^ReturnTextBlock)(NSString *showTextss);
+typedef void(^GRXXBlock)(NSDictionary *dic);
 
 @interface MyInfoViewController : UIViewController
+
 @property (nonatomic,strong) User *user;
+
 @property (nonatomic, copy) ReturnTextBlock returnTextBlock;
 
 - (void)returnText:(ReturnTextBlock)block;
 
-
+@property (nonatomic, copy) GRXXBlock grxxblack;
+-(void)grxinxi:(GRXXBlock)block;
 @end

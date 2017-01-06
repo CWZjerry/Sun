@@ -24,6 +24,15 @@
 		0DA3F60C1E13A04A00E2E030 /* PopoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA3F6091E13A04A00E2E030 /* PopoverViewCell.m */; };
 		0DAC13A81E1F87700002A32F /* CCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC13A51E1F87700002A32F /* CCLocationManager.m */; };
 		0DAC13A91E1F87700002A32F /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC13A71E1F87700002A32F /* CLLocation+YCLocation.m */; };
+		0DAC13AC1E1FBA580002A32F /* specificsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC13AB1E1FBA580002A32F /* specificsViewController.m */; };
+		0DAC13B01E1FBD250002A32F /* specificsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC13AE1E1FBD250002A32F /* specificsCell.m */; };
+		0DAC13B11E1FBD250002A32F /* specificsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DAC13AF1E1FBD250002A32F /* specificsCell.xib */; };
+		0DAC13B81E1FCF9D0002A32F /* specificsCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC13B61E1FCF9D0002A32F /* specificsCell1.m */; };
+		0DAC13B91E1FCF9D0002A32F /* specificsCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DAC13B71E1FCF9D0002A32F /* specificsCell1.xib */; };
+		0DAC13BD1E1FD2450002A32F /* specificsCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC13BB1E1FD2450002A32F /* specificsCell2.m */; };
+		0DAC13BE1E1FD2450002A32F /* specificsCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DAC13BC1E1FD2450002A32F /* specificsCell2.xib */; };
+		0DAC13C21E1FD51F0002A32F /* specificsCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC13C01E1FD51F0002A32F /* specificsCell3.m */; };
+		0DAC13C31E1FD51F0002A32F /* specificsCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DAC13C11E1FD51F0002A32F /* specificsCell3.xib */; };
 		0DC495BC1E13CDC700537686 /* GPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC495BB1E13CDC700537686 /* GPSViewController.m */; };
 		0DC495BF1E148EBA00537686 /* hotelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC495BE1E148EBA00537686 /* hotelViewController.m */; };
 		0DC495C61E14E00C00537686 /* 577.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0DC495C51E14E00C00537686 /* 577.jpg */; };
@@ -161,6 +170,20 @@
 		0DAC13A51E1F87700002A32F /* CCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLocationManager.m; sourceTree = "<group>"; };
 		0DAC13A61E1F87700002A32F /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
 		0DAC13A71E1F87700002A32F /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
+		0DAC13AA1E1FBA580002A32F /* specificsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = specificsViewController.h; sourceTree = "<group>"; };
+		0DAC13AB1E1FBA580002A32F /* specificsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = specificsViewController.m; sourceTree = "<group>"; };
+		0DAC13AD1E1FBD250002A32F /* specificsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = specificsCell.h; sourceTree = "<group>"; };
+		0DAC13AE1E1FBD250002A32F /* specificsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = specificsCell.m; sourceTree = "<group>"; };
+		0DAC13AF1E1FBD250002A32F /* specificsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = specificsCell.xib; sourceTree = "<group>"; };
+		0DAC13B51E1FCF9D0002A32F /* specificsCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = specificsCell1.h; sourceTree = "<group>"; };
+		0DAC13B61E1FCF9D0002A32F /* specificsCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = specificsCell1.m; sourceTree = "<group>"; };
+		0DAC13B71E1FCF9D0002A32F /* specificsCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = specificsCell1.xib; sourceTree = "<group>"; };
+		0DAC13BA1E1FD2450002A32F /* specificsCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = specificsCell2.h; sourceTree = "<group>"; };
+		0DAC13BB1E1FD2450002A32F /* specificsCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = specificsCell2.m; sourceTree = "<group>"; };
+		0DAC13BC1E1FD2450002A32F /* specificsCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = specificsCell2.xib; sourceTree = "<group>"; };
+		0DAC13BF1E1FD51E0002A32F /* specificsCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = specificsCell3.h; sourceTree = "<group>"; };
+		0DAC13C01E1FD51F0002A32F /* specificsCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = specificsCell3.m; sourceTree = "<group>"; };
+		0DAC13C11E1FD51F0002A32F /* specificsCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = specificsCell3.xib; sourceTree = "<group>"; };
 		0DC495BA1E13CDC700537686 /* GPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSViewController.h; sourceTree = "<group>"; };
 		0DC495BB1E13CDC700537686 /* GPSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSViewController.m; sourceTree = "<group>"; };
 		0DC495BD1E148EBA00537686 /* hotelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hotelViewController.h; sourceTree = "<group>"; };
@@ -303,9 +326,6 @@
 		BA6567E71E14A2130075E865 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BA6567EA1E14A2570075E865 /* UIView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
 		BA6567EB1E14A2570075E865 /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
-
-		BA6DB9C41E15FCEA002622C8 /* MyHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyHelper.h; sourceTree = "<group>"; };
-
 		BA6DB9C91E1670AC002622C8 /* NetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequest.h; sourceTree = "<group>"; };
 		BA6DB9CA1E1670AC002622C8 /* NetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequest.m; sourceTree = "<group>"; };
 		BA6DB9CE1E1679C4002622C8 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -531,6 +551,35 @@
 			path = CCLocation;
 			sourceTree = "<group>";
 		};
+		0DAC13C41E205C3D0002A32F /* 重写菜品详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC13AD1E1FBD250002A32F /* specificsCell.h */,
+				0DAC13AE1E1FBD250002A32F /* specificsCell.m */,
+				0DAC13AF1E1FBD250002A32F /* specificsCell.xib */,
+				0DAC13B51E1FCF9D0002A32F /* specificsCell1.h */,
+				0DAC13B61E1FCF9D0002A32F /* specificsCell1.m */,
+				0DAC13B71E1FCF9D0002A32F /* specificsCell1.xib */,
+				0DAC13BA1E1FD2450002A32F /* specificsCell2.h */,
+				0DAC13BB1E1FD2450002A32F /* specificsCell2.m */,
+				0DAC13BC1E1FD2450002A32F /* specificsCell2.xib */,
+				0DAC13BF1E1FD51E0002A32F /* specificsCell3.h */,
+				0DAC13C01E1FD51F0002A32F /* specificsCell3.m */,
+				0DAC13C11E1FD51F0002A32F /* specificsCell3.xib */,
+			);
+			name = "重写菜品详情";
+			sourceTree = "<group>";
+		};
+		0DAC13C51E205C470002A32F /* 菜品详情 */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC13AA1E1FBA580002A32F /* specificsViewController.h */,
+				0DAC13AB1E1FBA580002A32F /* specificsViewController.m */,
+				0DAC13C41E205C3D0002A32F /* 重写菜品详情 */,
+			);
+			name = "菜品详情";
+			sourceTree = "<group>";
+		};
 		0DC495C01E148EC100537686 /* 饭店 */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,6 +588,7 @@
 				0D85A4191E1A6BAA00F0F727 /* 重写饭店tableView */,
 				0D85A4181E1A6B9400F0F727 /* 重写侧滑tableView */,
 				0DA09B7B1E1E2D3D00524F91 /* 重写结算tableView */,
+				0DAC13C51E205C470002A32F /* 菜品详情 */,
 			);
 			name = "饭店";
 			sourceTree = "<group>";
@@ -1104,20 +1154,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA36E9291E1C87A100DEC0E6 /* HClTextView.xib in Resources */,
+				0DAC13C31E1FD51F0002A32F /* specificsCell3.xib in Resources */,
 				0DC495CD1E152EA700537686 /* 箭头.png in Resources */,
 				0DE95E191E1336B3008C762F /* img4.png in Resources */,
 				0DC495C61E14E00C00537686 /* 577.jpg in Resources */,
 				BA36E9381E1C87C900DEC0E6 /* reimbursement_delete@2x.png in Resources */,
 				0DA3F5F81E1389C600E2E030 /* HomeTableViewCell.xib in Resources */,
+				0DAC13B91E1FCF9D0002A32F /* specificsCell1.xib in Resources */,
 				158D9E081E11391700B0FFB5 /* LaunchScreen.storyboard in Resources */,
 				0DE95E171E1336B3008C762F /* img1.png in Resources */,
 				0DA09B7A1E1D367C00524F91 /* baseCell.xib in Resources */,
+				0DAC13BE1E1FD2450002A32F /* specificsCell2.xib in Resources */,
 				BA6DB9D81E174AA2002622C8 /* sideTableViewCell.xib in Resources */,
 				0DE95E181E1336B3008C762F /* img2.png in Resources */,
 				154FBAD91E1F910300F2F6E5 /* AlipaySDK.bundle in Resources */,
 				0D85A42A1E1B7D5D00F0F727 /* takeAwayCell.xib in Resources */,
 				154FBA481E1C9D1E00F2F6E5 /* JudgeViewController.xib in Resources */,
 				0DF158951E121E80008142D6 /* searchbar_textfield_background_os7@2x.png in Resources */,
+				0DAC13B11E1FBD250002A32F /* specificsCell.xib in Resources */,
 				158D9E051E11391700B0FFB5 /* Assets.xcassets in Resources */,
 				0DC495CB1E15202F00537686 /* hoteTableViewCell.xib in Resources */,
 			);
@@ -1217,6 +1271,7 @@
 				0DC495CA1E15202F00537686 /* hoteTableViewCell.m in Sources */,
 				BA36E9371E1C87C900DEC0E6 /* PlaceholderTextView.m in Sources */,
 				BA36E9271E1C87A100DEC0E6 /* cooperationController.m in Sources */,
+				0DAC13B01E1FBD250002A32F /* specificsCell.m in Sources */,
 				0D85A4201E1A8F6700F0F727 /* homeModel.m in Sources */,
 				154FBA491E1C9D1E00F2F6E5 /* HallViewController.m in Sources */,
 				154FBA451E1C9D1E00F2F6E5 /* JudgeViewController.m in Sources */,
@@ -1230,6 +1285,7 @@
 				154FBA641E1D22DA00F2F6E5 /* RemarsTableViewCell.m in Sources */,
 				0DF158981E121E87008142D6 /* GVColor.m in Sources */,
 				1565FD5F1E1236D800C68872 /* AFNManager.m in Sources */,
+				0DAC13C21E1FD51F0002A32F /* specificsCell3.m in Sources */,
 				158D9DFD1E11391700B0FFB5 /* AppDelegate.m in Sources */,
 				0DC495BC1E13CDC700537686 /* GPSViewController.m in Sources */,
 				154FBA351E1C9D0B00F2F6E5 /* MoneyView.m in Sources */,
@@ -1244,6 +1300,7 @@
 				0DAC13A91E1F87700002A32F /* CLLocation+YCLocation.m in Sources */,
 				BA6DB9D31E1749C9002622C8 /* ThrowLineTool.m in Sources */,
 				154FBA201E1C9CE800F2F6E5 /* TotalViewController.m in Sources */,
+				0DAC13AC1E1FBA580002A32F /* specificsViewController.m in Sources */,
 				BA6DB9D01E1679C4002622C8 /* NSString+MD5.m in Sources */,
 				154FBA361E1C9D0B00F2F6E5 /* VegeTableViewCell.m in Sources */,
 				158D9E361E113A5900B0FFB5 /* TakeAwayViewController.m in Sources */,
@@ -1253,10 +1310,12 @@
 				154FBA211E1C9CE800F2F6E5 /* TotalTableViewCell.m in Sources */,
 				154FBA241E1C9CF300F2F6E5 /* DetailsViewController.m in Sources */,
 				0D85A4291E1B7D5D00F0F727 /* takeAwayCell.m in Sources */,
+				0DAC13B81E1FCF9D0002A32F /* specificsCell1.m in Sources */,
 				0DA3F60C1E13A04A00E2E030 /* PopoverViewCell.m in Sources */,
 				0D85A41D1E1A8D8100F0F727 /* homeRequest.m in Sources */,
 				0D4421511E12861A00B31284 /* UILabel+LabelFrame.m in Sources */,
 				154FBA331E1C9D0B00F2F6E5 /* DetailsHead.m in Sources */,
+				0DAC13BD1E1FD2450002A32F /* specificsCell2.m in Sources */,
 				154FBA461E1C9D1E00F2F6E5 /* JudgeVegeTableViewCell.m in Sources */,
 				158D9E331E113A3400B0FFB5 /* HomeViewController.m in Sources */,
 				BA6567EC1E14A2570075E865 /* UIView+Addition.m in Sources */,

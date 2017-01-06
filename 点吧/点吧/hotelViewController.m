@@ -15,6 +15,7 @@
 #import "sideTableViewCell.h"
 #import "baseCell.h"
 
+#import "specificsViewController.h"
 #import "OrderSubMitViewController.h"
 #import "HomeViewController.h"
 #import "ThrowLineTool.h"
@@ -27,6 +28,7 @@
     NSArray * _tmpAll;//关联Arr
     
     NSMutableArray * _clearingArr;//结算数组
+    NSMutableArray * _subArr;//减后结算的数组
 }
 @property(nonatomic,strong) UISearchBar * headerSearchBar;//头视图搜索条
 
@@ -65,6 +67,7 @@
     [super viewDidLoad];
 
     _clearingArr = [NSMutableArray array];
+    _subArr = [NSMutableArray array];
     self.priceNumber = 0.0;
     self.num = 0;
     
@@ -416,9 +419,10 @@
         cell.sideTitle.textColor = [GVColor hexStringToColor:@"ffba14"];
         
     }
-    else
+    else if([tableView isEqual:self.hotelTableView])
     {
-        
+        specificsViewController * specifics = [[specificsViewController alloc]init];
+        [self.navigationController pushViewController:specifics animated:YES];
     }
 }
 //右边滑动跟左边的联动以及tableViewHear的透明度
@@ -444,6 +448,7 @@
 //    //移动左测tableView到指定的indexPath居上显示
 //    [self.sideTableView selectRowAtIndexPath:sidePath animated:YES scrollPosition:UITableViewScrollPositionBottom];
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([tableView isEqual:self.hotelTableView])
@@ -508,7 +513,6 @@
     NSIndexPath * indexPath = [_hotelTableView indexPathForCell:rightHoteCell];
     //赋值 取每个分区中的section
     NSArray * sectionArr = _tmpAll[indexPath.section];
-    
     hoteModel_menu_info * hoteInfo = sectionArr[indexPath.row];
     [_clearingArr addObject:hoteInfo];
     [self.baseTableView reloadData];
@@ -555,6 +559,8 @@
         //赋值 取每个分区中的section
         NSArray * sectionArr = _tmpAll[indexPath.section];
         hoteModel_menu_info * hoteInfo = sectionArr[indexPath.row];
+        [_subArr addObject:hoteInfo];
+        [self.baseTableView reloadData];
         if(hoteInfo.count_num > 0)
         {
             hoteInfo.count_num --;
@@ -785,10 +791,10 @@
     [submitBtn addTarget:self action:@selector(submitCome) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:submitBtn];
 }
+//提交按钮事件
 -(void)submitCome
 {
     OrderSubMitViewController * order = [[OrderSubMitViewController alloc]init];
-//    order.navigationController.navigationBar.hidden  = NO;
     [self.navigationController pushViewController:order animated:YES];
 }
 #pragma mark -- 初始化结算弹出视图

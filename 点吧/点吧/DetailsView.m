@@ -27,8 +27,9 @@
     _details = details;
     [self addSubview:self.details];
     _details.sd_layout
-    .topSpaceToView(self,15)
+//    .topSpaceToView(self,15)
     .leftSpaceToView(self,12)
+    .centerYEqualToView(self)
     .heightIs(13)
     .widthIs(80);
     UILabel *line = [[UILabel alloc]init];
@@ -36,7 +37,7 @@
     _line = line;
     [self addSubview:self.line];
     _line.sd_layout
-    .topSpaceToView(self.details,10)
+    .bottomSpaceToView(self,1)
     .leftSpaceToView(self,12)
     .rightSpaceToView(self,12)
     .heightIs(1);

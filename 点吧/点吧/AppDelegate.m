@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "OrderSubMitViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -16,12 +17,19 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //主控制器
-    MainViewController * main = [[MainViewController alloc]init];
-    //导航
-    self.window.frame = [UIScreen mainScreen].bounds;
-    self.window.rootViewController = main;
+//    //主控制器
+//    MainViewController * main = [[MainViewController alloc]init];
+//    //导航
+//    self.window.frame = [UIScreen mainScreen].bounds;
+//    self.window.rootViewController = main;
+//    self.window.backgroundColor = [UIColor whiteColor];
+    
+    //订单提交页面
+    OrderSubMitViewController *orderSub = [[OrderSubMitViewController alloc]init];
+    UINavigationController *nag = [[UINavigationController alloc]initWithRootViewController:orderSub];
+    self.window.rootViewController = nag;
     self.window.backgroundColor = [UIColor whiteColor];
+    
     
     return YES;
 }

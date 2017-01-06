@@ -23,7 +23,10 @@
 @end
 
 @implementation OrderSubMitViewController
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -152,6 +155,10 @@
         return cell;
     }
     
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES];
 }
 -(UITableView *)tableView
 {

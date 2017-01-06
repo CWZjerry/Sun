@@ -788,6 +788,7 @@
 -(void)submitCome
 {
     OrderSubMitViewController * order = [[OrderSubMitViewController alloc]init];
+//    order.navigationController.navigationBar.hidden  = NO;
     [self.navigationController pushViewController:order animated:YES];
 }
 #pragma mark -- 初始化结算弹出视图

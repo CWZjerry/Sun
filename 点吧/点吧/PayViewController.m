@@ -26,6 +26,7 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 static NSTimer *ttimer;
 static int  titt = 900;

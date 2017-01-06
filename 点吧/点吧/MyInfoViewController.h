@@ -11,9 +11,10 @@
 typedef void (^ReturnTextBlock)(NSString *showTextss);
 
 @interface MyInfoViewController : UIViewController
-
 @property (nonatomic,strong) User *user;
 @property (nonatomic, copy) ReturnTextBlock returnTextBlock;
+
 - (void)returnText:(ReturnTextBlock)block;
+
 
 @end

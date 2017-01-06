@@ -33,6 +33,7 @@
 @property(nonatomic,strong) NSString * photo;
 @property(nonatomic,strong) NSString * rated;
 @property(nonatomic,assign) NSInteger  stock;
+
 @end
 
 @interface hoteModel_type : NSObject

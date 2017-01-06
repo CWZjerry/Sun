@@ -20,6 +20,8 @@
 @interface MySelfViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UILabel *headLabel;
+    UIButton *headBtn;
+    
 }
 @property (nonatomic, strong) UITableView *TableView;
 
@@ -129,7 +131,7 @@
     [self.headView addSubview:image];
     
     
-    UIButton *headBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 41.5, 54, 83, 83)];
+    headBtn = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 41.5, 54, 83, 83)];
     [headBtn setBackgroundColor:[UIColor lightGrayColor]];
     headBtn.layer.cornerRadius = 41.5;
     headBtn.layer.masksToBounds = YES;
@@ -198,6 +200,7 @@
         
         [login returnText:^(NSString *showText) {
             headLabel.text = showText;
+            headBtn.imageView.image = [UIImage imageNamed:@"1"];
         }];
         
         

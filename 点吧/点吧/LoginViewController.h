@@ -13,5 +13,7 @@ typedef void (^ReturnTextBlock)(NSString *showText);
 @property (nonatomic, copy) ReturnTextBlock returnTextBlock;
 - (void)returnText:(ReturnTextBlock)block;
 
+
+
 @property (nonatomic,strong) User *user;
 @end

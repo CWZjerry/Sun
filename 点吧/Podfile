@@ -9,4 +9,5 @@ target '点吧' do
  pod 'FMDB'
  pod 'AFNetworking'
  pod 'SDCycleScrollView'
+ pod'MJExtension'
 end

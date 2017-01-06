@@ -22,6 +22,8 @@
 		0DA3F60A1E13A04A00E2E030 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA3F6051E13A04A00E2E030 /* PopoverAction.m */; };
 		0DA3F60B1E13A04A00E2E030 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA3F6071E13A04A00E2E030 /* PopoverView.m */; };
 		0DA3F60C1E13A04A00E2E030 /* PopoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA3F6091E13A04A00E2E030 /* PopoverViewCell.m */; };
+		0DAC13A81E1F87700002A32F /* CCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC13A51E1F87700002A32F /* CCLocationManager.m */; };
+		0DAC13A91E1F87700002A32F /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC13A71E1F87700002A32F /* CLLocation+YCLocation.m */; };
 		0DC495BC1E13CDC700537686 /* GPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC495BB1E13CDC700537686 /* GPSViewController.m */; };
 		0DC495BF1E148EBA00537686 /* hotelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC495BE1E148EBA00537686 /* hotelViewController.m */; };
 		0DC495C61E14E00C00537686 /* 577.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0DC495C51E14E00C00537686 /* 577.jpg */; };
@@ -155,6 +157,10 @@
 		0DA3F6071E13A04A00E2E030 /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
 		0DA3F6081E13A04A00E2E030 /* PopoverViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewCell.h; sourceTree = "<group>"; };
 		0DA3F6091E13A04A00E2E030 /* PopoverViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverViewCell.m; sourceTree = "<group>"; };
+		0DAC13A41E1F87700002A32F /* CCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLocationManager.h; sourceTree = "<group>"; };
+		0DAC13A51E1F87700002A32F /* CCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLocationManager.m; sourceTree = "<group>"; };
+		0DAC13A61E1F87700002A32F /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
+		0DAC13A71E1F87700002A32F /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
 		0DC495BA1E13CDC700537686 /* GPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSViewController.h; sourceTree = "<group>"; };
 		0DC495BB1E13CDC700537686 /* GPSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSViewController.m; sourceTree = "<group>"; };
 		0DC495BD1E148EBA00537686 /* hotelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hotelViewController.h; sourceTree = "<group>"; };
@@ -297,6 +303,9 @@
 		BA6567E71E14A2130075E865 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BA6567EA1E14A2570075E865 /* UIView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
 		BA6567EB1E14A2570075E865 /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
+
+		BA6DB9C41E15FCEA002622C8 /* MyHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyHelper.h; sourceTree = "<group>"; };
+
 		BA6DB9C91E1670AC002622C8 /* NetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkRequest.h; sourceTree = "<group>"; };
 		BA6DB9CA1E1670AC002622C8 /* NetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkRequest.m; sourceTree = "<group>"; };
 		BA6DB9CE1E1679C4002622C8 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -510,6 +519,18 @@
 			path = PopoverView;
 			sourceTree = "<group>";
 		};
+		0DAC13A31E1F87700002A32F /* 获取城市 */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC13A41E1F87700002A32F /* CCLocationManager.h */,
+				0DAC13A51E1F87700002A32F /* CCLocationManager.m */,
+				0DAC13A61E1F87700002A32F /* CLLocation+YCLocation.h */,
+				0DAC13A71E1F87700002A32F /* CLLocation+YCLocation.m */,
+			);
+			name = "获取城市";
+			path = CCLocation;
+			sourceTree = "<group>";
+		};
 		0DC495C01E148EC100537686 /* 饭店 */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				0DE95E1A1E133A85008C762F /* AllFrame.pch */,
+				0DAC13A31E1F87700002A32F /* 获取城市 */,
 				BA6DB9C81E16708C002622C8 /* NetWork */,
 				0D02B0671E18CB79000C7CEC /* 抛物动画 */,
 				0DC495C11E148ED100537686 /* 导航 */,
@@ -1179,6 +1201,7 @@
 				154FBA6A1E1DCDE400F2F6E5 /* BottomView.m in Sources */,
 				BA6567E81E14A2130075E865 /* LoginViewController.m in Sources */,
 				154FBA4D1E1C9D5A00F2F6E5 /* TextRect.m in Sources */,
+				0DAC13A81E1F87700002A32F /* CCLocationManager.m in Sources */,
 				154FBA391E1C9D0B00F2F6E5 /* OrderTableViewCell.m in Sources */,
 				0DC495BF1E148EBA00537686 /* hotelViewController.m in Sources */,
 				0D619E801E1B8EA400B5873F /* hoteRequest.m in Sources */,
@@ -1218,6 +1241,7 @@
 				BA36E92A1E1C87A100DEC0E6 /* proposalController.m in Sources */,
 				BA6DB9CB1E1670AC002622C8 /* NetworkRequest.m in Sources */,
 				0DF158AA1E12473E008142D6 /* HomeView.m in Sources */,
+				0DAC13A91E1F87700002A32F /* CLLocation+YCLocation.m in Sources */,
 				BA6DB9D31E1749C9002622C8 /* ThrowLineTool.m in Sources */,
 				154FBA201E1C9CE800F2F6E5 /* TotalViewController.m in Sources */,
 				BA6DB9D01E1679C4002622C8 /* NSString+MD5.m in Sources */,

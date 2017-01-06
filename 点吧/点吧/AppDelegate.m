@@ -23,13 +23,21 @@
     self.window.frame = [UIScreen mainScreen].bounds;
     self.window.rootViewController = main;
     self.window.backgroundColor = [UIColor whiteColor];
+
     
     //订单提交页面
 //    OrderSubMitViewController *orderSub = [[OrderSubMitViewController alloc]init];
 //    UINavigationController *nag = [[UINavigationController alloc]initWithRootViewController:orderSub];
 //    self.window.rootViewController = nag;
 //    self.window.backgroundColor = [UIColor whiteColor];
+
     
+    //订单提交页面
+//    OrderSubMitViewController *orderSub = [[OrderSubMitViewController alloc]init];
+//    UINavigationController *nag = [[UINavigationController alloc]initWithRootViewController:orderSub];
+//    self.window.rootViewController = nag;
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    
     
     return YES;
 }

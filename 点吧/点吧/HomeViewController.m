@@ -12,21 +12,26 @@
 #import <SDCycleScrollView.h>
 #import "headerCollectionViewCell.h"
 #import "PopoverView.h"
+#import "CCLocationManager.h"
 #import "hotelViewController.h"
 #import "homeRequest.h"
 #import "homeModel.h"
-@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
+
+@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate>
 {
     UIView * _headerView;//头视图View
     UIView * _navView;//导航栏view
     NSArray * _tableArr;
     NSArray * _scrollArr;
     NSArray * _collectionArr;
+    CLLocationManager * locationManager;//获取城市
+    
 }
 @property(nonatomic,strong) UICollectionView * headerCollection;
 @property(nonatomic,strong) SDCycleScrollView * headerSDC;
 @property(nonatomic,strong) UISearchBar * headerSearchBar;
 @property(nonatomic,strong) UITableView * homeTableView;
+@property(nonatomic,strong) UIButton * cityBtn;//城市定位按钮
 @end
 
 @implementation HomeViewController
@@ -36,15 +41,37 @@
     
     [self MJRefreshTableView];
     [self.view addSubview:self.homeTableView];
+    
+    //获取系统版本
+    if(IS_IOS8)
+    {
+        [UIApplication sharedApplication].idleTimerDisabled = true;
+        locationManager = [[CLLocationManager alloc]init];
+        [locationManager requestWhenInUseAuthorization];//是否允许使用定位
+        [locationManager requestAlwaysAuthorization];//地理位置信息
+        locationManager.delegate=self;
+    }
 }
-
 #pragma mark -- 视图将要出现时
 -(void)viewWillAppear:(BOOL)animated
 {
     //隐藏导航栏
     [super viewWillAppear:animated];
-    
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    //延迟后加载该事件
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        __block HomeViewController * homeSelf = self;
+        //城市定位信息
+        if(IS_IOS8)
+        {
+            [[CCLocationManager shareLocation]getCity:^(NSString *addressString) {
+                //改变title和颜色
+                [homeSelf.cityBtn setTitle:addressString forState:UIControlStateNormal];
+                [homeSelf.cityBtn setTitleColor:[GVColor hexStringToColor:@"ffba14"] forState:UIControlStateNormal];
+            }];
+        }
+    });
     
     //在导航栏上添加View
     _navView = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, WidthBounds, 64)];
@@ -127,17 +154,16 @@
 -(void)navigationBtn
 {
     //左侧按钮
-    UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    leftBtn.frame=CGRectMake(12, 25, 60, 30);
-    [leftBtn setTitle:@"北京" forState: UIControlStateNormal];
-    [leftBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
-    [leftBtn setTitleColor:[GVColor hexStringToColor:@"#333333"] forState:UIControlStateNormal];
-    [leftBtn setImage:[UIImage imageNamed:@"arrows"] forState:UIControlStateNormal];
-    leftBtn.imageEdgeInsets=UIEdgeInsetsMake(10,40, 9, 0);
-    leftBtn.titleEdgeInsets=UIEdgeInsetsMake(10, -40, 9, 0);
-    //点击事件
-    [leftBtn addTarget:self action:@selector(city) forControlEvents:UIControlEventTouchUpInside];
-    [_navView addSubview:leftBtn];
+    _cityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _cityBtn.frame=CGRectMake(20, 25, 60, 30);
+    [_cityBtn setTitle:@"稍等." forState:UIControlStateNormal];
+    [_cityBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [_cityBtn setTitleColor:[GVColor hexStringToColor:@"#333333"] forState:UIControlStateNormal];
+    [_cityBtn setImage:[UIImage imageNamed:@"arrows"] forState:UIControlStateNormal];
+    _cityBtn.imageEdgeInsets=UIEdgeInsetsMake(10,40, 9, 0);
+    _cityBtn.titleEdgeInsets=UIEdgeInsetsMake(10, -40, 9, 5);
+    [_cityBtn addTarget:self action:@selector(city) forControlEvents:UIControlEventTouchUpInside];
+    [_navView addSubview:_cityBtn];
     
     //右侧按钮
     UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -394,6 +420,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     hotelViewController *hote = [[hotelViewController alloc]init];
+    homeModel_hot * homeHot =_collectionArr[indexPath.item];
+    hote.idDic = homeHot.store_id;
+    hote.store_name = homeHot.store_name;
+    hote.store_photo = homeHot.store_photo;
     hote.hidesBottomBarWhenPushed = YES;//隐藏标签栏
     [self.navigationController pushViewController:hote animated:YES];
 }

@@ -21,6 +21,9 @@
 #import "GVColor.h"
 //label自适应
 #import "UILabel+LabelFrame.h"
+//版本获取地理位置
+#define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+#define IS_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
 
 //屏幕尺寸
 #define FrameBounds [UIScreen mainScreen].bounds

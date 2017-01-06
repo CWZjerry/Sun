@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="baseCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="红烧苦瓜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7i8-IZ-KCM">
+                        <rect key="frame" x="18" y="17" width="62" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" priority="251" constant="61.5" id="E25-6z-wAu"/>
+                            <constraint firstAttribute="height" constant="15" id="jQc-4J-hGp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="￥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyy-Uz-34Z">
+                        <rect key="frame" x="200" y="17" width="16" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="NrE-s3-5VJ"/>
+                            <constraint firstAttribute="width" priority="251" constant="18" id="Nv2-kH-5EO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.89411764705882346" green="0.33725490196078434" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="48" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jE2-dL-na9">
+                        <rect key="frame" x="218" y="17" width="42" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="c1j-kh-5Tu"/>
+                            <constraint firstAttribute="width" constant="42" id="ipM-7x-b2S"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.89411764705882346" green="0.33725490196078434" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0Q-gf-uav">
+                        <rect key="frame" x="333" y="13" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="gRE-A6-NhY"/>
+                            <constraint firstAttribute="width" constant="22" id="uj0-qd-7lR"/>
+                        </constraints>
+                        <state key="normal" image="add"/>
+                    </button>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D9s-fS-gyN">
+                        <rect key="frame" x="314" y="15" width="14" height="20"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="5vV-6o-pMW"/>
+                            <constraint firstAttribute="width" priority="251" constant="12" id="a2M-F0-05u"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AI2-8R-7LF">
+                        <rect key="frame" x="287" y="13" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="04g-gs-Z8a"/>
+                            <constraint firstAttribute="height" constant="22" id="UKv-SB-idE"/>
+                        </constraints>
+                        <state key="normal" image="subtract"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7i8-IZ-KCM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="5cg-Xk-q1A"/>
+                    <constraint firstItem="jE2-dL-na9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="DK2-XY-JhO"/>
+                    <constraint firstItem="qyy-Uz-34Z" firstAttribute="leading" secondItem="7i8-IZ-KCM" secondAttribute="trailing" constant="120" id="DsM-n1-fuM"/>
+                    <constraint firstItem="jE2-dL-na9" firstAttribute="leading" secondItem="qyy-Uz-34Z" secondAttribute="trailing" constant="2" id="OYX-GB-g3G"/>
+                    <constraint firstItem="qyy-Uz-34Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="Uj0-Nc-g9E"/>
+                    <constraint firstItem="7i8-IZ-KCM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="ayt-3C-5XN"/>
+                    <constraint firstItem="AI2-8R-7LF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="cWS-PS-x4c"/>
+                    <constraint firstItem="q0Q-gf-uav" firstAttribute="leading" secondItem="D9s-fS-gyN" secondAttribute="trailing" constant="5" id="sct-P3-ANO"/>
+                    <constraint firstItem="q0Q-gf-uav" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="uQt-wA-W6c"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="q0Q-gf-uav" secondAttribute="trailing" constant="12" id="uYE-dS-rwB"/>
+                    <constraint firstItem="D9s-fS-gyN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="ut0-Na-0eJ"/>
+                    <constraint firstItem="D9s-fS-gyN" firstAttribute="leading" secondItem="AI2-8R-7LF" secondAttribute="trailing" constant="5" id="xaJ-De-XFG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addBtn" destination="q0Q-gf-uav" id="ch1-wE-ncx"/>
+                <outlet property="clearNum" destination="D9s-fS-gyN" id="hSB-aU-Ufq"/>
+                <outlet property="priceLabel" destination="jE2-dL-na9" id="wTp-Pn-ziz"/>
+                <outlet property="subtractBtn" destination="AI2-8R-7LF" id="7HE-MU-7aK"/>
+                <outlet property="titleName" destination="7i8-IZ-KCM" id="DiG-Ec-vWa"/>
+            </connections>
+            <point key="canvasLocation" x="-69" y="25"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="add" width="22" height="22"/>
+        <image name="subtract" width="22" height="22"/>
+    </resources>
+</document>

@@ -75,7 +75,7 @@
                         <color key="textColor" red="0.89411764705882346" green="0.33725490196078434" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeP-T2-SSN">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeP-T2-SSN">
                         <rect key="frame" x="333" y="14" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="Mb9-bY-iaF"/>
@@ -83,7 +83,7 @@
                         </constraints>
                         <state key="normal" image="add"/>
                     </button>
-                    <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgj-Lv-9hP">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgj-Lv-9hP">
                         <rect key="frame" x="285" y="14" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="a50-Xa-RKU"/>

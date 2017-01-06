@@ -12,14 +12,19 @@
 #endif /* AllFrame_pch */
 #import "UIView+Addition.h"
 #import <SVProgressHUD.h>
-
-
+#import <UIView+SDAutoLayout.h>
+#import "UILabel+OGLabel.h"
+#import "TextRect.h"
+#import "AFNManager.h"
 //换算尺寸
 #define SIZE(size,type) (size*72.0/type)
 //颜色
 #import "GVColor.h"
 //label自适应
 #import "UILabel+LabelFrame.h"
+//版本获取地理位置
+#define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7)
+#define IS_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
 
 //屏幕尺寸
 #define FrameBounds [UIScreen mainScreen].bounds

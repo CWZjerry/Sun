@@ -24,14 +24,14 @@
     UIImageView *image = [[UIImageView alloc]init];
     image.backgroundColor = [UIColor orangeColor];
     image.layer.masksToBounds = YES;
-    image.layer.cornerRadius = 10;
+    image.layer.cornerRadius = 12.5;
     _imageView = image;
     [self addSubview:self.imageView];
     _imageView.sd_layout
     .leftSpaceToView(self,12)
     .topSpaceToView(self,10)
-    .widthIs(20)
-    .heightIs(20);
+    .widthIs(25)
+    .heightIs(25);
     
     UILabel *nameLabel = [[UILabel alloc]init];
     nameLabel.text = @"微动点大饭店西三旗店";
@@ -42,7 +42,7 @@
     CGRect rect =[TextRect labelTextRect:_nameLabel withSuperView:self];
     _nameLabel.sd_layout
     .leftSpaceToView(self.imageView,10)
-    .centerYEqualToView(self)
+    .centerYEqualToView(self.imageView)
     .heightIs(rect.size.height)
     .widthIs(rect.size.width);
     

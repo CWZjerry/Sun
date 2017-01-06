@@ -148,7 +148,7 @@
 {
     if(_takeTableView == nil)
     {
-        _takeTableView = [[UITableView alloc]initWithFrame:CGRectMake(ZeroFrame, 44, WidthBounds, HeightBounds) style:UITableViewStylePlain];
+        _takeTableView = [[UITableView alloc]initWithFrame:CGRectMake(ZeroFrame, 44, WidthBounds, HeightBounds+20) style:UITableViewStylePlain];
         _takeTableView .delegate=self;
         _takeTableView .dataSource=self;
          [_takeTableView registerNib:[UINib nibWithNibName:NSStringFromClass([takeAwayCell class]) bundle:nil] forCellReuseIdentifier:@"takeAwayCell"];

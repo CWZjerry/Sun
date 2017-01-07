@@ -29,6 +29,7 @@
     
     NSMutableArray * _clearingArr;//结算数组
     NSMutableArray * _subArr;//减后结算的数组
+    NSMutableArray * _specArr;//菜品详情数组
 }
 @property(nonatomic,strong) UISearchBar * headerSearchBar;//头视图搜索条
 
@@ -68,6 +69,7 @@
 
     _clearingArr = [NSMutableArray array];
     _subArr = [NSMutableArray array];
+    _specArr = [NSMutableArray array];
     self.priceNumber = 0.0;
     self.num = 0;
     
@@ -422,6 +424,10 @@
     else if([tableView isEqual:self.hotelTableView])
     {
         specificsViewController * specifics = [[specificsViewController alloc]init];
+        NSArray * sectionArr = _tmpAll[indexPath.section];
+        hoteModel_menu_info * hoteInfo = sectionArr[indexPath.row];
+        [_specArr addObject:hoteInfo];
+        specifics.specMarr = _specArr;
         [self.navigationController pushViewController:specifics animated:YES];
     }
 }
@@ -732,17 +738,19 @@
     UIButton * remoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     remoBtn.frame=CGRectMake(WidthBounds-95, 20, 12, 13);
     [remoBtn setImage:[UIImage imageNamed:@"eliminate"] forState:UIControlStateNormal];
-    [remoBtn addTarget:self action:@selector(remoAllRow) forControlEvents:UIControlEventTouchUpInside];
+    [remoBtn addTarget:self action:@selector(remoAllRow:) forControlEvents:UIControlEventTouchUpInside];
     [headerBase addSubview:remoBtn];
 
     return headerBase;
 }
-//清空购物车点击事件
--(void)remoAllRow
+#pragma mark --清空购物车
+-(void)remoAllRow:(UITableViewCell * )cell
 {
     [_clearingArr removeAllObjects];
+    self.moneyLabel.text = [NSString stringWithFormat:@"¥: 00.00"];
     self.totalNumLabel.text = [NSString stringWithFormat:@"¥: 00.00"];
     self.baseCountLabel.hidden = YES;
+    self.countLabel.hidden = YES;
     [self.baseTableView reloadData];
 }
 #pragma mark -- 初始化底部tableView

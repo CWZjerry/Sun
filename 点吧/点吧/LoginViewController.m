@@ -568,10 +568,10 @@
 
 -(void)findPasswordClick{
 
-    findPassWordViewController *find = [[findPassWordViewController alloc] init];
-    [self.navigationController pushViewController:find animated:YES];
-
-//    
+//    findPassWordViewController *find = [[findPassWordViewController alloc] init];
+//    [self.navigationController pushViewController:find animated:YES];
+//
+//
 //    findPassWordViewController *find = [[findPassWordViewController alloc] init];
 //    [self.navigationController pushViewController:find animated:YES];
     

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface specificsViewController : UIViewController
-
+@property(nonatomic,strong) NSMutableArray * specMarr;
 @end

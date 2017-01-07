@@ -17,7 +17,7 @@
         
         hoteModel * hoteM = [[hoteModel alloc]init];
         [hoteM setValuesForKeysWithDictionary:success];
-        //NSLog(@"%@",success);
+        NSLog(@"%@",success);
         
         NSMutableArray * infoArr = [NSMutableArray array];
         NSMutableArray * typeArr = [NSMutableArray array];

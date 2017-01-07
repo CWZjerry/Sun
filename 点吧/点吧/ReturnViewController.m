@@ -1,23 +1,21 @@
 //
-//  findPassWordViewController.m
+//  ReturnViewController.m
 //  点吧
 //
-//  Created by Jenny on 2016/12/29.
-//  Copyright © 2016年 OneGroup. All rights reserved.
+//  Created by Jenny on 2017/1/7.
+//  Copyright © 2017年 OneGroup. All rights reserved.
 //
 
-#import "findPassWordViewController.h"
+#import "ReturnViewController.h"
 #import "GVColor.h"
 #import "UILabel+Extension.h"
-#import "PhoneNumber.h"
+#import "PhoneNumber.h"//
 #import "countDown.h"
 #import "phoneRequest.h"
-#import "SendVerificationCode.h"
+#import "SendVerificationCode.h"//
 #import "JudgmentCode.h"
 
-
-
-@interface findPassWordViewController ()<UITextFieldDelegate>
+@interface ReturnViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, strong)UIImageView *imagePhone;
 
@@ -35,9 +33,10 @@
 @property (nonatomic ,strong) UIButton *textBtn;//获取验证码按钮
 
 @property (nonatomic ,strong) UIButton *loginBtn;
+
 @end
 
-@implementation findPassWordViewController
+@implementation ReturnViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -129,20 +128,19 @@
         // 判断手机号是否可用
         [PhoneNumber phoneNumberIsExistsWithPgoneNumber:self.userName.text success:^(phoneRequest *result) {
             
-            if ([result.code intValue] == 007) { // 手机号还没有注册
-                
+            if ([result.code intValue] == 007) {
+                // 手机号还没有注册
                 [UILabel labelWithFont:[UIFont systemFontOfSize:15] textColor:[UIColor whiteColor] numberOfLines:1 textAlignment:NSTextAlignmentCenter];
                 [UILabel showStats:@"您的手机号暂时还没有注册" atView:self.view];
                 
-            }else{ // 手机号已经注册
-                
-
+            }else{
+                // 手机号已经注册
                 [countDown countDownWithButton:self.textBtn];
                 
                 [SendVerificationCode SendVerificationCodeWithPhoneNumber:self.userName.text success:^(SendResult *result) {
                     
                     NSLog(@"发送成功");
-                
+                    
                 } failure:^(NSError *error) {
                     NSLog(@"error==%@",error);
                 }];
@@ -180,28 +178,28 @@
 }
 -(void)longinclick{
     
-//    if (_userName.text.length<=0 &&_password.text.length<=0)
-//    {
-//        [SVProgressHUD showErrorWithStatus:@"请输入手机号和验证码"];
-//        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
-//        
-//    }
-//    
-//    else if (_userName.text.length<=0 &&_password.text.length>0)
-//    {
-//        [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
-//        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
-//    }
-//    else if (_userName.text.length>0 &&_password.text.length<=0)
-//    {
-//        [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
-//        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
-//    }
-//    else
-//    {
-//        [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeCustom];
-//        [self performSelector:@selector(dismissAA) withObject:nil afterDelay:3];
-//    }
+    //    if (_userName.text.length<=0 &&_password.text.length<=0)
+    //    {
+    //        [SVProgressHUD showErrorWithStatus:@"请输入手机号和验证码"];
+    //        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+    //
+    //    }
+    //
+    //    else if (_userName.text.length<=0 &&_password.text.length>0)
+    //    {
+    //        [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
+    //        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+    //    }
+    //    else if (_userName.text.length>0 &&_password.text.length<=0)
+    //    {
+    //        [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
+    //        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
+    //    }
+    //    else
+    //    {
+    //        [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeCustom];
+    //        [self performSelector:@selector(dismissAA) withObject:nil afterDelay:3];
+    //    }
     
     if (self.password.text.length <= 0) {
         
@@ -216,8 +214,8 @@
             [self.navigationController popViewControllerAnimated:YES];
             
             //跳转页面
-//            ReplaceViewController *replaceC = [[ReplaceViewController alloc] init];
-//            [self.navigationController pushViewController:replaceC animated:YES];
+            //            ReplaceViewController *replaceC = [[ReplaceViewController alloc] init];
+            //            [self.navigationController pushViewController:replaceC animated:YES];
             
         } failure:^(NSError *error) {
             
@@ -229,9 +227,9 @@
     }
 }
 -(void)dismissAA{
-//    
-//    [SVProgressHUD dismiss];
-//    [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+    //
+    //    [SVProgressHUD dismiss];
+    //    [SVProgressHUD showSuccessWithStatus:@"登录成功"];
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -277,6 +275,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
+#pragma mark - Navigation
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="红烧狮子头" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKc-Vg-QSI">
@@ -80,6 +80,10 @@
                     <constraint firstAttribute="trailingMargin" secondItem="ane-jW-xBx" secondAttribute="trailing" constant="12" id="zfE-RA-Eg7"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="menu_price" destination="6xu-mu-zvb" id="r4m-cN-7kV"/>
+                <outlet property="photo" destination="hKc-Vg-QSI" id="FBh-8o-IDR"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

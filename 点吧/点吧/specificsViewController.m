@@ -12,9 +12,14 @@
 #import "specificsCell2.h"
 #import "specificsCell3.h"
 
+#import "hoteModel.h"
+
 @interface specificsViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong) UITableView * fineTableView;
-@property(nonatomic,strong) UIImageView * fineImage;
+{
+    NSMutableArray * _menuMarr;
+}
+@property(nonatomic,strong) UITableView * fineTableView;//菜品tableView
+@property(nonatomic,strong) UIImageView * fineImage;//菜品图片
 @end
 
 @implementation specificsViewController
@@ -22,7 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    _menuMarr = self.specMarr;
+    NSLog(@"%@",_specMarr);
     [self.view addSubview:self.fineTableView];
+    
+    
 }
 #pragma mark -- 详情tableViewDataSoure
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -54,6 +63,10 @@
     {
         static NSString * cellStr = @"specificsCell";
         specificsCell * cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+        hoteModel_menu_info * hoteInfo = _menuMarr[indexPath.row];
+        cell.menu_price.text = hoteInfo.menu_price;
+        cell.photo.text = hoteInfo.menu_name;
+        [self.fineImage sd_setImageWithURL:[NSURL URLWithString:hoteInfo.photo] placeholderImage:[UIImage imageNamed:@"img1"]];
         return cell;
     }
     else if (indexPath.row == 1)
@@ -86,7 +99,6 @@
     //商家背景头像
     _fineImage = [[UIImageView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, WidthBounds, 308)];
     _fineImage.userInteractionEnabled = YES;
-    _fineImage.image = [UIImage imageNamed:@"img1"];
     [fineHeader addSubview:self.fineImage];
     
     //返回按钮

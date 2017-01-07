@@ -32,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //
     [self setNav];
     myView = [[MyInfoView alloc] initWithFrame:self.view.frame];
     

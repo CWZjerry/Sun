@@ -75,13 +75,6 @@
 @implementation LoginViewController
 
 
-//-(instancetype)init
-//{
-//    self.user1 = [[User alloc]init];
-//    [self.user1 loadUserInofFromSanbox];
-//    return self;
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [GVColor hexStringToColor:@"#f2f2f2"];
@@ -194,7 +187,7 @@
     [self.view addSubview:_promptLable];
     
     _promptBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, _promptLable.bottom - 10, 150, 30)];
-    [_promptBtn setTitle:@"《点注册服务协议》" forState:UIControlStateNormal];
+    [_promptBtn setTitle:@"《点注注册服务协议》" forState:UIControlStateNormal];
     [_promptBtn setTitleColor:[GVColor hexStringToColor:@"#ffba14"] forState:UIControlStateNormal];
     
     _promptBtn.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -462,47 +455,7 @@
 
 #pragma mark- 登录按钮(验证码)
 -(void)loginclick:(UIButton *)sender{
-//    if (_userName.text.length ==  0 ) {
-//        [SVProgressHUD showErrorWithStatus:@"请输入账号"];
-//        [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
-//        return;
-//    }
-//    if (_password.text.length == 0) {
-//                [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
-//                [self performSelector:@selector(dismiss) withObject:nil afterDelay:3];
-//                return;
-//            }
-//    else
-//    {
-//        [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeCustom];
-//        
-//        NSDictionary *parameters = @{@"contact_tel":self.userName.text,@"sendCode":self.password.text};
-//        [NetworkRequest requestForPhoneCodeUrl:JUDGECODE parameters:parameters Success:^(id success) {
-//            NSLog(@"=============%@",success);
-//            
-//            NSString *str = [success objectForKey:@"message"];
-//            NSLog(@"%@",str);
-//            if ([str  isEqual: @"输入正确" ] ) {
-//                
-//                NSLog(@"我可以改换个人信息了在这个方法里");
-//                if (self.returnTextBlock != nil) {
-//                    
-//                    self.returnTextBlock(@"我改变啦");
-//                    
-//                }
-//                [self.navigationController popViewControllerAnimated:YES];
-//                
-//            }
-//            
-//            
-//        } Failure:^(id failure) {
-//            NSLog(@"%@",failure);
-//        }];
-//        
-//    }
-//    
-//
-//        [self performSelector:@selector(dismissAA) withObject:nil afterDelay:3];
+
     NSDictionary *parameters = @{@"contact_tel":self.userName.text,@"sendCode":self.password.text};
     [NetworkRequest requestForPhoneCodeUrl:JUDGECODE parameters:parameters Success:^(id success) {
         NSLog(@"=============%@",success);
@@ -512,10 +465,7 @@
         if ([str  isEqual: @"输入正确" ] ) {
             
       NSLog(@"我可以改换个人信息了在这个方法里");
-//     NSDictionary *par = @{@"userId":self.userName.text,@"sendCode":self.password.text,@"":};
-            
-            
-            
+
             
             if (self.returnTextBlock != nil) {
                 

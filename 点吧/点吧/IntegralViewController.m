@@ -1,18 +1,18 @@
 //
-//  purseViewController.m
+//  IntegralViewController.m
 //  点吧
 //
-//  Created by Jenny on 2017/1/5.
+//  Created by Jenny on 2017/1/10.
 //  Copyright © 2017年 OneGroup. All rights reserved.
 //
 
-#import "purseViewController.h"
+#import "IntegralViewController.h"
 
-@interface purseViewController ()
+@interface IntegralViewController ()
 
 @end
 
-@implementation purseViewController
+@implementation IntegralViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,7 +24,7 @@
     
     self.navigationController.navigationBarHidden = NO;
     [self.navigationItem setHidesBackButton:YES];
-    self.navigationItem.title = @"我的钱包";
+    self.navigationItem.title = @"我的积分";
     //导航字体颜色
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     // 设置导航默认标题的颜色及字体大小
@@ -40,17 +40,14 @@
     
     self.navigationItem.leftBarButtonItem=backBtn;
 }
+
 //导航按钮点击方法
 -(void)backClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
+    // Dispose of any resources that can be recreated.
 }
-
-
 
 @end

@@ -29,6 +29,7 @@
 @implementation OrderSubMitViewController
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
 - (void)viewDidLoad {
@@ -162,6 +163,7 @@
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES];
 }
 -(UITableView *)tableView

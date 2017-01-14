@@ -7,17 +7,22 @@
 //
 
 #import "HomeViewController.h"
-#import "HomeTableViewCell.h"
-#import "UILabel+LabelFrame.h"
-#import <SDCycleScrollView.h>
-#import "headerCollectionViewCell.h"
-#import "PopoverView.h"
-#import "CCLocationManager.h"
+#import "LoginViewController.h"
 #import "hotelViewController.h"
 #import "homeRequest.h"
 #import "homeModel.h"
 
-@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate>
+
+#import "HomeTableViewCell.h"
+#import "headerCollectionViewCell.h"
+
+#import <PYSearch.h>
+#import "UILabel+LabelFrame.h"
+#import <SDCycleScrollView.h>
+#import "PopoverView.h"
+#import "CCLocationManager.h"
+
+@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate,PYSearchViewControllerDelegate>
 {
     UIView * _headerView;//头视图View
     UIView * _navView;//导航栏view
@@ -51,6 +56,7 @@
         [locationManager requestAlwaysAuthorization];//地理位置信息
         locationManager.delegate=self;
     }
+    
 }
 #pragma mark -- 视图将要出现时
 -(void)viewWillAppear:(BOOL)animated
@@ -60,19 +66,19 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     //延迟后加载该事件
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        __block HomeViewController * homeSelf = self;
-        //城市定位信息
-        if(IS_IOS8)
-        {
-            [[CCLocationManager shareLocation]getCity:^(NSString *addressString) {
-                //改变title和颜色
-                [homeSelf.cityBtn setTitle:addressString forState:UIControlStateNormal];
-                [homeSelf.cityBtn setTitleColor:[GVColor hexStringToColor:@"ffba14"] forState:UIControlStateNormal];
-            }];
-        }
-    });
-    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        __block HomeViewController * homeSelf = self;
+//        //城市定位信息
+//        if(IS_IOS8)
+//        {
+//            [[CCLocationManager shareLocation]getCity:^(NSString *addressString) {
+//                //改变title和颜色
+//                [homeSelf.cityBtn setTitle:addressString forState:UIControlStateNormal];
+//                [homeSelf.cityBtn setTitleColor:[GVColor hexStringToColor:@"ffba14"] forState:UIControlStateNormal];
+//            }];
+//        }
+//    });
+//    
     //在导航栏上添加View
     _navView = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, WidthBounds, 64)];
     _navView.backgroundColor = [UIColor whiteColor];
@@ -147,9 +153,11 @@
         }
         // 3.设置搜索图标
         [self.headerSearchBar setImage:[UIImage imageNamed:@"search"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+        
     }
     return _headerSearchBar;
 }
+
 #pragma mark -- 导航栏左右按钮
 -(void)navigationBtn
 {
@@ -193,6 +201,9 @@
     //登录
     PopoverAction * loginAction = [PopoverAction actionWithImage:[UIImage imageNamed:@"mine_down"] title:@"登录" handler:^(PopoverAction *action) {
         
+        //跳转到登录界面
+        LoginViewController * log = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:log animated:YES];
         
     }];
     

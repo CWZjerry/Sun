@@ -10,4 +10,5 @@ target '点吧' do
  pod 'AFNetworking'
  pod 'SDCycleScrollView'
  pod'MJExtension'
+ pod 'PYSearch'
 end

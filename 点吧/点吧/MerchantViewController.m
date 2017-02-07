@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong) UIImageView *imagePassword;
 
-
 @property (nonatomic, strong) UIView *lineV;//输入框下第一条线
 
 @property (nonatomic, strong) UIView *lineTwoV;//输入框下第二条线
@@ -23,11 +22,9 @@
 
 @property (nonatomic, strong) UITextField *UserPassword;//验证码输入框
 
-
 @property (nonatomic, strong)UIImageView *imagePhone;
 
 @property (nonatomic, strong) UIImageView *imageCancel;
-
 
 @property (nonatomic, strong) UIView *line;//输入框下第一条线
 

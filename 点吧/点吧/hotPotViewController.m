@@ -15,6 +15,7 @@
 
 {
     NSArray * _leftArr, * _rightArr;
+    NSMutableArray * _hotMarr;
 }
 @property(nonatomic,strong) UITableView * leftTableView , * rightTableView;//左右侧tableView
 @property(nonatomic,strong) UILabel * countLabel;//购物数量
@@ -41,7 +42,8 @@
     [self.view addSubview:self.rightTableView];
     
     [hotPtoRequest getWithHotPto:^(id Value) {
-        
+        _hotMarr  = Value;
+        //NSLog(@"%@",_hotMarr);
         
     } failure:^(id failure) {
         
@@ -114,7 +116,7 @@
     }
     else
     {
-        return 10;
+        return 5;
     }
 }
 -(CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -161,6 +163,9 @@
         {
             rightCell = [[[NSBundle mainBundle] loadNibNamed:@"rightCell" owner:self options:nil] lastObject];
         }
+        
+        [rightCell setHotFix:_hotMarr[indexPath.row]];
+        
         
         rightCell.number = 0;
        

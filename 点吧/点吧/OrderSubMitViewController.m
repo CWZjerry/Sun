@@ -38,6 +38,9 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomView];
     [self.view insertSubview:self.bottomView aboveSubview:self.tableView];
+    
+    NSMutableArray * arr = _indentMarr;
+    NSLog(@"%@",arr);
    }
 -(BottomView *)bottomView
 {

@@ -223,9 +223,11 @@
     //头视图View
     _headerView = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, self.view.frame.size.width, 505)];
     //_headerView.backgroundColor = [UIColor redColor];
-    //加滚动视图
+    //加滚动视图 
     [_headerView addSubview:self.headerSDC];
     //加collectionView
+    
+    
     [_headerView addSubview:self.headerCollection];
     
     

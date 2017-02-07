@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NetworkRequest.h"
+#import "hotPot.h"
 
 typedef void (^SuccessHotPto)(id Value);
 @interface hotPtoRequest : NSObject

@@ -7,10 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+@class baseCell;
 #import "hoteModel.h"
+
+@protocol baseCellDelegate <NSObject>
+
+- (void)baseCount:(baseCell *)cell andButtonTag:(NSInteger)AddOrSubTag;
+@end
+
 @interface baseCell : UITableViewCell
+
+@property(nonatomic,weak) id <baseCellDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;//加
-@property (weak, nonatomic) IBOutlet UITextField *clearNum;//数量
+
+@property (weak, nonatomic) IBOutlet UILabel *clearNum;//数量
 @property (weak, nonatomic) IBOutlet UIButton *subtractBtn;//减
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;//价格
 @property (weak, nonatomic) IBOutlet UILabel *titleName;//菜名

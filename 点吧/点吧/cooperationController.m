@@ -8,6 +8,11 @@
 
 #import "cooperationController.h"
 
+
+#import "MerchantViewController.h"
+#import "KnightViewController.h"
+#import "AgencyViewController.h"
+
 @interface cooperationController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *TableView;
 @property (nonatomic, strong) NSArray *listArr;
@@ -97,6 +102,33 @@
 //导航按钮点击方法
 -(void)backClick{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - 点击单元格跳入三级界面 （商家、骑士、代理）
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            //商家界面
+            MerchantViewController *merchant = [[MerchantViewController alloc] init];
+            
+            [self.navigationController pushViewController:merchant animated:YES];
+        }
+        else
+        {
+            //骑士界面
+            KnightViewController *knight = [[KnightViewController alloc] init];
+            [self.navigationController pushViewController:knight animated:YES];
+            
+            
+         }
+    }else
+    {
+        //代理界面
+        AgencyViewController *agency = [[AgencyViewController alloc] init];
+        [self.navigationController pushViewController:agency animated:YES];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -12,9 +12,26 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    [self.addBtn addTarget:self action:@selector(addBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.subtractBtn addTarget:self action:@selector(subBtn:) forControlEvents:UIControlEventTouchUpInside];
 }
-
+-(void)addBtn:(UIButton *)btn
+{
+    if([self.delegate respondsToSelector:@selector(baseCount:andButtonTag:)])
+    {
+        [self.delegate baseCount:self andButtonTag:btn.tag];
+    }
+    NSLog(@"+");
+}
+-(void)subBtn:(UIButton *)btn
+{
+    if([self.delegate respondsToSelector:@selector(baseCount:andButtonTag:)])
+    {
+        [self.delegate baseCount:self andButtonTag:btn.tag];
+    }
+    NSLog(@"-");
+}
 -(void)setHoteInfo:(hoteModel_menu_info *)hoteInfo
 {
     self.titleName.text = hoteInfo.menu_name;

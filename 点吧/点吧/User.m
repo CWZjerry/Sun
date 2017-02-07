@@ -8,22 +8,17 @@
 
 #import "User.h"
 
+
+
+
+
+
+#define nicKEY @"nickname"
+#define youKEY @"yourname"
+#define headKEY @"image"
+
+
 @implementation User
-
-
-@synthesize image;
-
-@synthesize name;
-
-@synthesize birthday;
-
-@synthesize phoneNum;
-
-@synthesize password;
-
-@synthesize comeDate;
-
-
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.image forKey:@"image"];
@@ -46,6 +41,31 @@
     }
     return self;
     
+    
 }
+singleton_implementation(User)
+
+
+-(NSUserDefaults*)saveUserInofFromSanbox{
+    self.defts = [NSUserDefaults standardUserDefaults];
+//    [defaults setValue:self.nickName forKey:nicKEY];
+//    [defaults setValue:self.yourName forKey:youKEY];
+    [self.defts setObject:@"pomelo" forKey:@"nickname"];
+//    [self.defts synchronize];
+    return self.defts;
+}
+
+- (NSString*)loadUserInofFromSanbox:(NSUserDefaults*)defaults{
+    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    self.nickName = [defaults objectForKey:nicKEY];
+//    self.yourName = [defaults objectForKey:youKEY];
+//    @"yuioiooiuuioou" = [defaults objectForKey:@"birthday"];
+    NSLog(@"%@",[defaults objectForKey:@"nickname"]);
+    NSString *str = [defaults objectForKey:@"nickname"];
+    return str;
+}
+
+
 
 @end

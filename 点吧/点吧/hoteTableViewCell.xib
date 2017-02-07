@@ -75,7 +75,7 @@
                         <color key="textColor" red="0.89411764705882346" green="0.33725490196078434" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeP-T2-SSN">
+                    <button opaque="NO" tag="1005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeP-T2-SSN">
                         <rect key="frame" x="333" y="14" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="Mb9-bY-iaF"/>
@@ -83,26 +83,24 @@
                         </constraints>
                         <state key="normal" image="add"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgj-Lv-9hP">
-                        <rect key="frame" x="285" y="14" width="22" height="22"/>
+                    <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgj-Lv-9hP">
+                        <rect key="frame" x="291" y="14" width="22" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="22" id="a50-Xa-RKU"/>
-                            <constraint firstAttribute="height" constant="22" id="xvF-om-tve"/>
+                            <constraint firstAttribute="width" constant="22" id="fN0-fg-c8o"/>
+                            <constraint firstAttribute="height" constant="22" id="jjJ-x1-5GK"/>
                         </constraints>
                         <state key="normal" image="subtract"/>
                     </button>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JXX-zL-Bju">
-                        <rect key="frame" x="314" y="16" width="12" height="20"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWf-WR-VXw">
+                        <rect key="frame" x="318" y="18" width="10" height="13"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Sux-wg-rVb"/>
-                            <constraint firstAttribute="width" priority="251" constant="12" id="zJ5-p5-Xqe"/>
+                            <constraint firstAttribute="height" constant="13" id="7H4-id-xyh"/>
+                            <constraint firstAttribute="width" priority="251" constant="13" id="qnk-Xk-f99"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
-                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="1t6-3h-QZK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="1XU-tu-dF1"/>
@@ -111,18 +109,18 @@
                     <constraint firstItem="8Cc-fb-QcI" firstAttribute="leading" secondItem="1t6-3h-QZK" secondAttribute="trailing" constant="15" id="Dut-mk-PK4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="UeP-T2-SSN" secondAttribute="trailing" constant="12" id="Jue-d4-fJ0"/>
                     <constraint firstItem="yiM-nk-hNB" firstAttribute="top" secondItem="b4V-n4-uRb" secondAttribute="bottom" constant="6" id="KRx-bM-ORA"/>
-                    <constraint firstItem="JXX-zL-Bju" firstAttribute="leading" secondItem="Zgj-Lv-9hP" secondAttribute="trailing" constant="7" id="RCL-6z-WpZ"/>
+                    <constraint firstItem="QWf-WR-VXw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Lga-no-b3B"/>
                     <constraint firstItem="8Cc-fb-QcI" firstAttribute="top" secondItem="1dC-G9-EHs" secondAttribute="bottom" constant="20" id="S0b-NL-JPv"/>
                     <constraint firstItem="Wes-AF-akS" firstAttribute="top" secondItem="1dC-G9-EHs" secondAttribute="bottom" constant="15" id="SpW-Nn-4Ts"/>
                     <constraint firstItem="b4V-n4-uRb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="a7s-A0-Bky"/>
-                    <constraint firstItem="UeP-T2-SSN" firstAttribute="leading" secondItem="JXX-zL-Bju" secondAttribute="trailing" constant="7" id="hF4-uj-fFK"/>
+                    <constraint firstItem="UeP-T2-SSN" firstAttribute="leading" secondItem="QWf-WR-VXw" secondAttribute="trailing" constant="5" id="an6-DH-EB7"/>
                     <constraint firstItem="Wes-AF-akS" firstAttribute="leading" secondItem="8Cc-fb-QcI" secondAttribute="trailing" constant="5" id="hyR-FP-RL2"/>
+                    <constraint firstItem="Zgj-Lv-9hP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="jwj-Zb-BCS"/>
                     <constraint firstItem="1dC-G9-EHs" firstAttribute="top" secondItem="b4V-n4-uRb" secondAttribute="bottom" constant="6" id="kdU-Bo-vDf"/>
-                    <constraint firstItem="JXX-zL-Bju" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="lzV-vs-JQt"/>
                     <constraint firstItem="yiM-nk-hNB" firstAttribute="leading" secondItem="1dC-G9-EHs" secondAttribute="trailing" constant="18" id="mhG-e3-V18"/>
-                    <constraint firstItem="Zgj-Lv-9hP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="rPh-PU-JaA"/>
                     <constraint firstItem="1dC-G9-EHs" firstAttribute="leading" secondItem="1t6-3h-QZK" secondAttribute="trailing" constant="15" id="sR4-W3-b2h"/>
                     <constraint firstItem="b4V-n4-uRb" firstAttribute="leading" secondItem="1t6-3h-QZK" secondAttribute="trailing" constant="15" id="uGi-eG-4qW"/>
+                    <constraint firstItem="QWf-WR-VXw" firstAttribute="leading" secondItem="Zgj-Lv-9hP" secondAttribute="trailing" constant="5" id="zKu-3r-mDJ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -130,9 +128,9 @@
                 <outlet property="leftBtn" destination="Zgj-Lv-9hP" id="HtA-D9-sfa"/>
                 <outlet property="menu_price" destination="Wes-AF-akS" id="sXy-a2-MWy"/>
                 <outlet property="moneyTitle" destination="Wes-AF-akS" id="Xww-cY-ah4"/>
+                <outlet property="numLabel" destination="QWf-WR-VXw" id="eMd-zC-jG7"/>
                 <outlet property="photo" destination="1t6-3h-QZK" id="1xx-2C-ErC"/>
                 <outlet property="rightBtn" destination="UeP-T2-SSN" id="R2B-dH-7qw"/>
-                <outlet property="textFieldNum" destination="JXX-zL-Bju" id="aef-mJ-3UC"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="54"/>
         </tableViewCell>

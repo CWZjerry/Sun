@@ -9,21 +9,30 @@
 #import "MyInfoViewController.h"
 #import "MyInfoView.h"
 #import "MySelfViewController.h"
-@interface MyInfoViewController () <UITableViewDataSource,UITableViewDelegate> {
-    
+#import "User.h"
+
+#import "ZHDatePickerView.h"
+
+
+@interface MyInfoViewController () <UITableViewDataSource,UITableViewDelegate,ZHDatePickerViewDelegate,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     MyInfoView *myView;
     NSArray *sectionOne;
     NSArray *sectionTwo;
 }
 @property (nonatomic ,strong) UIButton *leaveBtn;
 
+@property (nonatomic,copy) NSString *savePath;
+
+@property (nonatomic, strong) UIButton *dateButton;
+
+@property(nonatomic,strong)UIButton *btn;
 @end
 
 @implementation MyInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //
     [self setNav];
     myView = [[MyInfoView alloc] initWithFrame:self.view.frame];
     
@@ -103,22 +112,38 @@
             switch (indexPath.row) {
                 case 0:
                 {
-                    //                    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-100, 10, 80, 80)];
-                    //                    img.image = [UIImage imageWithData:self.user.image];
-                    //                    [cell.contentView addSubview:img];
+                    UIButton *btn=[[UIButton alloc]init];
+                    btn.frame=CGRectMake(ScreenWidth - 90, 0, 70, 70);
+                    btn.layer.cornerRadius = 35;
+                    btn.layer.masksToBounds = YES;
+                    [btn addTarget:self action:@selector(setup) forControlEvents:UIControlEventTouchUpInside];
+                    [cell addSubview:btn];
+                    self.btn=btn;
                     
                 }
                     break;
                 case 1:
                 {
-                    //                    cell.detailTextLabel.text = self.user.name;
+                    User *kk = [[User alloc]init];
+                    [kk saveUserInofFromSanbox];
+//                    NSLog(@"<<<<<<>>>>>>%@",[kk loadUserInofFromSanbox:kk.defts]);
+                    cell.detailTextLabel.text =[kk loadUserInofFromSanbox:kk.defts];
                     
+//                    NSLog(@"1111111111");
                     
                 }
                     break;
                 case 2:
                 {
-                    cell.detailTextLabel.text = self.user.phoneNum;
+                    UIButton *dateButton = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 150, 0, 120, 60)];
+                    [dateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                    [dateButton setTitle:nil forState:UIControlStateNormal];
+                    [dateButton addTarget:self action:@selector(showPickViewerAction) forControlEvents:UIControlEventTouchUpInside];
+                    self.dateButton = dateButton;
+                    
+                    [cell addSubview:dateButton];
+                    
+                    
                 }
                     break;
                     
@@ -132,10 +157,10 @@
             
             switch (indexPath.row) {
                 case 0:
-                    cell.detailTextLabel.text = self.user.phoneNum;
+                    
                     break;
                 case 1:
-                    cell.detailTextLabel.text = self.user.password;
+                    
                     break;
                 default:
                     break;
@@ -164,6 +189,7 @@
     return cell;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.section) {
@@ -183,6 +209,61 @@
     }
     
 }
+- (void)setup
+{
+    UIAlertController *aler=[UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    //从相机选取
+    UIAlertAction *album=[UIAlertAction actionWithTitle:@"从相册获取" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+//        [album setValue:[UIColor blueColor] forKey:@"_titleTextColor"];
+        UIImagePickerController *picker=[[UIImagePickerController alloc]init];
+        picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.mediaTypes=[UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
+        picker.allowsEditing=YES;
+        picker.delegate=self;
+        [self presentViewController:picker animated:YES completion:nil];
+        
+       
+    }];
+    //从相机选取
+    UIAlertAction *camera=[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
+        UIImagePickerController *picker=[[UIImagePickerController alloc]init];
+        picker.sourceType=UIImagePickerControllerSourceTypeCamera;
+        picker.mediaTypes=[UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
+        picker.allowsEditing=YES;
+        picker.delegate=self;
+        [self presentViewController:picker animated:YES completion:nil];
+        
+    }];
+    
+    UIAlertAction *cancl=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [aler addAction:cancl];
+    [aler addAction:camera];
+    [aler addAction:album];
+    [self presentViewController:aler animated:YES completion:nil];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];
+    [self.btn setImage:image forState:UIControlStateNormal];
+    //选取完图片之后关闭视图
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//时间选择器
+- (void)showPickViewerAction
+{
+    ZHDatePickerView *pickerView = [[ZHDatePickerView alloc] initDatePickerWithDefaultDate:nil andDatePickerMode:UIDatePickerModeDate];
+  
+    pickerView.delegate = self;
+    [pickerView showw];
+
+}
+
+- (void)pickerView:(ZHDatePickerView *)pickerView didSelectDateString:(NSString *)dateString
+{
+    [self.dateButton setTitle:dateString forState:UIControlStateNormal];
+}
 
 
 
@@ -194,17 +275,29 @@
 }
 
 
-
 /////////////////////
-
+//退出登录
 -(void)leaveBtn:(UIButton *)sender{
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注销" message:@"确定要注销登录吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     
     [alert show];
     
+}
+- (NSString *)savePath {
+    
+    if (!_savePath) {
+        
+        _savePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:NSStringFromClass([self class])];
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:_savePath withIntermediateDirectories:NO attributes:nil error:nil];
+        
+    }
+    
+    return _savePath;
     
 }
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if (buttonIndex == 1) {
@@ -214,20 +307,34 @@
         //        MySelfViewController *my = [[MySelfViewController alloc]init];
         //
         //        [UIApplication sharedApplication].keyWindow.rootViewController = my;
-        
+//        NSString *loginInfoPath = [self.savePath stringByAppendingPathComponent:];
+//         [[NSFileManager defaultManager] removeItemAtPath:loginInfoPath error:nil];
         self.returnTextBlock(@"登录/注册");
+        User *user = [[User alloc] init];
+        NSMutableData *data = [NSMutableData data];
+        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        [archiver encodeObject:user forKey:@"123"];
+        [archiver finishEncoding];
+
         
         [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
 -(void)backClick{
+//    NSLog(@"我保存发的东西返回去");
+    
+    
+    User *uuser = [[User alloc]init];
+    [uuser saveUserInofFromSanbox];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     return 0.0001;
 }
+
+
 
 
 @end

@@ -45,22 +45,36 @@
                           @"page":@"1"
                           };
     NSString * str = @"http://www.kdiana.com/index.php/Before/MyOrder/orderall";
-    
-    [[AFNManager sharedManager]requestType:POST URL:str withparameters:dic success:^(id data) {
-        //        NSLog(@"%@",data);
-        NSArray *arr =[data objectForKey:@"data"];
-//        NSLog(@"%@",arr);
+    [NetworkRequest Post:str parameters:dic success:^(id responseObject) {
+        NSArray *arr =[responseObject objectForKey:@"data"];
+        //        NSLog(@"%@",arr);
         NSLog(@"%@",arr);
         for (NSDictionary *dic  in arr) {
             Order *order = [Order yy_modelWithJSON:dic];
             [self.messageArr addObject:order];
         }
         [self.tableView reloadData];
-        
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+        
     }];
-
+    
+    
+    
+//    [[AFNManager sharedManager]requestType:POST URL:str withparameters:dic success:^(id data) {
+//        //        NSLog(@"%@",data);
+//        NSArray *arr =[data objectForKey:@"data"];
+////        NSLog(@"%@",arr);
+//        NSLog(@"%@",arr);
+//        for (NSDictionary *dic  in arr) {
+//            Order *order = [Order yy_modelWithJSON:dic];
+//            [self.messageArr addObject:order];
+//        }
+//        [self.tableView reloadData];
+//        
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
+//
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderSubMitViewController : UIViewController
-
+@property(nonatomic,strong) NSMutableArray * indentMarr;
 @end

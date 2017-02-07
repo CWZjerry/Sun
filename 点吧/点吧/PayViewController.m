@@ -12,7 +12,6 @@
 #import "PayTableViewCell.h"
 #import "DetailsView.h"
 #import "AppDelegate.h"
-#import "Timer.h"
 #import <AlipaySDK/AlipaySDK.h>
 #define CREAT_ORDER_RETURN @"http://www.kdiana.com/index.php/Before/Orders/order_return"
 #define ALIPAY @"http://www.kdiana.com/index.php/Before/Pay/app_pay"
@@ -38,12 +37,10 @@ static int  titt = 900;
     
     NSString *str = CREAT_ORDER_RETURN;
     NSDictionary *dic = @{@"order_id":@"1"};
-    
-    [[AFNManager sharedManager]requestType:POST URL:str withparameters:dic success:^(id data) {
-        NSLog(@"data == %@",data);
-        
+    [NetworkRequest Post:str parameters:dic success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+        
     }];
     
     
@@ -53,10 +50,10 @@ static int  titt = 900;
     self.view.backgroundColor = [UIColor whiteColor];
     
     
-    self.tmplable = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 100)];
-    self.tmplable.backgroundColor = [UIColor grayColor];
-    self.tmplable.textColor = [UIColor redColor];
-    [self.view addSubview:self.tmplable];
+//    self.tmplable = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 100)];
+//    self.tmplable.backgroundColor = [UIColor grayColor];
+//    self.tmplable.textColor = [UIColor redColor];
+//    [self.view addSubview:self.tmplable];
     
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomBtn];
@@ -67,7 +64,7 @@ static int  titt = 900;
     .widthIs([UIScreen mainScreen].bounds.size.width)
     .heightIs(49);
     [self.bottomBtn addTarget:self action:@selector(payBtn) forControlEvents:UIControlEventTouchUpInside];
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timer:) userInfo:nil repeats:YES];
+     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timersd) userInfo:nil repeats:YES];
     
 //    static dispatch_once_t onceToken;
    // dispatch_once(&onceToken, ^{
@@ -86,17 +83,19 @@ static int  titt = 900;
 //    _lable.backgroundColor = [UIColor redColor];
 //    [self.view addSubview:self.lable];
 //    [self.view insertSubview:view aboveSubview:self.tableView];
-    [[Timer sharedTimer] time];
-    self.timer = [Timer sharedTimer].timer;
-    [self.tableView reloadData];
+//    [[Timer sharedTimer] time];
+//    self.timer = [Timer sharedTimer].timer;
+//    [self.tableView reloadData];
 }
 -(void)payBtn
 {
+    //ALIPAY @"http://www.kdiana.com/index.php/Before/Pay/app_pay"
     NSDictionary *dic = @{@"order_no":@"20170106185215100001798641"};
     [[AFNManager sharedManager]requestType:POST URL:ALIPAY withparameters:dic success:^(id data) {
         
         
         NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"str===========%@",str);
         [[AlipaySDK defaultService]payOrder:str fromScheme:@"WeiDongDian" callback:^(NSDictionary *resultDic) {
             NSLog(@"%@",dic);
         }];
@@ -124,8 +123,8 @@ static int  titt = 900;
     //修改倒计时标签及显示内容
     self.timer = format_time;
 //    dispatch_async(dispatch_get_main_queue(), ^{
-//        NSIndexSet *index = [[NSIndexSet alloc]initWithIndex:0];
-//        [self.tableView reloadSections:index withRowAnimation:UITableViewRowAnimationAutomatic];
+        NSIndexSet *index = [[NSIndexSet alloc]initWithIndex:0];
+        [self.tableView reloadSections:index withRowAnimation:UITableViewRowAnimationAutomatic];
 //    });
 
     self.tmplable.text = [NSString stringWithFormat:@"%@",format_time];
@@ -312,8 +311,8 @@ static int  titt = 900;
 -(UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 164, ScreenWidth, ScreenHeight-164) style:UITableViewStyleGrouped];
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-49) style:UITableViewStyleGrouped];
+//        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
         _tableView.delegate = self;
         _tableView.dataSource= self;
     }

@@ -12,7 +12,6 @@ typedef void (^HttpSuccess)(id data);
 //宏定义失败block 回调失败信息
 typedef void (^HttpFailure)(NSError *error);
 typedef enum {
-    
     GET,
     POST
 } REQUEST;

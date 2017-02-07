@@ -17,6 +17,8 @@
 #import "BottomView.h"
 #import <UIView+SDAutoLayout.h>
 #import "PayViewController.h"
+#import "AddressViewController.h"
+#import "TimePicker.h"
 //生成订单
 #define CREAT_ORDER_URL @"http://www.kdiana.com/index.php/Before/Orders/order_info"
 //生成订单返回页面
@@ -24,12 +26,12 @@
 @interface OrderSubMitViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)BottomView *bottomView;
+@property(nonatomic,strong)TimePicker *timePicker;
 @end
 
 @implementation OrderSubMitViewController
 -(void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
 - (void)viewDidLoad {
@@ -38,6 +40,9 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomView];
     [self.view insertSubview:self.bottomView aboveSubview:self.tableView];
+    
+    NSMutableArray * arr = _indentMarr;
+    NSLog(@"%@",arr);
    }
 -(BottomView *)bottomView
 {
@@ -53,6 +58,23 @@
     [self.navigationController pushViewController:pay animated:YES];
     
     
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        AddressViewController *addreaa = [[AddressViewController alloc]init];
+        [self.navigationController pushViewController:addreaa animated:YES];
+    }
+    else if (indexPath.section == 1)
+    {
+        self.timePicker = [[TimePicker alloc]init];
+        [self.view addSubview:self.timePicker];
+        _timePicker.sd_layout
+        .leftEqualToView(self.view)
+        .bottomEqualToView(self.view)
+        .rightEqualToView(self.view)
+        .heightIs(self.view.frame.size.height/2);
+    }
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -163,8 +185,11 @@
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.timePicker removeFromSuperview];
 }
 -(UITableView *)tableView
 {

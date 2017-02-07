@@ -1,5 +1,5 @@
 //
-//  AddressViewController.h
+//  TimePicker.h
 //  点吧
 //
 //  Created by Pro on 2017/1/9.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddressViewController : UIViewController
+@interface TimePicker : UIDatePicker
 
 @end

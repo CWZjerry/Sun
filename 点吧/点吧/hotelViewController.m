@@ -115,7 +115,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    NSDictionary *dic= [NSDictionary dictionaryWithObjectsAndKeys:self.idDic,@"store_id", nil] ;
+    //self.idDic
+    NSDictionary *dic= [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"store_id", nil] ;
 
     //堂食模式
     [hoteRequest GetWithRequest:^(id Value, id typeValue, id arrAll) {
@@ -627,15 +628,15 @@
         
         //NSArray * sectionArr = _tmpAll[indexPath.section];
 //        [cell setHoteInfo:sectionArr[indexPath.row]];
-        hoteModel_menu_info * infoModel = _clearingArr[indexPath.row];
         
-        for (hoteModel_menu_info *imp in _clearingArr) {
-            if ([infoModel.menu_name isEqualToString:imp.menu_name]) {
-                imp.count_num  = infoModel.count_num;
-                _numTwo = imp.count_num;
-            }
-        }
-       cell.clearNum.text = [NSString stringWithFormat:@"%ld",_numTwo];
+        hoteModel_menu_info * infoModel = _clearingArr[indexPath.row];
+//        for (hoteModel_menu_info *imp in _clearingArr) {
+//            if ([infoModel.menu_name isEqualToString:imp.menu_name]) {
+//                imp.count_num  = infoModel.count_num;
+//                _numTwo = imp.count_num;
+//            }
+//        }
+        cell.clearNum.text = [NSString stringWithFormat:@"%ld",infoModel.count_num];
        
         
        [cell setHoteInfo:_clearingArr[indexPath.row]];
@@ -1065,7 +1066,7 @@
     return headerBase;
 }
 #pragma mark --清空购物车
--(void)remoAllRow:(UITableViewCell * )cell
+-(void)remoAllRow:(hoteModel_menu_info * )model
 {
     
     [_clearingArr removeAllObjects];
@@ -1073,6 +1074,7 @@
     self.totalNumLabel.text = [NSString stringWithFormat:@"¥: 00.00"];
     self.baseCountLabel.hidden = YES;
     self.countLabel.hidden = YES;
+    _num = 0;
     [self.baseTableView reloadData];
 }
 #pragma mark -- 初始化底部tableView
@@ -1125,6 +1127,7 @@
 -(void)submitCome
 {
     OrderSubMitViewController * order = [[OrderSubMitViewController alloc]init];
+    order.indentMarr = _clearingArr;
     [self.navigationController pushViewController:order animated:YES];
 }
 #pragma mark -- 初始化结算弹出视图

@@ -44,10 +44,11 @@
     _numLabel.text = [NSString stringWithFormat:@"%zd",_number];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setHotFix:(hotPot_fix_list *)hotFix
+{
+    self.fix_price.text = hotFix.fix_price;
+    [self.fix_img sd_setImageWithURL:[NSURL URLWithString:hotFix.fix_img] placeholderImage:[UIImage imageNamed:@"img1"]];
+    self.fix_name.text = hotFix.fix_name;
 }
 
 @end

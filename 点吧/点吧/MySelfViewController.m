@@ -15,10 +15,12 @@
 #import "cooperationController.h"
 #import "proposalController.h"
 #import "MyInfoViewController.h"
-
+#import "MyMerchantViewController.h"
 
 #import "purseViewController.h"
 #import "discountViewController.h"
+#import "IntegralViewController.h"
+#import "AddressViewController.h"
 
 @interface MySelfViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -52,7 +54,7 @@
     self.view.backgroundColor = [UIColor grayColor];
 
     _listArr = [NSArray arrayWithObjects:@"我的积分",@"我的收货地址", nil];
-    _slistArr = [NSArray arrayWithObjects:@"加盟合作",@"关于我们",@"意见反馈", nil];
+    _slistArr = [NSArray arrayWithObjects:@"我的商家",@"加盟合作",@"意见反馈", nil];
     [self setTableView];
     
 }
@@ -114,13 +116,35 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        if (indexPath.row == 0 ) {
+        //我的商家
+        if (indexPath.row == 0) {
+            MyMerchantViewController *mymerchant = [[MyMerchantViewController alloc] init];
+            [self.navigationController pushViewController:mymerchant animated:YES];
+        }
+        //加盟合作
+        if (indexPath.row == 1 ) {
             cooperationController *coo = [[cooperationController alloc] init];
             [self.navigationController pushViewController:coo animated:YES];
         }
+        //意见反馈
         if (indexPath.row == 2) {
             proposalController *pro = [[proposalController alloc] init];
             [self.navigationController pushViewController:pro animated:YES];
+        }
+        
+    }
+    if (indexPath.section == 0) {
+        if (indexPath.row  == 1) {
+            //我的收货地址界面
+            AddressViewController *address = [[AddressViewController alloc] init];
+            [self.navigationController pushViewController:address animated:YES];
+        }
+        else
+        {
+            //我的积分界面
+            IntegralViewController *integral = [[IntegralViewController alloc] init];
+            [self.navigationController pushViewController:integral animated:YES];
+            
         }
     }
 }

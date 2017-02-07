@@ -32,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //
     [self setNav];
     myView = [[MyInfoView alloc] initWithFrame:self.view.frame];
     
@@ -213,7 +213,8 @@
 {
     UIAlertController *aler=[UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     //从相机选取
-    UIAlertAction *album=[UIAlertAction actionWithTitle:@"从相册选取" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *album=[UIAlertAction actionWithTitle:@"从相册获取" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+//        [album setValue:[UIColor blueColor] forKey:@"_titleTextColor"];
         UIImagePickerController *picker=[[UIImagePickerController alloc]init];
         picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
         picker.mediaTypes=[UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
@@ -224,7 +225,8 @@
        
     }];
     //从相机选取
-    UIAlertAction *camera=[UIAlertAction actionWithTitle:@"相机拍摄" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *camera=[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
         UIImagePickerController *picker=[[UIImagePickerController alloc]init];
         picker.sourceType=UIImagePickerControllerSourceTypeCamera;
         picker.mediaTypes=[UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
@@ -236,8 +238,8 @@
     
     UIAlertAction *cancl=[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [aler addAction:cancl];
-    [aler addAction:album];
     [aler addAction:camera];
+    [aler addAction:album];
     [self presentViewController:aler animated:YES completion:nil];
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info

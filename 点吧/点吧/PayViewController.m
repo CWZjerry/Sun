@@ -33,31 +33,13 @@
 static NSTimer *ttimer;
 static int  titt = 900;
 - (void)viewDidLoad {
-    
-    
-    NSString *str = CREAT_ORDER_RETURN;
-    NSDictionary *dic = @{@"order_id":@"1"};
-    [NetworkRequest Post:str parameters:dic success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-    } failure:^(NSError *error) {
-        
-    }];
-    
-    
     [super viewDidLoad];
+    [self loadData];
     self.navigationController.navigationBar.translucent = YES;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    
-//    self.tmplable = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 100)];
-//    self.tmplable.backgroundColor = [UIColor grayColor];
-//    self.tmplable.textColor = [UIColor redColor];
-//    [self.view addSubview:self.tmplable];
-    
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomBtn];
-    
     _bottomBtn.sd_layout
     .leftEqualToView(self.view)
     .bottomEqualToView(self.view)
@@ -65,27 +47,18 @@ static int  titt = 900;
     .heightIs(49);
     [self.bottomBtn addTarget:self action:@selector(payBtn) forControlEvents:UIControlEventTouchUpInside];
      [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timersd) userInfo:nil repeats:YES];
-    
-//    static dispatch_once_t onceToken;
-   // dispatch_once(&onceToken, ^{
-     
- //   });
-//    AppDelegate *delagete = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    
-//      delagete.ttimer= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timersd) userInfo:nil repeats:YES];
-//    NSString *str_minute = [NSString stringWithFormat:@"%02d",(titt%3600)/60];
-//    
-//    NSString *str_second = [NSString stringWithFormat:@"%02d",titt%60];
-//    
-//    NSString *format_time = [NSString stringWithFormat:@"%@:%@",str_minute,str_second];
-//    self.tmplable.text = format_time;
-//    _lable = [[UILabel alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
-//    _lable.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:self.lable];
-//    [self.view insertSubview:view aboveSubview:self.tableView];
-//    [[Timer sharedTimer] time];
-//    self.timer = [Timer sharedTimer].timer;
-//    [self.tableView reloadData];
+}
+-(void)loadData
+{
+    NSString *str = CREAT_ORDER_RETURN;
+    NSDictionary *dic = @{@"order_id":@"1"};
+    [NetworkRequest Post:str parameters:dic success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        
+    } failure:^(NSError *error) {
+        
+    }];
+
 }
 -(void)payBtn
 {
@@ -93,11 +66,11 @@ static int  titt = 900;
     NSDictionary *dic = @{@"order_no":@"20170106185215100001798641"};
     [[AFNManager sharedManager]requestType:POST URL:ALIPAY withparameters:dic success:^(id data) {
         
-        
+//        NSLog(@"%@",data);
         NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"str===========%@",str);
+//        NSLog(@"str===========%@",str);
         [[AlipaySDK defaultService]payOrder:str fromScheme:@"WeiDongDian" callback:^(NSDictionary *resultDic) {
-            NSLog(@"%@",dic);
+//            NSLog(@"%@",dic);
         }];
         
         

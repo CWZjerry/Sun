@@ -209,6 +209,9 @@
     {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
             DetailsMessage *message = [[DetailsMessage alloc]init];
+        
+        [message.imageView sd_setImageWithURL:[NSURL URLWithString:self.store_photo] placeholderImage:nil];
+        message.nameLabel.text = self.store_name;
             [cell.contentView addSubview:message];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 

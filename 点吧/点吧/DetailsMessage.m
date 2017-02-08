@@ -22,7 +22,7 @@
 -(void)setupUI
 {
     UIImageView *image = [[UIImageView alloc]init];
-    image.backgroundColor = [UIColor orangeColor];
+//    image.backgroundColor = [UIColor orangeColor];
     image.layer.masksToBounds = YES;
     image.layer.cornerRadius = 12.5;
     _imageView = image;

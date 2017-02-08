@@ -1130,7 +1130,6 @@
 				BA36E9121E1C867A00DEC0E6 /* MyInfoViewController.m */,
 				BA65181B1E20626100E53329 /* ReturnViewController.h */,
 				BA65181C1E20626100E53329 /* ReturnViewController.m */,
-				BA13DC511E1F87D000ECA78F /* showUserInfoRequest */,
 				BA8531D91E1F167A0024B9C3 /* DatePicker */,
 				BA36E9401E1CC3F000DEC0E6 /* 验证请求 */,
 				BA36E9141E1C86BC00DEC0E6 /* View */,
@@ -1139,13 +1138,6 @@
 				BAAA02161E236C100037C034 /* 三级界面 */,
 			);
 			name = "MySelf(我的)";
-			sourceTree = "<group>";
-		};
-		BA13DC511E1F87D000ECA78F /* showUserInfoRequest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = showUserInfoRequest;
 			sourceTree = "<group>";
 		};
 		BA21C3201E24F663004F1914 /* integral */ = {
@@ -1849,6 +1841,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hmzb.heimajirongapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a1bb0b03-11a1-4f20-94ee-c5917500276c";
+				PROVISIONING_PROFILE_SPECIFIER = Hello;
 				PROVISIONING_PROFILE = "d6ce6d96-cede-4f6b-a7c5-686037b00256";
 				PROVISIONING_PROFILE_SPECIFIER = Cwz;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1874,6 +1868,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hmzb.heimajirongapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c9ade409-d18e-4f55-b0cf-10210777806f";
+				PROVISIONING_PROFILE_SPECIFIER = YYY;
 				PROVISIONING_PROFILE = "d6ce6d96-cede-4f6b-a7c5-686037b00256";
 				PROVISIONING_PROFILE_SPECIFIER = Cwz;
 				TARGETED_DEVICE_FAMILY = 1;

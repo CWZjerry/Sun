@@ -221,7 +221,7 @@
     NSString *str = @"  0.00     ";
     _moneyLabel = [[UILabel alloc]init];
     _moneyLabel.textColor = [GVColor hexStringToColor:@"#333333"];
-    _moneyLabel.text = [NSString stringWithFormat:@"￥%@",str];
+    _moneyLabel.text = [NSString stringWithFormat:@"%@",str];
     _moneyLabel.font = [UIFont systemFontOfSize:12];
     CGFloat widthLabel = [UILabel getWidthWithTitle:_moneyLabel.text font:_moneyLabel.font];
     _moneyLabel.frame = CGRectMake(5, 5, widthLabel, 12);
@@ -1108,7 +1108,7 @@
     //结算价格
     _totalNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(55, 15, 0, 0)];
      NSString *strNum = @"  0.00     ";
-    _totalNumLabel.text = [NSString stringWithFormat:@"￥%@",strNum];
+    _totalNumLabel.text = [NSString stringWithFormat:@"%@",strNum];
     _totalNumLabel.font = [UIFont systemFontOfSize:19];
     _totalNumLabel.textColor = [GVColor hexStringToColor:@"#e4562f"];
     //自适应宽度

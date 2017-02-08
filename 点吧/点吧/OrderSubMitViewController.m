@@ -31,6 +31,7 @@
 @property(nonatomic,strong)NSMutableArray *seletedArr;
 @property(nonatomic,assign)NSInteger seld;
 @property(nonatomic,strong)NSString *time;
+@property(nonatomic,strong)NSString *price;
 @end
 
 @implementation OrderSubMitViewController
@@ -50,15 +51,16 @@
 //        
 //    }
 //    NSLog(@"%@",arr);
-    NSMutableArray * arr = _indentMarr;
-    NSLog(@"%@",arr);
-    NSLog(@"123%@",self.priceMoeny);
+//    NSMutableArray * arr = _indentMarr;
+//    NSLog(@"%@",arr);
+//    NSLog(@"123%@",self.priceMoeny);
    }
 -(BottomView *)bottomView
 {
     if (!_bottomView) {
         _bottomView = [[BottomView alloc]initWithFrame:CGRectMake(0,[UIScreen mainScreen].bounds.size.height - 49 , [UIScreen mainScreen].bounds.size.width, 49)];
-        _bottomView.number.text = @"12";
+        self.price = [self.priceMoeny substringFromIndex:1];
+        _bottomView.number.text = self.price;
         [_bottomView.SubMit addTarget:self action:@selector(SubMitClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _bottomView;

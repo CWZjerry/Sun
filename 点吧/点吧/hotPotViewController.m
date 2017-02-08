@@ -43,7 +43,10 @@
     
     [hotPtoRequest getWithHotPto:^(id Value) {
         _hotMarr  = Value;
-        //NSLog(@"%@",_hotMarr);
+       dispatch_async(dispatch_get_main_queue(), ^{
+           
+           [self.rightTableView reloadData];
+       });
         
     } failure:^(id failure) {
         
@@ -116,7 +119,7 @@
     }
     else
     {
-        return 5;
+        return _hotMarr.count;
     }
 }
 -(CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

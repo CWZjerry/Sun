@@ -15,7 +15,7 @@
 {
     NSDictionary * dicINfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"1",@"store_id",@"1",@"is_outsite", nil];
     [[NetworkRequest shareInstance] POST:@"http://www.kdiana.com/index.php/Before/Orders/fix_type_sel" parameters:dicINfo Success:^(id success) {
-        NSLog(@"%@",success);
+        //NSLog(@"%@",success);
         
         hotPot * hot = [[hotPot alloc]init];
         [hot setValuesForKeysWithDictionary:success];

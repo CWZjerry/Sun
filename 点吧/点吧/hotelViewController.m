@@ -39,6 +39,8 @@
     NSMutableArray * _clearingArr;//结算数组
     NSMutableArray * _subArr;//减后结算的数组
     NSMutableArray * _specArr;//菜品详情数组
+    
+    BOOL _isSelectColor ;
 }
 @property(nonatomic,strong) UISearchBar * headerSearchBar;//头视图搜索条
 
@@ -504,7 +506,7 @@
         //改变选中时的title颜色
         sideTableViewCell *cell =  [tableView cellForRowAtIndexPath:indexPath];
         cell.sideTitle.textColor = [GVColor hexStringToColor:@"ffba14"];
-        
+      
     }
     else if([tableView isEqual:self.hotelTableView])
     {
@@ -707,6 +709,7 @@
                 
                 //计算价格与数量
                 self.priceNumber -= [hoteInfo.menu_price floatValue];
+                
                 [self numPriceAndCount];
                 
                 [self.baseTableView reloadData];
@@ -1128,6 +1131,7 @@
 {
     OrderSubMitViewController * order = [[OrderSubMitViewController alloc]init];
     order.indentMarr = _clearingArr;
+    order.priceMoeny = self.totalNumLabel.text;
     [self.navigationController pushViewController:order animated:YES];
 }
 #pragma mark -- 初始化结算弹出视图

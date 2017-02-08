@@ -11,4 +11,9 @@
 @interface OrderSubMitViewController : UIViewController
 @property(nonatomic,strong) NSMutableArray * indentMarr;
 @property(nonatomic,strong) NSString * priceMoeny;
+
+@property(nonatomic,strong) NSString * idDic;
+@property(nonatomic,strong) NSString * store_name;
+@property(nonatomic,strong) NSString * store_photo;
+
 @end

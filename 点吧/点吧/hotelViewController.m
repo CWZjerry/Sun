@@ -1132,6 +1132,10 @@
     OrderSubMitViewController * order = [[OrderSubMitViewController alloc]init];
     order.indentMarr = _clearingArr;
     order.priceMoeny = self.totalNumLabel.text;
+    
+    order.idDic = self.idDic;
+    order.store_name = self.store_name;
+    order.store_photo = self.store_photo;
     [self.navigationController pushViewController:order animated:YES];
 }
 #pragma mark -- 初始化结算弹出视图

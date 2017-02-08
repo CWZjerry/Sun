@@ -18,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    //主控制器
+    //主控制器
     MainViewController * main = [[MainViewController alloc]init];
     //导航
     self.window.frame = [UIScreen mainScreen].bounds;
@@ -38,6 +39,7 @@
 //    self.window.rootViewController = nag;
 //    self.window.backgroundColor = [UIColor whiteColor];
 //
+////
     
     return YES;
 }

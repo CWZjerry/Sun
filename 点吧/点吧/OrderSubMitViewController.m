@@ -50,6 +50,9 @@
 //        
 //    }
 //    NSLog(@"%@",arr);
+    NSMutableArray * arr = _indentMarr;
+    NSLog(@"%@",arr);
+    NSLog(@"123%@",self.priceMoeny);
    }
 -(BottomView *)bottomView
 {

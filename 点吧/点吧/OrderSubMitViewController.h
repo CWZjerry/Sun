@@ -10,5 +10,5 @@
 
 @interface OrderSubMitViewController : UIViewController
 @property(nonatomic,strong) NSMutableArray * indentMarr;
-
+@property(nonatomic,strong) NSString * priceMoeny;
 @end

@@ -47,7 +47,7 @@
     .rightSpaceToView(self.arrowHead,8)
     .centerYEqualToView(self.contentView)
     .autoHeightRatio(0)
-    .widthIs(100);
+    .leftSpaceToView(self.name,0);
     
 }
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimePicker : UIDatePicker
-
+@interface TimePicker : UIView
+@property(nonatomic,strong)UIButton *bth;
+@property(nonatomic,strong)UIDatePicker *datePicker;
 @end

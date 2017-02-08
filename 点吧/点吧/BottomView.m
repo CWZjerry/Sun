@@ -40,6 +40,7 @@
     .autoHeightRatio(0);
     UILabel *number =[[UILabel alloc]initWithText:@"168.00" font:[UIFont systemFontOfSize:19] textColor:[GVColor hexStringToColor:@"#ffffff"]];
     _number = number;
+    
     [self.leftView addSubview:self.number];
     _number.sd_layout
     .leftSpaceToView(self.money,0)

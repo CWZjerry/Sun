@@ -10,5 +10,5 @@
 
 @interface RemarsTableViewCell : UITableViewCell
 @property(nonatomic,strong)UILabel *remarks;
-@property(nonatomic,strong)UITextView *tates;
+@property(nonatomic,strong)UITextField *tates;
 @end

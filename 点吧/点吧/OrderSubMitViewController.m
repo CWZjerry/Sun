@@ -20,9 +20,8 @@
 #import "AddressViewController.h"
 #import "TimePicker.h"
 #import "hoteModel.h"
-//生成订单
-#define CREAT_ORDER_URL @"http://www.kdiana.com/index.php/Before/Orders/order_info"
-//生成订单返回页面
+#import "OrderSubMit.h"
+#define CREAT_ORDER_URL @"http://www.kdiana.com/index.php/Before/Orders/order_sub"
 #define CREAT_ORDER_RETURN @"http://www.kdiana.com/index.php/Before/Orders/order_return"
 @interface OrderSubMitViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
@@ -67,8 +66,44 @@
 }
 -(void)SubMitClick:(UIButton *)button
 {
-    PayViewController *pay =[[PayViewController alloc]init];
-    [self.navigationController pushViewController:pay animated:YES];
+    //数组接收json
+    NSMutableArray *orderArr = [NSMutableArray array];
+    for (hoteModel_menu_info *model in self.indentMarr) {
+        //模型转json
+        NSDictionary *json = [model yy_modelToJSONObject];
+        [orderArr addObject:json];
+    }
+    //数组转json
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:orderArr options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@",orderArr);
+    if (self.time == nil) {
+        
+        return;
+    }
+    NSDictionary * orderDic = @{@"eat_type":@"2",
+                                @"arrival":self.time,
+                                @"user_id":@"10001",
+                                @"content":@"",
+                                @"store_id":@"1",
+                                @"order_price":self.price,
+                                @"orderinfo":jsonString,
+                                @"orderinfotwo":@"",
+                                @"use_coup":@"",
+                                @"order_address":@"",
+                                @"distribution_cost":@""};
+    [[NetworkRequest shareInstance]POST:CREAT_ORDER_URL parameters:orderDic Success:^(id success) {
+//        NSLog(@"%@",success);
+        OrderSubMit *odersubMit=[OrderSubMit yy_modelWithJSON:success];
+        
+        PayViewController *pay =[[PayViewController alloc]init];
+        
+        pay.orderSubMit = odersubMit;
+        [self.navigationController pushViewController:pay animated:YES];
+    } Failure:^(id failure) {
+        NSLog(@"%@",failure);
+    }];
+    
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -220,6 +255,7 @@
     else if(indexPath.section == 3)
     {
         hoteModel_menu_info *model = self.indentMarr[indexPath.row];
+        model.num = model.count_num;
         VegeTableViewCell *cell =[[VegeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.vegetable.text = model.menu_name;

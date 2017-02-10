@@ -30,7 +30,7 @@
     .leftSpaceToView(self.contentView,12)
     .topSpaceToView(self.contentView,10)
     .bottomSpaceToView(self.contentView,10)
-    .widthIs(170);
+    .widthIs(100);
     UILabel *money =[[UILabel alloc]init];
     money.text=@"¥ 200";
     money.textColor = [GVColor hexStringToColor:@"#888888"];
@@ -41,7 +41,7 @@
     _money.sd_layout
     .rightSpaceToView(self.contentView,12)
     .centerYEqualToView(self.contentView)
-    .widthIs(130)
+    .leftSpaceToView(self.freight,0)
     .heightIs(13);
     
     

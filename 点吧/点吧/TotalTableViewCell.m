@@ -115,6 +115,8 @@
         _moneyLab.textColor = [GVColor hexStringToColor:@"#333333"];
         _moneyLab.font = [UIFont systemFontOfSize:15];
         _moneyLab.text = @"总金额\t¥23000";
+        
+        _moneyLab.textAlignment = NSTextAlignmentRight;
     }
     return _moneyLab;
 }
@@ -202,8 +204,9 @@
 {
     if (!_payLab) {
         _payLab = [[UILabel alloc]init];
-        _payLab.text = @"代付款中";
+        _payLab.text = @"代付款中撒的城市";
         _payLab.font = [UIFont systemFontOfSize:12];
+        _payLab.textAlignment = NSTextAlignmentRight;
         _payLab.textColor = [GVColor hexStringToColor:@"#ffba14"];
         
         

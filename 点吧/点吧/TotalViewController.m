@@ -48,7 +48,7 @@
     [NetworkRequest Post:str parameters:dic success:^(id responseObject) {
         NSArray *arr =[responseObject objectForKey:@"data"];
         //        NSLog(@"%@",arr);
-        NSLog(@"%@",arr);
+//        NSLog(@"%@",arr);
         for (NSDictionary *dic  in arr) {
             Order *order = [Order yy_modelWithJSON:dic];
             [self.messageArr addObject:order];

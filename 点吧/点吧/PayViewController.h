@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrderSubMit.h"
 @interface PayViewController : UIViewController
+@property(nonatomic,strong)OrderSubMit *orderSubMit;
 
 @end

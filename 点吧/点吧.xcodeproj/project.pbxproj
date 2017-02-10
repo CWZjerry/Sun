@@ -66,6 +66,8 @@
 		1537D34E1E49DE65004BCC4D /* HeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3411E49DE65004BCC4D /* HeadTableViewCell.m */; };
 		1537D34F1E49DE65004BCC4D /* PreferentialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3431E49DE65004BCC4D /* PreferentialView.m */; };
 		1537D3721E49EF19004BCC4D /* AFNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3711E49EF19004BCC4D /* AFNManager.m */; };
+		1537D3751E4B4D3E004BCC4D /* Pay.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3741E4B4D3E004BCC4D /* Pay.m */; };
+		1537D3781E4C3A47004BCC4D /* OrderSubMit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3771E4C3A47004BCC4D /* OrderSubMit.m */; };
 		154FBA0F1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA0E1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m */; };
 		154FBA121E1C9CBA00F2F6E5 /* TopScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA111E1C9CBA00F2F6E5 /* TopScroll.m */; };
 		154FBA191E1C9CC900F2F6E5 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA141E1C9CC900F2F6E5 /* OrderViewController.m */; };
@@ -281,6 +283,10 @@
 		1537D3431E49DE65004BCC4D /* PreferentialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferentialView.m; sourceTree = "<group>"; };
 		1537D3701E49EF19004BCC4D /* AFNManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNManager.h; sourceTree = "<group>"; };
 		1537D3711E49EF19004BCC4D /* AFNManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNManager.m; sourceTree = "<group>"; };
+		1537D3731E4B4D3E004BCC4D /* Pay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pay.h; sourceTree = "<group>"; };
+		1537D3741E4B4D3E004BCC4D /* Pay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pay.m; sourceTree = "<group>"; };
+		1537D3761E4C3A47004BCC4D /* OrderSubMit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSubMit.h; sourceTree = "<group>"; };
+		1537D3771E4C3A47004BCC4D /* OrderSubMit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSubMit.m; sourceTree = "<group>"; };
 		154FBA0D1E1C9BDD00F2F6E5 /* UILabel+OGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+OGLabel.h"; sourceTree = "<group>"; };
 		154FBA0E1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+OGLabel.m"; sourceTree = "<group>"; };
 		154FBA101E1C9CBA00F2F6E5 /* TopScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopScroll.h; sourceTree = "<group>"; };
@@ -821,6 +827,8 @@
 			children = (
 				1537D3291E49DD81004BCC4D /* OrderSubMitViewController.h */,
 				1537D32A1E49DD81004BCC4D /* OrderSubMitViewController.m */,
+				1537D3761E4C3A47004BCC4D /* OrderSubMit.h */,
+				1537D3771E4C3A47004BCC4D /* OrderSubMit.m */,
 				1537D32C1E49DE65004BCC4D /* HallAwayViewController.h */,
 				1537D32D1E49DE65004BCC4D /* HallAwayViewController.m */,
 				1537D32E1E49DE65004BCC4D /* SexView.h */,
@@ -831,6 +839,8 @@
 				1537D3331E49DE65004BCC4D /* AddrssTableViewCell.m */,
 				1537D3341E49DE65004BCC4D /* PayViewController.h */,
 				1537D3351E49DE65004BCC4D /* PayViewController.m */,
+				1537D3731E4B4D3E004BCC4D /* Pay.h */,
+				1537D3741E4B4D3E004BCC4D /* Pay.m */,
 				1537D3361E49DE65004BCC4D /* PayTableViewCell.h */,
 				1537D3371E49DE65004BCC4D /* PayTableViewCell.m */,
 				1537D3381E49DE65004BCC4D /* PayTimeTableViewCell.h */,
@@ -1639,6 +1649,7 @@
 				BA6DB9CB1E1670AC002622C8 /* NetworkRequest.m in Sources */,
 				BA6518331E206B9B00E53329 /* PhoneNumber.m in Sources */,
 				0DF158AA1E12473E008142D6 /* HomeView.m in Sources */,
+				1537D3781E4C3A47004BCC4D /* OrderSubMit.m in Sources */,
 				1537D3451E49DE65004BCC4D /* SexView.m in Sources */,
 				0DAC13A91E1F87700002A32F /* CLLocation+YCLocation.m in Sources */,
 				BA6DB9D31E1749C9002622C8 /* ThrowLineTool.m in Sources */,
@@ -1678,6 +1689,7 @@
 				158D9E331E113A3400B0FFB5 /* HomeViewController.m in Sources */,
 				1537D34F1E49DE65004BCC4D /* PreferentialView.m in Sources */,
 				BA6567EC1E14A2570075E865 /* UIView+Addition.m in Sources */,
+				1537D3751E4B4D3E004BCC4D /* Pay.m in Sources */,
 				BA36E9281E1C87A100DEC0E6 /* HClTextView.m in Sources */,
 				1537D34E1E49DE65004BCC4D /* HeadTableViewCell.m in Sources */,
 				1537D34D1E49DE65004BCC4D /* RemarsTableViewCell.m in Sources */,
@@ -1827,7 +1839,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
-
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 297ES4E235;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1837,12 +1848,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "点吧/AllFrame.pch";
 				INFOPLIST_FILE = "点吧/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hmzb.heimajirongapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a1bb0b03-11a1-4f20-94ee-c5917500276c";
-				PROVISIONING_PROFILE_SPECIFIER = Hello;
 				PROVISIONING_PROFILE = "d6ce6d96-cede-4f6b-a7c5-686037b00256";
 				PROVISIONING_PROFILE_SPECIFIER = Cwz;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1864,12 +1873,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "点吧/AllFrame.pch";
 				INFOPLIST_FILE = "点吧/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hmzb.heimajirongapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c9ade409-d18e-4f55-b0cf-10210777806f";
-				PROVISIONING_PROFILE_SPECIFIER = YYY;
 				PROVISIONING_PROFILE = "d6ce6d96-cede-4f6b-a7c5-686037b00256";
 				PROVISIONING_PROFILE_SPECIFIER = Cwz;
 				TARGETED_DEVICE_FAMILY = 1;

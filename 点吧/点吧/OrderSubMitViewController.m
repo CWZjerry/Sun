@@ -17,7 +17,7 @@
 #import "BottomView.h"
 #import <UIView+SDAutoLayout.h>
 #import "PayViewController.h"
-#import "AddressViewController.h"
+//#import "AddressViewController.h"
 #import "TimePicker.h"
 //生成订单
 #define CREAT_ORDER_URL @"http://www.kdiana.com/index.php/Before/Orders/order_info"
@@ -62,8 +62,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        AddressViewController *addreaa = [[AddressViewController alloc]init];
-        [self.navigationController pushViewController:addreaa animated:YES];
+        //AddressViewController *addreaa = [[AddressViewController alloc]init];
+       // [self.navigationController pushViewController:addreaa animated:YES];
     }
     else if (indexPath.section == 1)
     {

@@ -11,10 +11,12 @@
 @interface AddView : UIView
 
 @property (nonatomic ,strong) UIView *vieww; //底视图
+/**
+ 姓名 电话
+ */
+@property (nonatomic,strong)UITextField *Name,*phoneNumber;
 
-@property (nonatomic,strong)UITextField *fieldName,*fieldNumber;
-
-@property (nonatomic ,strong) UITextView *fieldAddress;
+@property (nonatomic ,strong) UITextView *Address;
 
 @property (nonatomic ,strong) UILabel *namelable ,* numberLable , *addressLable;
 
@@ -23,6 +25,11 @@
 @property (nonatomic ,strong) UILabel *sirLabel,* madamLabel;
 
 @property (nonatomic ,strong) UIButton * btna , *btnb;
+
+//提交按钮
+@property (nonatomic ,strong) UIButton * commitButton;
+
+
 
 
 @end

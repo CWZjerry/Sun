@@ -20,7 +20,9 @@
 #import "purseViewController.h"
 #import "discountViewController.h"
 #import "IntegralViewController.h"
-#import "AddressViewController.h"
+//#import "AddressViewController.h"
+
+#import "SiteViewController.h" //收货地址 
 
 @interface MySelfViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -136,8 +138,12 @@
     if (indexPath.section == 0) {
         if (indexPath.row  == 1) {
             //我的收货地址界面
-            AddressViewController *address = [[AddressViewController alloc] init];
-            [self.navigationController pushViewController:address animated:YES];
+           // AddressViewController *address = [[AddressViewController alloc] init];
+           // [self.navigationController pushViewController:address animated:YES];
+            
+            //我的收货地址
+            SiteViewController *site =[[SiteViewController alloc] init];
+            [self.navigationController pushViewController:site animated:YES];
         }
         else
         {

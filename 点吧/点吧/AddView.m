@@ -41,7 +41,7 @@
     if (!_namelable) {
         _namelable = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, 100, 20)];
         _namelable.text = @"姓名";
-        _namelable.font = [UIFont systemFontOfSize:20];
+         _namelable.font = [UIFont systemFontOfSize:17 weight:0.001];
         _namelable.textColor = [UIColor blackColor];
         
     }
@@ -50,9 +50,9 @@
 -(UILabel *)sirLabel
 {
     if (!_sirLabel) {
-        _sirLabel = [[UILabel alloc] initWithFrame:CGRectMake(_fieldName.top + 260 , 40, 50, 20)];
+        _sirLabel = [[UILabel alloc] initWithFrame:CGRectMake(_Name.top + 260 , 40, 50, 20)];
         _sirLabel.text = @"先生";
-        _sirLabel.font = [UIFont systemFontOfSize:18];
+        _sirLabel.font = [UIFont systemFontOfSize:17 weight:0.001];
         _sirLabel.textColor = [UIColor blackColor];
         
     }
@@ -63,7 +63,7 @@
     if (!_madamLabel) {
         _madamLabel = [[UILabel alloc] initWithFrame:CGRectMake(_sirLabel.top+ 330, 40, 100, 20)];
         _madamLabel.text = @"女士";
-        _madamLabel.font = [UIFont systemFontOfSize:18];
+        _madamLabel.font = [UIFont systemFontOfSize:17 weight:0.001];
         _madamLabel.textColor = [UIColor blackColor];
         
     }
@@ -104,7 +104,7 @@
     if (!_numberLable) {
         _numberLable = [[UILabel alloc] initWithFrame:CGRectMake(10, _namelable.bottom + 25, 100, 20)];
         _numberLable.text = @"联系电话";
-        _numberLable.font = [UIFont systemFontOfSize:20];
+        _numberLable.font = [UIFont systemFontOfSize:17 weight:0.001];;
         _numberLable.textColor = [UIColor blackColor];
     }
     return _numberLable;
@@ -125,7 +125,7 @@
         _addressLable = [[UILabel alloc] initWithFrame:CGRectMake(10, _numberLable.bottom + 25, 100, 30)];
         _addressLable.text = @"收货地址";
         _addressLable.textColor = [UIColor blackColor];
-        _addressLable.font = [UIFont systemFontOfSize:20];
+        _addressLable.font = [UIFont systemFontOfSize:17 weight:0.001];
         
     }
     return _addressLable;
@@ -133,33 +133,33 @@
 
 - (UITextField *)fieldName
 {
-    if (!_fieldName) {
-        _fieldName = [[UITextField alloc]initWithFrame:CGRectMake(_numberLable.top + 25, 40, 160, 25)];
-        _fieldName.placeholder = @"您的姓名";
+    if (!_Name) {
+        _Name = [[UITextField alloc]initWithFrame:CGRectMake(_numberLable.top + 25, 40, 160, 25)];
+        _Name.placeholder = @"您的姓名";
 //        _fieldName.backgroundColor=[UIColor lightGrayColor];
     }
-    return _fieldName;
+    return _Name;
     
 }
 
 - (UITextField *)fieldNumber
 {
-    if (!_fieldNumber) {
-        _fieldNumber = [[UITextField alloc]initWithFrame:CGRectMake(_numberLable.top + 25, _fieldName.bottom + 20, 300, 25)];
-        _fieldNumber.placeholder = @"您的手机号";
+    if (!_phoneNumber) {
+        _phoneNumber = [[UITextField alloc]initWithFrame:CGRectMake(_numberLable.top + 25, _Name.bottom + 20, 300, 25)];
+        _phoneNumber.placeholder = @"您的手机号";
 //        _fieldNumber.backgroundColor = [UIColor greenColor];
         
     }
-    return _fieldNumber;
+    return _phoneNumber;
 }
 -(UITextView *)fieldAddress
 {
-    if (!_fieldAddress) {
-        _fieldAddress = [[UITextView alloc] initWithFrame:CGRectMake(_addressLable.top + 25, _fieldNumber.bottom + 20, 300, 20)];
+    if (!_Address) {
+        _Address = [[UITextView alloc] initWithFrame:CGRectMake(_addressLable.top + 25, _phoneNumber.bottom + 20, 300, 20)];
 //        _fieldAddress.backgroundColor = [UIColor greenColor];
         
     }
-    return _fieldAddress;
+    return _Address;
 }
 
 

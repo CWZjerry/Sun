@@ -9,15 +9,19 @@
 #import "PayTableViewCell.h"
 #import "UILabel+OGLabel.h"
 #import <UIView+SDAutoLayout.h>
-
-
-
-
 @interface PayTableViewCell  ()
 @property(nonatomic,strong)UIButton*judgeBth;
-
+//@property(nonatomic,strong)NSMutableArray *bthArr;
 @end
 @implementation PayTableViewCell
+//-(NSMutableArray *)bthArr
+//{
+//    if (!_bthArr) {
+//        _bthArr = [NSMutableArray array];
+//    }
+//    return _bthArr;
+//}
+
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -49,12 +53,18 @@
     [round setImage:[UIImage imageNamed:@"payup"] forState:UIControlStateSelected];
     [round addTarget:self action:@selector(bthClick:) forControlEvents:UIControlEventTouchUpInside];
     _round = round;
+    
     [self.contentView addSubview:self.round];
+    
     _round.sd_layout
     .rightSpaceToView(self.contentView,12)
     .centerYEqualToView(self.contentView)
     .widthIs(13)
     .heightIs(13);
+//    [_bthArr addObject:self.round];
+}
+-(void)bthClick:(UIButton *)button
+{
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

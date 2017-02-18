@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface JudgeViewController : UIViewController
-
+@property(nonatomic,strong)NSString *order_id;
 @end

@@ -66,19 +66,19 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     //延迟后加载该事件
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        __block HomeViewController * homeSelf = self;
-//        //城市定位信息
-//        if(IS_IOS8)
-//        {
-//            [[CCLocationManager shareLocation]getCity:^(NSString *addressString) {
-//                //改变title和颜色
-//                [homeSelf.cityBtn setTitle:addressString forState:UIControlStateNormal];
-//                [homeSelf.cityBtn setTitleColor:[GVColor hexStringToColor:@"ffba14"] forState:UIControlStateNormal];
-//            }];
-//        }
-//    });
-//    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        __block HomeViewController * homeSelf = self;
+        //城市定位信息
+        if(IS_IOS8)
+        {
+            [[CCLocationManager shareLocation]getCity:^(NSString *addressString) {
+                //改变title和颜色
+                [homeSelf.cityBtn setTitle:addressString forState:UIControlStateNormal];
+                [homeSelf.cityBtn setTitleColor:[GVColor hexStringToColor:@"ffba14"] forState:UIControlStateNormal];
+            }];
+        }
+    });
+    
     //在导航栏上添加View
     _navView = [[UIView alloc]initWithFrame:CGRectMake(ZeroFrame, ZeroFrame, WidthBounds, 64)];
     _navView.backgroundColor = [UIColor whiteColor];

@@ -36,11 +36,12 @@
     number.textColor = [GVColor hexStringToColor:@"#aaaaaa"];
     number.font = [UIFont systemFontOfSize:12];
     number.text = @"x1";
+    number.textAlignment = NSTextAlignmentLeft;
     _number = number;
     [self.contentView addSubview:self.number];
     _number.sd_layout
     .centerYEqualToView(self.contentView)
-    .leftSpaceToView(self.vegetable,80)
+    .leftSpaceToView(self.vegetable,60)
     .widthIs(35)
     .heightIs(10);
     
@@ -49,12 +50,13 @@
     money.textColor = [GVColor hexStringToColor:@"#555555"];
     money.font = [UIFont systemFontOfSize:13];
     money.text = @"¥ 300";
+    money.textAlignment = NSTextAlignmentRight;
     _money = money;
     [self.contentView addSubview:self.money];
     _money.sd_layout
     .rightSpaceToView(self.contentView,12)
     .centerYEqualToView(self.contentView)
-    .widthIs(40)
+    .leftSpaceToView(self.number,5)
     .heightIs(13);
     
     

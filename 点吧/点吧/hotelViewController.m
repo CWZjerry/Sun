@@ -39,6 +39,8 @@
     NSMutableArray * _clearingArr;//结算数组
     NSMutableArray * _subArr;//减后结算的数组
     NSMutableArray * _specArr;//菜品详情数组
+    
+    BOOL _isSelectColor ;
 }
 @property(nonatomic,strong) UISearchBar * headerSearchBar;//头视图搜索条
 
@@ -219,7 +221,7 @@
     NSString *str = @"  0.00     ";
     _moneyLabel = [[UILabel alloc]init];
     _moneyLabel.textColor = [GVColor hexStringToColor:@"#333333"];
-    _moneyLabel.text = [NSString stringWithFormat:@"￥%@",str];
+    _moneyLabel.text = [NSString stringWithFormat:@"%@",str];
     _moneyLabel.font = [UIFont systemFontOfSize:12];
     CGFloat widthLabel = [UILabel getWidthWithTitle:_moneyLabel.text font:_moneyLabel.font];
     _moneyLabel.frame = CGRectMake(5, 5, widthLabel, 12);
@@ -504,7 +506,7 @@
         //改变选中时的title颜色
         sideTableViewCell *cell =  [tableView cellForRowAtIndexPath:indexPath];
         cell.sideTitle.textColor = [GVColor hexStringToColor:@"ffba14"];
-        
+      
     }
     else if([tableView isEqual:self.hotelTableView])
     {
@@ -707,6 +709,7 @@
                 
                 //计算价格与数量
                 self.priceNumber -= [hoteInfo.menu_price floatValue];
+                
                 [self numPriceAndCount];
                 
                 [self.baseTableView reloadData];
@@ -1105,7 +1108,7 @@
     //结算价格
     _totalNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(55, 15, 0, 0)];
      NSString *strNum = @"  0.00     ";
-    _totalNumLabel.text = [NSString stringWithFormat:@"￥%@",strNum];
+    _totalNumLabel.text = [NSString stringWithFormat:@"%@",strNum];
     _totalNumLabel.font = [UIFont systemFontOfSize:19];
     _totalNumLabel.textColor = [GVColor hexStringToColor:@"#e4562f"];
     //自适应宽度
@@ -1128,6 +1131,11 @@
 {
     OrderSubMitViewController * order = [[OrderSubMitViewController alloc]init];
     order.indentMarr = _clearingArr;
+    order.priceMoeny = self.totalNumLabel.text;
+    
+    order.idDic = self.idDic;
+    order.store_name = self.store_name;
+    order.store_photo = self.store_photo;
     [self.navigationController pushViewController:order animated:YES];
 }
 #pragma mark -- 初始化结算弹出视图

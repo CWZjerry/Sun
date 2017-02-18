@@ -33,7 +33,7 @@
 @property(nonatomic,strong) NSString * photo;
 @property(nonatomic,strong) NSString * rated;
 @property(nonatomic,assign) NSInteger  stock;
-
+@property(nonatomic,assign) NSInteger num;
 
 @end
 

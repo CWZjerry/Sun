@@ -13,6 +13,8 @@
 #import "DetailsView.h"
 #import "AppDelegate.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "Pay.h"
+
 #define CREAT_ORDER_RETURN @"http://www.kdiana.com/index.php/Before/Orders/order_return"
 #define ALIPAY @"http://www.kdiana.com/index.php/Before/Pay/app_pay"
 @interface PayViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -21,6 +23,9 @@
 @property(nonatomic,copy)  NSString * timer;
 @property(nonatomic,strong)UILabel *lable;
 @property(nonatomic,strong)UILabel *tmplable;
+@property(nonatomic,strong)Pay *pay;
+@property(nonatomic,strong)NSMutableArray *menu;
+@property(nonatomic,strong)NSTimer *datetimer;
 @end
 
 @implementation PayViewController
@@ -31,111 +36,65 @@
     [self.navigationController setNavigationBarHidden:NO];
 }
 static NSTimer *ttimer;
-static int  titt = 900;
+static int  titt;
 - (void)viewDidLoad {
-    
-    
-    NSString *str = CREAT_ORDER_RETURN;
-    NSDictionary *dic = @{@"order_id":@"1"};
-    [NetworkRequest Post:str parameters:dic success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-    } failure:^(NSError *error) {
-        
-    }];
-    
-    
     [super viewDidLoad];
+    [self loadData];
+    self.datetimer =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timersd:) userInfo:nil repeats:YES];
     self.navigationController.navigationBar.translucent = YES;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    
-//    self.tmplable = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 100)];
-//    self.tmplable.backgroundColor = [UIColor grayColor];
-//    self.tmplable.textColor = [UIColor redColor];
-//    [self.view addSubview:self.tmplable];
-    
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.bottomBtn];
-    
     _bottomBtn.sd_layout
     .leftEqualToView(self.view)
     .bottomEqualToView(self.view)
     .widthIs([UIScreen mainScreen].bounds.size.width)
     .heightIs(49);
     [self.bottomBtn addTarget:self action:@selector(payBtn) forControlEvents:UIControlEventTouchUpInside];
-     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timersd) userInfo:nil repeats:YES];
     
-//    static dispatch_once_t onceToken;
-   // dispatch_once(&onceToken, ^{
-     
- //   });
-//    AppDelegate *delagete = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    
-//      delagete.ttimer= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timersd) userInfo:nil repeats:YES];
-//    NSString *str_minute = [NSString stringWithFormat:@"%02d",(titt%3600)/60];
-//    
-//    NSString *str_second = [NSString stringWithFormat:@"%02d",titt%60];
-//    
-//    NSString *format_time = [NSString stringWithFormat:@"%@:%@",str_minute,str_second];
-//    self.tmplable.text = format_time;
-//    _lable = [[UILabel alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
-//    _lable.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:self.lable];
-//    [self.view insertSubview:view aboveSubview:self.tableView];
-//    [[Timer sharedTimer] time];
-//    self.timer = [Timer sharedTimer].timer;
-//    [self.tableView reloadData];
+}
+-(void)loadData
+{
+    NSString *str = CREAT_ORDER_RETURN;
+    NSDictionary *dic = @{@"order_id":[NSString stringWithFormat:@"%ld",self.orderSubMit.order_id]};
+    [NetworkRequest Post:str parameters:dic success:^(id responseObject) {
+        self.pay = [Pay yy_modelWithJSON:responseObject];
+        NSString *str = [self.pay.out_time substringToIndex:3];
+        titt = [str intValue];
+        for (NSDictionary *dic in self.pay.menu_list) {
+            MeMuList *menu = [MeMuList yy_modelWithJSON:dic];
+            [self.menu addObject:menu];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+
 }
 -(void)payBtn
 {
-    //ALIPAY @"http://www.kdiana.com/index.php/Before/Pay/app_pay"
-    NSDictionary *dic = @{@"order_no":@"20170106185215100001798641"};
+    NSDictionary *dic = @{@"order_no":self.pay.order_no};
     [[AFNManager sharedManager]requestType:POST URL:ALIPAY withparameters:dic success:^(id data) {
-        
-        
         NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"str===========%@",str);
         [[AlipaySDK defaultService]payOrder:str fromScheme:@"WeiDongDian" callback:^(NSDictionary *resultDic) {
-            NSLog(@"%@",dic);
+            NSLog(@"%@",resultDic);
         }];
-        
-        
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
--(void)timersd
+-(void)timersd:(NSTimer *)timer
 {
     titt--;
-
-//        NSLog(@"%@",timer);
-    //倒计时-1
-    
-    //重新计算 时/分/秒
-    //  NSString *str_hour = [NSString stringWithFormat:@"%02ld",secondsCountDown/3600];
-    
     NSString *str_minute = [NSString stringWithFormat:@"%02d",(titt%3600)/60];
-    
     NSString *str_second = [NSString stringWithFormat:@"%02d",titt%60];
-    
     NSString *format_time = [NSString stringWithFormat:@"%@:%@",str_minute,str_second];
-    //修改倒计时标签及显示内容
     self.timer = format_time;
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        NSIndexSet *index = [[NSIndexSet alloc]initWithIndex:0];
-        [self.tableView reloadSections:index withRowAnimation:UITableViewRowAnimationAutomatic];
-//    });
-
     self.tmplable.text = [NSString stringWithFormat:@"%@",format_time];
     [self.tableView reloadData];
-    //当倒计时到0时做需要的操作，销毁
     if(titt==0){
-        
-//        [timer invalidate];
+        [timer invalidate];
     }
-    
-    
 }
 #pragma mark - UITableViewDelegate
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -188,7 +147,6 @@ static int  titt = 900;
         case 5:
             return 30;
             break;
-            
         default:
             return 10;
             break;
@@ -208,9 +166,14 @@ static int  titt = 900;
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 2 || section == 3)
+    if (section == 2 )
     {
         return 6;
+    }
+    else if (section == 3)
+    {
+        return self.pay.menu_list.count+1;
+        
     }
     else if (section == 4 || section == 5)
     {
@@ -224,14 +187,7 @@ static int  titt = 900;
     CostTableViewCell *cell = [[CostTableViewCell alloc]init];
     if (indexPath.section == 0) {
         PayTimeTableViewCell *cell =[[PayTimeTableViewCell alloc]init];
-//        NSString *sss = [Timer sharedTimer].timer;
-//        [self.tableView reloadData];
-//        NSLog(@"%@",sss);
-//        NSLog(@"%@",self.timer);
         cell.time.text = self.timer;
-        
-//        NSLog(@"cell.time.text === %@",cell.time.text);
-        
         return cell;
     }
     else if (indexPath.section == 1)
@@ -242,7 +198,7 @@ static int  titt = 900;
         cell.freight.textColor = [GVColor hexStringToColor:@"#333333"];
         cell.freight.font = [UIFont systemFontOfSize:15];
         cell.freight.text = @"饭店名称";
-        cell.money.text = @"微动点西三旗大饭店";
+        cell.money.text = self.pay.store_name;
         return cell;
     }
     else if (indexPath.section == 2 )
@@ -252,7 +208,32 @@ static int  titt = 900;
             cell.freight.textColor = [GVColor hexStringToColor:@"#333333"];
             cell.freight.font = [UIFont systemFontOfSize:15];
             cell.freight.text = @"订单详情";
-            cell.money.text = @"订单号：12345678911";
+            cell.money.text = [NSString stringWithFormat:@"订单号：%ld",self.orderSubMit.order_no];
+        }
+        else if(indexPath.row == 1)
+        {
+            cell.freight.text = @"订单类型";
+            cell.money.text = self.pay.type_name;
+        }
+        else if (indexPath.row == 2)
+        {
+            cell.freight.text = @"点餐模式";
+            cell.money.text = self.pay.rel_mode;
+        }
+        else if (indexPath.row == 3)
+        {
+            cell.freight.text = @"就餐人数";
+            cell.money.text = self.pay.people_num;
+        }
+        else if (indexPath.row == 4)
+        {
+            cell.freight.text = @"桌号";
+            cell.money.text = self.pay.table_num;
+        }
+        else
+        {
+            cell.freight.text = @"到店时间";
+            cell.money.text = self.pay.order_time;
         }
         return cell;
     }
@@ -264,6 +245,14 @@ static int  titt = 900;
             cell.freight.font = [UIFont systemFontOfSize:15];
             cell.freight.text = @"订单菜品";
             cell.money.text = @"^";
+        }
+        else
+        {
+            MeMuList *menu = self.menu[indexPath.row -1];
+            cell.freight.text = menu.menu_name;
+            cell.money.text = menu.count_price;
+            
+//            cell.freight.text =
         }
         return cell;
     }
@@ -282,7 +271,7 @@ static int  titt = 900;
             cell.freight.textColor = [GVColor hexStringToColor:@"#333333"];
             cell.freight.font = [UIFont systemFontOfSize:16];
             cell.freight.text = @"支付金额";
-            cell.money.text = @"¥ 600";
+            cell.money.text = [NSString stringWithFormat:@"¥ %@",self.pay.order_price];
             cell.money.textColor = [GVColor hexStringToColor:@"#e4562f"];
             return cell;
         }
@@ -315,6 +304,7 @@ static int  titt = 900;
 //        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
         _tableView.delegate = self;
         _tableView.dataSource= self;
+        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     }
     return _tableView;
 }
@@ -322,7 +312,18 @@ static int  titt = 900;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.datetimer invalidate];
+}
+-(NSMutableArray *)menu
+{
+    if (_menu == nil) {
+        _menu = [NSMutableArray array];
+    }
+    return _menu;
+}
 /*
 #pragma mark - Navigation
 

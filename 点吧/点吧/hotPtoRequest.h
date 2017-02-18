@@ -10,11 +10,15 @@
 #import "NetworkRequest.h"
 #import "hotPot.h"
 
-typedef void (^SuccessHotPto)(id Value);
+//typedef void (^SuccessHotPto)(id Value);
+typedef void (^SuccessHotPtoData)(id left, id right, id allMarr);
 @interface hotPtoRequest : NSObject
 
+//
+//+(void)getWithHotPto:(SuccessHotPto)successData failure:(FailureBlock)failureData;
+//
+//+(void)getWithHotLeft:(SuccessHotPto)successData failure:(FailureBlock)failureData;
 
-+(void)getWithHotPto:(SuccessHotPto)successData failure:(FailureBlock)failureData;
 
-
++(void)getWithHotPtoLeftAndRight:(SuccessHotPtoData)succesData failure:(FailureBlock)failureData;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Order.h"
 @interface TotalTableViewCell : UITableViewCell
 //订单号
 @property(nonatomic,strong)UILabel *numberLab;
@@ -31,5 +31,5 @@
 @property(nonatomic,strong)UILabel *topLineLab;
 //底部线条
 @property(nonatomic,strong)UILabel *bottomLineLab;
-
+@property(nonatomic,strong)Order *order;
 @end

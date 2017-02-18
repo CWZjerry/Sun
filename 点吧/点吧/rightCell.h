@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numLabel;
 @property (nonatomic,assign) int number;
 
-@property(nonatomic,strong) hotPot_fix_list * hotFix;
+@property(nonatomic,strong) HotPot_Data_fix_list * hotFix;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *fix_img;

@@ -66,6 +66,10 @@
 		1537D34E1E49DE65004BCC4D /* HeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3411E49DE65004BCC4D /* HeadTableViewCell.m */; };
 		1537D34F1E49DE65004BCC4D /* PreferentialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3431E49DE65004BCC4D /* PreferentialView.m */; };
 		1537D3721E49EF19004BCC4D /* AFNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3711E49EF19004BCC4D /* AFNManager.m */; };
+		1537D3751E4B4D3E004BCC4D /* Pay.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3741E4B4D3E004BCC4D /* Pay.m */; };
+		1537D3781E4C3A47004BCC4D /* OrderSubMit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3771E4C3A47004BCC4D /* OrderSubMit.m */; };
+		1537D37B1E4D8CD0004BCC4D /* PayFinishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D37A1E4D8CD0004BCC4D /* PayFinishViewController.m */; };
+		1537D3811E513F93004BCC4D /* Details.m in Sources */ = {isa = PBXBuildFile; fileRef = 1537D3801E513F93004BCC4D /* Details.m */; };
 		154FBA0F1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA0E1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m */; };
 		154FBA121E1C9CBA00F2F6E5 /* TopScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA111E1C9CBA00F2F6E5 /* TopScroll.m */; };
 		154FBA191E1C9CC900F2F6E5 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154FBA141E1C9CC900F2F6E5 /* OrderViewController.m */; };
@@ -110,6 +114,8 @@
 		158D9E331E113A3400B0FFB5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D9E321E113A3400B0FFB5 /* HomeViewController.m */; };
 		158D9E361E113A5900B0FFB5 /* TakeAwayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D9E351E113A5900B0FFB5 /* TakeAwayViewController.m */; };
 		158D9E3C1E113A9800B0FFB5 /* MySelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D9E3B1E113A9800B0FFB5 /* MySelfViewController.m */; };
+		15E168F81E51A0DA001C03D9 /* DistrbutionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E168F71E51A0DA001C03D9 /* DistrbutionTableViewCell.m */; };
+		15E168FB1E5288A8001C03D9 /* Judge.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E168FA1E5288A8001C03D9 /* Judge.m */; };
 		AE83ACED9814D0DC4710253A /* libPods-点吧.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB07BC84E1D52422BD18C99 /* libPods-点吧.a */; };
 		BA0C4BBF1E4B056500EC1A39 /* SiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0C4BBE1E4B056500EC1A39 /* SiteViewController.m */; };
 		BA0C4BC91E4B072A00EC1A39 /* AddressAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0C4BC11E4B072A00EC1A39 /* AddressAdd.m */; };
@@ -287,6 +293,14 @@
 		1537D3431E49DE65004BCC4D /* PreferentialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferentialView.m; sourceTree = "<group>"; };
 		1537D3701E49EF19004BCC4D /* AFNManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNManager.h; sourceTree = "<group>"; };
 		1537D3711E49EF19004BCC4D /* AFNManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNManager.m; sourceTree = "<group>"; };
+		1537D3731E4B4D3E004BCC4D /* Pay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pay.h; sourceTree = "<group>"; };
+		1537D3741E4B4D3E004BCC4D /* Pay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pay.m; sourceTree = "<group>"; };
+		1537D3761E4C3A47004BCC4D /* OrderSubMit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderSubMit.h; sourceTree = "<group>"; };
+		1537D3771E4C3A47004BCC4D /* OrderSubMit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderSubMit.m; sourceTree = "<group>"; };
+		1537D3791E4D8CD0004BCC4D /* PayFinishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayFinishViewController.h; sourceTree = "<group>"; };
+		1537D37A1E4D8CD0004BCC4D /* PayFinishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayFinishViewController.m; sourceTree = "<group>"; };
+		1537D37F1E513F93004BCC4D /* Details.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Details.h; sourceTree = "<group>"; };
+		1537D3801E513F93004BCC4D /* Details.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Details.m; sourceTree = "<group>"; };
 		154FBA0D1E1C9BDD00F2F6E5 /* UILabel+OGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+OGLabel.h"; sourceTree = "<group>"; };
 		154FBA0E1E1C9BDD00F2F6E5 /* UILabel+OGLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+OGLabel.m"; sourceTree = "<group>"; };
 		154FBA101E1C9CBA00F2F6E5 /* TopScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopScroll.h; sourceTree = "<group>"; };
@@ -363,6 +377,10 @@
 		158D9E351E113A5900B0FFB5 /* TakeAwayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeAwayViewController.m; sourceTree = "<group>"; };
 		158D9E3A1E113A9800B0FFB5 /* MySelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfViewController.h; sourceTree = "<group>"; };
 		158D9E3B1E113A9800B0FFB5 /* MySelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfViewController.m; sourceTree = "<group>"; };
+		15E168F61E51A0DA001C03D9 /* DistrbutionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistrbutionTableViewCell.h; sourceTree = "<group>"; };
+		15E168F71E51A0DA001C03D9 /* DistrbutionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistrbutionTableViewCell.m; sourceTree = "<group>"; };
+		15E168F91E5288A8001C03D9 /* Judge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Judge.h; sourceTree = "<group>"; };
+		15E168FA1E5288A8001C03D9 /* Judge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Judge.m; sourceTree = "<group>"; };
 		97547ACC4F1497BB380CE534 /* Pods-点吧.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-点吧.debug.xcconfig"; path = "Pods/Target Support Files/Pods-点吧/Pods-点吧.debug.xcconfig"; sourceTree = "<group>"; };
 		97A7F1458D1BCA79813BE22D /* Pods-点吧.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-点吧.release.xcconfig"; path = "Pods/Target Support Files/Pods-点吧/Pods-点吧.release.xcconfig"; sourceTree = "<group>"; };
 		BA0C4BBD1E4B056500EC1A39 /* SiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteViewController.h; sourceTree = "<group>"; };
@@ -836,32 +854,9 @@
 		1537D3651E49E30B004BCC4D /* OrderSubMit */ = {
 			isa = PBXGroup;
 			children = (
-				1537D3291E49DD81004BCC4D /* OrderSubMitViewController.h */,
-				1537D32A1E49DD81004BCC4D /* OrderSubMitViewController.m */,
-				1537D32C1E49DE65004BCC4D /* HallAwayViewController.h */,
-				1537D32D1E49DE65004BCC4D /* HallAwayViewController.m */,
-				1537D32E1E49DE65004BCC4D /* SexView.h */,
-				1537D32F1E49DE65004BCC4D /* SexView.m */,
-				1537D3301E49DE65004BCC4D /* AddressViewController.h */,
-				1537D3311E49DE65004BCC4D /* AddressViewController.m */,
-				1537D3321E49DE65004BCC4D /* AddrssTableViewCell.h */,
-				1537D3331E49DE65004BCC4D /* AddrssTableViewCell.m */,
-				1537D3341E49DE65004BCC4D /* PayViewController.h */,
-				1537D3351E49DE65004BCC4D /* PayViewController.m */,
-				1537D3361E49DE65004BCC4D /* PayTableViewCell.h */,
-				1537D3371E49DE65004BCC4D /* PayTableViewCell.m */,
-				1537D3381E49DE65004BCC4D /* PayTimeTableViewCell.h */,
-				1537D3391E49DE65004BCC4D /* PayTimeTableViewCell.m */,
-				1537D33A1E49DE65004BCC4D /* TimePicker.h */,
-				1537D33B1E49DE65004BCC4D /* TimePicker.m */,
-				1537D33C1E49DE65004BCC4D /* BottomView.h */,
-				1537D33D1E49DE65004BCC4D /* BottomView.m */,
-				1537D33E1E49DE65004BCC4D /* RemarsTableViewCell.h */,
-				1537D33F1E49DE65004BCC4D /* RemarsTableViewCell.m */,
-				1537D3401E49DE65004BCC4D /* HeadTableViewCell.h */,
-				1537D3411E49DE65004BCC4D /* HeadTableViewCell.m */,
-				1537D3421E49DE65004BCC4D /* PreferentialView.h */,
-				1537D3431E49DE65004BCC4D /* PreferentialView.m */,
+				15E169021E5680CE001C03D9 /* 支付 */,
+				15E169011E5680B0001C03D9 /* lu a */,
+				15E168FC1E568066001C03D9 /* 提交订单 */,
 			);
 			name = OrderSubMit;
 			sourceTree = "<group>";
@@ -926,6 +921,8 @@
 		154FBA541E1CA06000F2F6E5 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				1537D37F1E513F93004BCC4D /* Details.h */,
+				1537D3801E513F93004BCC4D /* Details.m */,
 			);
 			name = M;
 			sourceTree = "<group>";
@@ -947,6 +944,8 @@
 				154FBA301E1C9D0B00F2F6E5 /* DetailsView.m */,
 				154FBA311E1C9D0B00F2F6E5 /* OrderTableViewCell.h */,
 				154FBA321E1C9D0B00F2F6E5 /* OrderTableViewCell.m */,
+				15E168F61E51A0DA001C03D9 /* DistrbutionTableViewCell.h */,
+				15E168F71E51A0DA001C03D9 /* DistrbutionTableViewCell.m */,
 			);
 			name = V;
 			sourceTree = "<group>";
@@ -974,6 +973,8 @@
 		154FBA581E1CA0C400F2F6E5 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				15E168F91E5288A8001C03D9 /* Judge.h */,
+				15E168FA1E5288A8001C03D9 /* Judge.m */,
 			);
 			name = M;
 			sourceTree = "<group>";
@@ -1182,6 +1183,105 @@
 				BA0C4BD81E4C08A200EC1A39 /* AddViewController.m */,
 			);
 			name = "地址";
+		15E168FC1E568066001C03D9 /* 提交订单 */ = {
+			isa = PBXGroup;
+			children = (
+				15E169001E56808F001C03D9 /* C */,
+				15E168FF1E56808A001C03D9 /* V */,
+				15E168FD1E56807E001C03D9 /* M */,
+			);
+			name = "提交订单";
+			sourceTree = "<group>";
+		};
+		15E168FD1E56807E001C03D9 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				1537D3761E4C3A47004BCC4D /* OrderSubMit.h */,
+				1537D3771E4C3A47004BCC4D /* OrderSubMit.m */,
+			);
+			name = M;
+			sourceTree = "<group>";
+		};
+		15E168FF1E56808A001C03D9 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				1537D33A1E49DE65004BCC4D /* TimePicker.h */,
+				1537D33B1E49DE65004BCC4D /* TimePicker.m */,
+				1537D33C1E49DE65004BCC4D /* BottomView.h */,
+				1537D33D1E49DE65004BCC4D /* BottomView.m */,
+				1537D33E1E49DE65004BCC4D /* RemarsTableViewCell.h */,
+				1537D33F1E49DE65004BCC4D /* RemarsTableViewCell.m */,
+				1537D3401E49DE65004BCC4D /* HeadTableViewCell.h */,
+				1537D3411E49DE65004BCC4D /* HeadTableViewCell.m */,
+				1537D3421E49DE65004BCC4D /* PreferentialView.h */,
+				1537D3431E49DE65004BCC4D /* PreferentialView.m */,
+			);
+			name = V;
+			sourceTree = "<group>";
+		};
+		15E169001E56808F001C03D9 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				1537D3291E49DD81004BCC4D /* OrderSubMitViewController.h */,
+				1537D32A1E49DD81004BCC4D /* OrderSubMitViewController.m */,
+			);
+			name = C;
+			sourceTree = "<group>";
+		};
+		15E169011E5680B0001C03D9 /* lu a */ = {
+			isa = PBXGroup;
+			children = (
+				1537D3791E4D8CD0004BCC4D /* PayFinishViewController.h */,
+				1537D37A1E4D8CD0004BCC4D /* PayFinishViewController.m */,
+				1537D32C1E49DE65004BCC4D /* HallAwayViewController.h */,
+				1537D32D1E49DE65004BCC4D /* HallAwayViewController.m */,
+				1537D32E1E49DE65004BCC4D /* SexView.h */,
+				1537D32F1E49DE65004BCC4D /* SexView.m */,
+				1537D3301E49DE65004BCC4D /* AddressViewController.h */,
+				1537D3311E49DE65004BCC4D /* AddressViewController.m */,
+				1537D3321E49DE65004BCC4D /* AddrssTableViewCell.h */,
+				1537D3331E49DE65004BCC4D /* AddrssTableViewCell.m */,
+			);
+			name = "lu a";
+			sourceTree = "<group>";
+		};
+		15E169021E5680CE001C03D9 /* 支付 */ = {
+			isa = PBXGroup;
+			children = (
+				15E169051E5680EB001C03D9 /* C */,
+				15E169041E5680E6001C03D9 /* V */,
+				15E169031E5680E1001C03D9 /* M */,
+			);
+			name = "支付";
+			sourceTree = "<group>";
+		};
+		15E169031E5680E1001C03D9 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				1537D3731E4B4D3E004BCC4D /* Pay.h */,
+				1537D3741E4B4D3E004BCC4D /* Pay.m */,
+			);
+			name = M;
+			sourceTree = "<group>";
+		};
+		15E169041E5680E6001C03D9 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				1537D3381E49DE65004BCC4D /* PayTimeTableViewCell.h */,
+				1537D3391E49DE65004BCC4D /* PayTimeTableViewCell.m */,
+				1537D3361E49DE65004BCC4D /* PayTableViewCell.h */,
+				1537D3371E49DE65004BCC4D /* PayTableViewCell.m */,
+			);
+			name = V;
+			sourceTree = "<group>";
+		};
+		15E169051E5680EB001C03D9 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				1537D3341E49DE65004BCC4D /* PayViewController.h */,
+				1537D3351E49DE65004BCC4D /* PayViewController.m */,
+			);
+			name = C;
 			sourceTree = "<group>";
 		};
 		BA21C3201E24F663004F1914 /* integral */ = {
@@ -1567,8 +1667,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1537D37B1E4D8CD0004BCC4D /* PayFinishViewController.m in Sources */,
 				BA36E91E1E1C873C00DEC0E6 /* User.m in Sources */,
 				0DA3F5F71E1389C600E2E030 /* HomeTableViewCell.m in Sources */,
+				15E168FB1E5288A8001C03D9 /* Judge.m in Sources */,
 				154FBA121E1C9CBA00F2F6E5 /* TopScroll.m in Sources */,
 				154FBA341E1C9D0B00F2F6E5 /* DetailsMessage.m in Sources */,
 				BA0C4BCD1E4B072A00EC1A39 /* AddressTableViewCell.m in Sources */,
@@ -1578,6 +1680,7 @@
 				BA6567E81E14A2130075E865 /* LoginViewController.m in Sources */,
 				154FBA4D1E1C9D5A00F2F6E5 /* TextRect.m in Sources */,
 				0DAC13A81E1F87700002A32F /* CCLocationManager.m in Sources */,
+				1537D3811E513F93004BCC4D /* Details.m in Sources */,
 				154FBA391E1C9D0B00F2F6E5 /* OrderTableViewCell.m in Sources */,
 				0DC495BF1E148EBA00537686 /* hotelViewController.m in Sources */,
 				BAAA021F1E236EF80037C034 /* AgencyViewController.m in Sources */,
@@ -1634,12 +1737,14 @@
 				BA6518331E206B9B00E53329 /* PhoneNumber.m in Sources */,
 				0DF158AA1E12473E008142D6 /* HomeView.m in Sources */,
 				BA0C4BD41E4B07F200EC1A39 /* AddAddressViewController.m in Sources */,
+				1537D3781E4C3A47004BCC4D /* OrderSubMit.m in Sources */,
 				1537D3451E49DE65004BCC4D /* SexView.m in Sources */,
 				BA0C4BCB1E4B072A00EC1A39 /* AddressHeaderView.m in Sources */,
 				0DAC13A91E1F87700002A32F /* CLLocation+YCLocation.m in Sources */,
 				BA6DB9D31E1749C9002622C8 /* ThrowLineTool.m in Sources */,
 				0D5EC5011E23712A00D5BB4C /* hotPotViewController.m in Sources */,
 				0D0961451E49DF93002697BD /* hotPot.m in Sources */,
+				15E168F81E51A0DA001C03D9 /* DistrbutionTableViewCell.m in Sources */,
 				BA6518321E206B9B00E53329 /* JudgmentResult.m in Sources */,
 				154FBA201E1C9CE800F2F6E5 /* TotalViewController.m in Sources */,
 				0DAC13AC1E1FBA580002A32F /* specificsViewController.m in Sources */,
@@ -1675,6 +1780,7 @@
 				158D9E331E113A3400B0FFB5 /* HomeViewController.m in Sources */,
 				1537D34F1E49DE65004BCC4D /* PreferentialView.m in Sources */,
 				BA6567EC1E14A2570075E865 /* UIView+Addition.m in Sources */,
+				1537D3751E4B4D3E004BCC4D /* Pay.m in Sources */,
 				BA36E9281E1C87A100DEC0E6 /* HClTextView.m in Sources */,
 				1537D34E1E49DE65004BCC4D /* HeadTableViewCell.m in Sources */,
 				1537D34D1E49DE65004BCC4D /* RemarsTableViewCell.m in Sources */,
@@ -1834,7 +1940,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "点吧/AllFrame.pch";
 				INFOPLIST_FILE = "点吧/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hmzb.heimajirongapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1859,7 +1965,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "点吧/AllFrame.pch";
 				INFOPLIST_FILE = "点吧/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hmzb.heimajirongapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -27,15 +27,17 @@
     .topSpaceToView(self.contentView,10)
     .widthIs(63)
     .autoHeightRatio(0);
-    UITextView *tates = [[UIView alloc]init];
-    tates.backgroundColor = [UIColor orangeColor];
+    UITextField *tates = [[UITextField alloc]init];
+//    tates.backgroundColor = [UIColor orangeColor];
+    tates.placeholder = @"请输入备注";
+    
     _tates = tates;
     [self.contentView addSubview:self.tates];
     _tates.sd_layout
     .leftSpaceToView(self.remarks,15)
     .topEqualToView(self.remarks)
     .rightEqualToView(self.contentView)
-    .bottomEqualToView(self.contentView);
+    .bottomEqualToView(self.remarks);
     
     
 }

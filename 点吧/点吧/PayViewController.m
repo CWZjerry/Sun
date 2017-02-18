@@ -304,6 +304,7 @@ static int  titt;
 //        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 60, 0);
         _tableView.delegate = self;
         _tableView.dataSource= self;
+        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     }
     return _tableView;
 }

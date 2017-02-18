@@ -18,37 +18,52 @@
 #import "DetailsView.h"
 #import "JudgeViewController.h"
 #import "AFNManager.h"
-
+#import "Details.h"
+#import "DistrbutionTableViewCell.h"
 #define WIDTH self.view.bounds.size.width
 #define HEIGHT self.view.bounds.size.height
 @interface DetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)UIView *bottomView;
+@property(nonatomic,strong)Details *details;
+@property(nonatomic,strong)State_type *state_type;
+@property(nonatomic,strong)NSMutableArray *menu_list;
+@property(nonatomic,strong)UIButton *jude;
 @end
 
 @implementation DetailsViewController
 -(void)viewWillAppear:(BOOL)animated
 
 {
-    NSString *str = @"http://www.kdiana.com/index.php/Before/Orders/fix_type_sel";
-    NSDictionary *dic = @{@"order_id":@"689"
-                          };
-    [[AFNManager sharedManager]requestType:POST URL:str withparameters:dic success:^(id data) {
-        NSLog(@"%@",data);
-//        NSString *str  =[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-//        NSLog(@"%@",str);
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
     
     
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = YES;
     self.tabBarController.tabBar.translucent = YES;
 }
+-(void)loadData
+{
+    NSString *str = @"http://www.kdiana.com/index.php/Before/MyOrder/order_info";
+    NSDictionary *dic = @{@"order_id":self.order_id
+                          };
+    [[NetworkRequest shareInstance]POST:str parameters:dic Success:^(id success) {
+//        NSLog(@"%@",success);
+        self.details = [Details yy_modelWithJSON:success];
+        self.state_type = [State_type yy_modelWithDictionary:self.details.state_type];
+        
+        for (NSDictionary *dic in self.details.menu_list) {
+            Menu_list *menu = [Menu_list yy_modelWithDictionary:dic];
+            [self.menu_list addObject:menu];
+        }
+        [self.tableView reloadData];
+    } Failure:^(id failure) {
+        
+    }];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self loadData];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.tableView];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
@@ -67,15 +82,23 @@
     .rightSpaceToView(self.view,0)
     .heightIs(48)
     .bottomSpaceToView(self.view,0);
-    UIButton *jude = [[UIButton alloc]init];
-    [jude setTitle: @"去评价" forState:UIControlStateNormal];
-    [jude setTitleColor:[GVColor hexStringToColor:@"#ffba14"] forState:UIControlStateNormal];
-    jude.backgroundColor = [GVColor hexStringToColor:@"#333333"];
-    jude.titleLabel.font = [UIFont systemFontOfSize:18];
-    [jude addTarget:self action:@selector(judeClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.bottomView addSubview:jude];
+    _jude = [[UIButton alloc]init];
+//    [_jude setTitle: @"去评价" forState:UIControlStateNormal];
+    if ([self.details.is_rated intValue]) {
+        [_jude setTitle:@"已评价" forState:UIControlStateNormal];
+        _jude.userInteractionEnabled = NO;
+    }
+    else
+    {
+        [_jude setTitle:@"去评价" forState:UIControlStateNormal];
+    }
+    [_jude setTitleColor:[GVColor hexStringToColor:@"#ffba14"] forState:UIControlStateNormal];
+    _jude.backgroundColor = [GVColor hexStringToColor:@"#333333"];
+    _jude.titleLabel.font = [UIFont systemFontOfSize:18];
+    [_jude addTarget:self action:@selector(judeClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView addSubview:_jude];
     
-    jude.sd_layout
+    _jude.sd_layout
     .leftEqualToView(self.bottomView)
     .topEqualToView(self.bottomView)
     .bottomEqualToView(self.bottomView)
@@ -87,7 +110,7 @@
     agen.titleLabel.font = [UIFont systemFontOfSize:18];
     [self.bottomView addSubview:agen];
     agen.sd_layout
-    .leftSpaceToView(jude,0)
+    .leftSpaceToView(_jude,0)
     .topEqualToView(self.bottomView)
     .bottomEqualToView(self.bottomView)
     .rightEqualToView(self.bottomView);
@@ -98,6 +121,8 @@
 -(void)judeClick:(UIButton *)button
 {
     JudgeViewController*jude = [[JudgeViewController alloc]init];
+    
+    jude.order_id = self.details.order_id;
     [self.navigationController pushViewController:jude animated:YES];
 }
 
@@ -130,11 +155,16 @@
 {
     if (section == 0) {
         DetailsHead  *detail = [[DetailsHead alloc]init];//WithFrame:CGRectMake(0, 0, WIDTH, 63)];
+        [detail.imageView sd_setImageWithURL:[NSURL URLWithString:self.state_type.photo] placeholderImage:nil];
+        detail.textLabel.text = self.state_type.state;
+        detail.detailTextLabel.text = self.state_type.explain;
         return detail;
     }
     else if (section ==1)
     {
         DetailsMessage *message = [[DetailsMessage alloc]init];
+        [message.imageView sd_setImageWithURL:[NSURL URLWithString:self.details.store_photo] placeholderImage:nil];
+        message.nameLabel.text= self.details.store_name;
         return message;
     }
     else if (section == 4)
@@ -236,7 +266,7 @@
             return 1;
             break;
         case 1:
-            return 4;
+            return self.details.menu_list.count;
             break;
         case 2:
             return 3;
@@ -258,14 +288,28 @@
 {
     if (indexPath.section == 1) {
         VegeTableViewCell *cell = [[VegeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+        Menu_list *menu = self.menu_list[indexPath.row];
+        cell.vegetable.text = menu.menu_name;
+        cell.number.text = [NSString stringWithFormat:@"x%@",menu.menu_order_num];
+        cell.money.text =[NSString stringWithFormat:@"¥%@",menu.menu_order_price] ;
+        
         return cell;
     }
     else if (indexPath.section == 2)
     {
         CostTableViewCell *cell = [[CostTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
-        if (indexPath.row == 2) {
+        if (indexPath.row == 0) {
+//            cell.money.text = 
+        }
+        else if (indexPath.row == 2) {
             cell.freight.textColor =[GVColor hexStringToColor:@"#ff1e00"];
             cell.money.textColor =[GVColor hexStringToColor:@"#ff1e00"];
+            cell.freight.text= @"优惠价";
+        }
+        else
+        {
+            cell.freight.text = @"订单总价";
+            cell.money.text = self.details.return_pay_price;
         }
         cell.money.text = @"sadas";
         return cell;
@@ -273,16 +317,59 @@
     else if (indexPath.section == 3)
     {
         MoneyView *cell = [[MoneyView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+        cell.money.text =self.details.return_pay_price;
         return cell;
     }
     else if (indexPath.section == 4)
     {
+        DistrbutionTableViewCell *cell = [[DistrbutionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+        if (indexPath.row == 0) {
+            cell.detailTextLable.text = self.details.order_no;
+            
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.textLable.text =@"订单时间：";
+            cell.detailTextLable.text = self.details.order_time;
+        }
+        else
+        {
+            cell.textLable.text = @"支付方式：";
+            cell.detailTextLable.text = self.details.pay_type;
+        }
+        return cell;
         
-        
+    }
+    else if (indexPath.section == 5)
+    {
+        DistrbutionTableViewCell *cell = [[DistrbutionTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+        if (indexPath.row == 0) {
+            cell.textLable.text = @"配送时间：";
+            cell.detailTextLable.text = self.details.send_time;
+            
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.textLable.text =@"配送地址：";
+            cell.detailTextLable.text = self.details.takeout_address;
+        }
+        else
+        {
+            cell.textLable.text = @"配送服务：";
+            cell.detailTextLable.text = self.details.rel_mode;
+        }
+        return cell;
         
     }
     
     return [[UITableViewCell alloc]init];;
+}
+-(NSMutableArray*)menu_list
+{
+    if (_menu_list == nil) {
+        _menu_list = [NSMutableArray array];
+    }
+    return _menu_list;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -19,6 +19,7 @@
 #import <Masonry.h>
 #import "NetworkRequest.h"
 #import <YYModel.h>
+#import <SDWebImage/SDImageCache.h>
 //换算尺寸
 #define SIZE(size,type) (size*72.0/type)
 //颜色

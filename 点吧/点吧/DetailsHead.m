@@ -76,7 +76,7 @@
     _detailTextLabel.sd_layout
     .leftEqualToView(self.textLabel)
     .topSpaceToView(self.textLabel,10)
-    .widthIs(rect2.size.width)
+    .rightEqualToView(self)
     .heightIs(rect2.size.height);
     
     

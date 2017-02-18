@@ -84,6 +84,8 @@ static CGFloat bthWidth;
 - (void)selectTitleCente:(UIButton *)selectBth
 {
     if (_judgeBth==nil) {
+        UIButton *bth = self.titleArr[0];
+        bth.selected = NO;
         selectBth.selected=YES;
         _judgeBth=selectBth;
     }

@@ -10,8 +10,9 @@
 #import "MainViewController.h"
 #import "OrderSubMitViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "PayFinishViewController.h"
 @interface AppDelegate ()
-
+@property(nonatomic,strong)MainViewController * main;
 @end
 
 @implementation AppDelegate
@@ -20,10 +21,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    //主控制器
     //主控制器
-    MainViewController * main = [[MainViewController alloc]init];
+    self.main = [[MainViewController alloc]init];
     //导航
     self.window.frame = [UIScreen mainScreen].bounds;
-    self.window.rootViewController = main;
+    self.window.rootViewController = self.main;
     self.window.backgroundColor = [UIColor whiteColor];
 
     
@@ -77,7 +78,8 @@
         // 支付跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:[NSURL URLWithString:@""] standbyCallback:^(NSDictionary *resultDic) {
             NSLog(@"result = %@",resultDic);
-            
+            PayFinishViewController *pay = [[PayFinishViewController alloc]init];
+            [self.main.tabBarController.navigationController pushViewController:pay animated:YES];
         }];
         
         // 授权跳转支付宝钱包进行支付，处理支付结果

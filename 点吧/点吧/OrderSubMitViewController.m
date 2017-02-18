@@ -90,7 +90,7 @@
                                 @"orderinfo":jsonString,
                                 @"orderinfotwo":@"",
                                 @"use_coup":@"",
-                                @"order_address":@"",
+                                @"order_address":@"beijingshichan",
                                 @"distribution_cost":@""};
     [[NetworkRequest shareInstance]POST:CREAT_ORDER_URL parameters:orderDic Success:^(id success) {
 //        NSLog(@"%@",success);
@@ -346,6 +346,8 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-49) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource= self;
+        
+        _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     }
     return _tableView;
 }

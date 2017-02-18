@@ -97,7 +97,7 @@
     _personLabel.sd_layout
     .leftEqualToView(typeLabel)
     .topSpaceToView(self.typeLabel,5)
-    .widthIs(100)
+    .widthIs(150)
     .heightIs(10);
     UILabel *zhuohao = [[UILabel alloc]initWithText:@"桌号：雅包(108)" font:[UIFont systemFontOfSize:14] textColor:[GVColor hexStringToColor:GARY]];
     _zhuohaoLabel = zhuohao;

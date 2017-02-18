@@ -20,7 +20,8 @@
 }
 -(void)setupUI
 {
-    UILabel *money = [[UILabel alloc]init];
+    UILabel *money = [[UILabel alloc]init]; 
+    money.textAlignment = NSTextAlignmentRight;
     money.text = @"600";
     money.textColor = [GVColor hexStringToColor:@"#ff1e00"];
     money.font = [UIFont systemFontOfSize:17];

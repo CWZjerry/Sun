@@ -13,11 +13,17 @@
 #import "GVColor.h"
 #define BLACK @"#333333"
 #import "JudgeVegeTableViewCell.h"
+#import "Judge.h"
+//我的订单 (评价显示)
+#define MINE_ORDER_SHOW @"http://www.kdiana.com/index.php/Before/MyOrder/evaluate"
+//我的订单（去评价）
+#define MINE_ORDER_NO @"http://www.kdiana.com/index.php/Before/MyOrder/appraise"
 @interface JudgeViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableview;
 @property(nonatomic,strong)UIView *bottomView;
 @property(nonatomic,strong)UIButton *subMitBtn;
-
+@property(nonatomic,strong)Judge *jude;
+@property(nonatomic,strong)NSMutableArray *menuArr;
 @end
 
 @implementation JudgeViewController
@@ -25,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self loadData];
     [self.view addSubview:self.tableview];
     [self.view addSubview:self.bottomView];
     _bottomView.sd_layout
@@ -38,6 +45,23 @@
     .widthIs(170)
     .heightIs(30)
     .centerXEqualToView(self.bottomView);
+}
+-(void)loadData
+{
+    NSDictionary *dic = @{@"order_id":self.order_id
+                          };
+    [[NetworkRequest shareInstance]POST:MINE_ORDER_SHOW parameters:dic Success:^(id success) {
+//        NSLog(@"-----%@",success);
+        _jude = [Judge yy_modelWithJSON:success];
+        for (NSDictionary *dic  in _jude.menu_list) {
+            menu_list *menu = [menu_list yy_modelWithDictionary:dic];
+            [self.menuArr addObject:menu];
+        }
+        [self.tableview reloadData];
+        
+    } Failure:^(id failure) {
+        
+    }];
 }
 -(UIButton *)subMitBtn
 {
@@ -96,7 +120,7 @@
             return 1;
             break;
         case 1:
-            return 3;
+            return self.jude.menu_list.count;
             break;
             
         default:
@@ -163,6 +187,15 @@
 {
     if (indexPath.section == 0 ) {
         MessagView * message = [[MessagView alloc]init];
+        [message.imageView sd_setImageWithURL:[NSURL URLWithString:self.jude.store_photo]];
+        message.nameLabel.text = self.jude.store_name;
+        message.numberLabel.text = [NSString stringWithFormat:@"订单号:%@",self.jude.order_no];
+        message.typeLabel.text =[NSString stringWithFormat:@"订餐类型:%@",self.jude.eat_type];
+        message.moshiLabel.text =[NSString stringWithFormat:@"点餐模式:%@",self.jude.rel_mode];
+        message.personLabel.text =[NSString stringWithFormat:@"就餐人数:%@人",self.jude.people_num] ;
+        message.zhuohaoLabel.text =[NSString stringWithFormat:@"桌号:%@",self.jude.table_name] ;
+        message.timeLabel.text = [NSString stringWithFormat:@"时间:%@",self.jude.order_time];
+        
         UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
         [cell.contentView addSubview:message];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -172,7 +205,8 @@
     else if(indexPath.section == 1)
     {
         JudgeVegeTableViewCell *cell = [[JudgeVegeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
-        
+        menu_list *menu = self.menuArr[indexPath.row];
+        cell.name.text = menu.menu_name;
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -193,6 +227,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+}
+-(NSMutableArray *)menuArr
+{
+    if (_menuArr == nil) {
+        _menuArr = [NSMutableArray array];
+    }
+    return _menuArr;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -56,7 +56,7 @@
     _money.sd_layout
     .rightSpaceToView(self.contentView,12)
     .centerYEqualToView(self.contentView)
-    .widthIs(40)
+    .leftSpaceToView(self.number,5)
     .heightIs(13);
     
     

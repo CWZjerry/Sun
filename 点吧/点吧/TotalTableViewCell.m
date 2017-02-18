@@ -236,7 +236,16 @@
     CGRect rect=[label.text boundingRectWithSize:CGSizeMake(self.contentView.frame.size.width, self.contentView.frame.size.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     return rect;
 }
-
+-(void)setOrder:(Order *)order
+{
+    self.moneyLab.text = [NSString stringWithFormat:@"总金额\t¥%@",order.order_price];
+    self.typeLab.text = order.eat_type;
+    self.shopNameLab.text = order.store_name;
+    self.orderTimeLab.text = [NSString stringWithFormat:@"下单时间：%@",order.order_time];
+    self.payLab.text = order.finish_state;
+    self.numberLab.text = [NSString stringWithFormat:@"订单号：%@",order.order_no];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:order.store_photo] placeholderImage:nil] ;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

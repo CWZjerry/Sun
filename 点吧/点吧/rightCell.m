@@ -44,11 +44,11 @@
     _numLabel.text = [NSString stringWithFormat:@"%zd",_number];
 }
 
--(void)setHotFix:(hotPot_fix_list *)hotFix
+
+-(void)setHotFix:(HotPot_Data_fix_list *)hotFix
 {
     self.fix_price.text = hotFix.fix_price;
-    [self.fix_img sd_setImageWithURL:[NSURL URLWithString:hotFix.fix_img] placeholderImage:[UIImage imageNamed:@"img1"]];
+    //[self.fix_img sd_setImageWithURL:[NSURL URLWithString:hotFix.fix_img] placeholderImage:[UIImage imageNamed:@"img1"]];
     self.fix_name.text = hotFix.fix_name;
 }
-
 @end

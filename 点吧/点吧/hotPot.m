@@ -8,14 +8,61 @@
 
 #import "hotPot.h"
 
-@implementation hotPot
+//@implementation hotPot
+//-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+//{
+//    NSLog(@"undefinedKey:%@",key);
+//}
+//@end
+//
+//@implementation hotPot_fix_list
+//
+//-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+//{
+//    NSLog(@"undefinedKey:%@",key);
+//}
+//
+//@end
+//
+//@implementation hotPot_left
+//
+//
+//-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+//{
+//    NSLog(@"undefinedKey:%@",key);
+//}
+//
+//@end
+//
+//@implementation hotPot_Data_left
+//
+//
+//-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+//{
+//    NSLog(@"undefinedKey:%@",key);
+//}
+//
+//@end
+
+@implementation HotPot_Data
+
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     NSLog(@"undefinedKey:%@",key);
 }
+
 @end
 
-@implementation hotPot_fix_list
+@implementation HotPot_Data_fix_list
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    NSLog(@"undefinedKey:%@",key);
+}
+
+@end
+
+@implementation HotPot_Data_fix_type
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key
 {

@@ -14,8 +14,12 @@
 @interface hotPotViewController ()<UITableViewDelegate,UITableViewDataSource,CAAnimationDelegate>
 
 {
-    NSArray * _leftArr, * _rightArr;
-    NSMutableArray * _hotMarr;
+    NSMutableArray * _hotMarr;//右边数组
+    NSMutableArray * _hotLeftMarr;//左边数组
+    
+    NSMutableArray * _hotRarr;//右边数组
+    NSMutableArray * _hotLMarr;//左边数组
+    NSMutableArray * _arrMarr;
 }
 @property(nonatomic,strong) UITableView * leftTableView , * rightTableView;//左右侧tableView
 @property(nonatomic,strong) UILabel * countLabel;//购物数量
@@ -35,19 +39,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _leftArr = @[@"全部",@"蔬菜",@"丸子",@"肉类",@"凉菜"];
     
     _number = 0;
     [self.view addSubview:self.leftTableView];
     [self.view addSubview:self.rightTableView];
     
-    [hotPtoRequest getWithHotPto:^(id Value) {
-        _hotMarr  = Value;
-       dispatch_async(dispatch_get_main_queue(), ^{
-           
-           [self.rightTableView reloadData];
-       });
-        
+//    [hotPtoRequest getWithHotPto:^(id Value) {
+//        _hotMarr  = Value;
+//       dispatch_async(dispatch_get_main_queue(), ^{
+//           
+//           [self.rightTableView reloadData];
+//       });
+//        
+//    } failure:^(id failure) {
+//        
+//        
+//    }];
+//    
+//    
+//    [hotPtoRequest getWithHotLeft:^(id Value) {
+//        _hotLeftMarr = Value;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            [self.leftTableView reloadData];
+//        });
+//        
+//    } failure:^(id failure) {
+//        
+//        
+//    }];
+    
+    [hotPtoRequest getWithHotPtoLeftAndRight:^(id left, id right, id allMarr) {
+        _hotRarr = right;
+        _hotLMarr = left;
+        _arrMarr = allMarr;
+        NSLog(@"%@",_arrMarr);
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.rightTableView reloadData];
+            [self.leftTableView reloadData];
+        });
     } failure:^(id failure) {
         
         
@@ -115,11 +147,11 @@
 {
     if([tableView isEqual:self.leftTableView])
     {
-        return _leftArr.count;
+        return _hotLMarr.count;
     }
     else
     {
-        return _hotMarr.count;
+        return _hotRarr.count;
     }
 }
 -(CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -133,6 +165,17 @@
         return 70;
     }
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //判断是否为左侧按钮
+    if([tableView isEqual:self.leftTableView])
+    {
+        _hotRarr = _arrMarr[indexPath.row];
+        [self.rightTableView reloadData];
+        
+    }
+
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([tableView isEqual:self.leftTableView])
@@ -143,6 +186,10 @@
         {
             leftCell = [[[NSBundle mainBundle] loadNibNamed:@"leftCell" owner:self options:nil] lastObject];
         }
+        
+        //[leftCell setHotLeft:_hotLMarr[indexPath.row]];
+        [leftCell setHotLeft:_hotLMarr[indexPath.row]];
+        
         //选中cell后切换图
         UIImageView * backImage = [[UIImageView alloc]initWithFrame:leftCell.backgroundView.frame];
         backImage.image = [UIImage imageNamed:@"bottom"];
@@ -155,7 +202,7 @@
         
         leftCell.backgroundColor = [GVColor hexStringToColor:@"f2f2f2"];
         
-        leftCell.leftTitle.text = _leftArr [indexPath.row];
+        
         return leftCell;
     }
     else
@@ -167,8 +214,8 @@
             rightCell = [[[NSBundle mainBundle] loadNibNamed:@"rightCell" owner:self options:nil] lastObject];
         }
         
-        [rightCell setHotFix:_hotMarr[indexPath.row]];
-        
+        //[rightCell setHotFix:_hotRarr[indexPath.row]];
+        [rightCell setHotFix:_hotRarr[indexPath.row]];
         
         rightCell.number = 0;
        

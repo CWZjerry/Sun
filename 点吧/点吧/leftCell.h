@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "hotPot.h"
 @interface leftCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *leftTitle;
 
+@property(nonatomic,strong) HotPot_Data_fix_type * hotLeft;
 @end

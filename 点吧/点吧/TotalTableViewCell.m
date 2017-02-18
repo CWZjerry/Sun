@@ -115,6 +115,8 @@
         _moneyLab.textColor = [GVColor hexStringToColor:@"#333333"];
         _moneyLab.font = [UIFont systemFontOfSize:15];
         _moneyLab.text = @"总金额\t¥23000";
+        
+        _moneyLab.textAlignment = NSTextAlignmentRight;
     }
     return _moneyLab;
 }
@@ -202,8 +204,9 @@
 {
     if (!_payLab) {
         _payLab = [[UILabel alloc]init];
-        _payLab.text = @"代付款中";
+        _payLab.text = @"代付款中撒的城市";
         _payLab.font = [UIFont systemFontOfSize:12];
+        _payLab.textAlignment = NSTextAlignmentRight;
         _payLab.textColor = [GVColor hexStringToColor:@"#ffba14"];
         
         
@@ -233,7 +236,16 @@
     CGRect rect=[label.text boundingRectWithSize:CGSizeMake(self.contentView.frame.size.width, self.contentView.frame.size.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
     return rect;
 }
-
+-(void)setOrder:(Order *)order
+{
+    self.moneyLab.text = [NSString stringWithFormat:@"总金额\t¥%@",order.order_price];
+    self.typeLab.text = order.eat_type;
+    self.shopNameLab.text = order.store_name;
+    self.orderTimeLab.text = [NSString stringWithFormat:@"下单时间：%@",order.order_time];
+    self.payLab.text = order.finish_state;
+    self.numberLab.text = [NSString stringWithFormat:@"订单号：%@",order.order_no];
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:order.store_photo] placeholderImage:nil] ;
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
